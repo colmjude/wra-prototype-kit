@@ -1,6 +1,10 @@
-# Flask Prototype Kit
+# WRA flask prototype kit
 
-## Getting started
+This kit allows us to do some rapid prototying of designs and pages before deciding whether to take the prototype further and create a dedicated project for it.
+
+The latest prototypes (and links to standalone prototypes) are available at [wra-prototypes.herokuapp.com/](https://wra-prototypes.herokuapp.com/).
+
+## Getting started (locally)
 
 Optional but recommended. Run in a virtualenv. To create one (with Python 3) run:
 
