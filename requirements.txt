@@ -1,5 +1,6 @@
 black
 flake8
 flask
+gunicorn
 python-dotenv
 -e git+https://github.com/welsh-revenue-authority/wra-frontend.git#egg=wra-frontend
