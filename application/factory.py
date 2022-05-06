@@ -65,4 +65,16 @@ def register_templates(app):
 
     This is where we'll register templates from WRA frontend
     """
-    pass
+    from jinja2 import ChoiceLoader, PackageLoader, PrefixLoader
+
+    multi_loader = ChoiceLoader(
+        [
+            app.jinja_loader,
+            PrefixLoader(
+                {
+                    "wra-frontend": PackageLoader("wra_frontend"),
+                }
+            ),
+        ]
+    )
+    app.jinja_loader = multi_loader
