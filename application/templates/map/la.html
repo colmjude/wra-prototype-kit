@@ -1,7 +1,68 @@
 {% extends "layouts/layout.html" %}
 {% block page_title %}WRA Prototype Kit index{% endblock %}
+
+{% block headEnd %}
+<script src="https://unpkg.com/maplibre-gl@1.14.0-rc.1/dist/maplibre-gl.js"></script>
+<link href="https://unpkg.com/maplibre-gl@1.14.0-rc.1/dist/maplibre-gl.css" rel="stylesheet" />
+{% endblock headEnd %}
+
 {% block content %}
 <main id="content" role="main">
   <h1 class="govuk-heading-xl">Map</h1>
+  <div id="mapId" style="min-height: 700px;"></div>
 </main>
 {% endblock %}
+
+{% block pageScripts %}
+<script>
+  const createMap = function () {
+    var map = new maplibregl.Map({
+      container: "mapId",// container id
+      style: "/static/javascripts/base-tile.json",
+      center: [-3.4, 52.4], // starting position [lng, lat]
+      zoom: 7// starting zoom
+    });
+
+    map.addControl(new maplibregl.FullscreenControl({
+      container: document.querySelector(this.mapContainerSelector)
+    }), 'bottom-left');
+    return map;
+  };
+
+  function renderBoundaries(map) {
+    fetch('/static/data/la_boundaries.json')
+    .then(response => response.json())
+    .then(function(data) {
+      console.log(data)
+      map.addSource('laBoundaries', {
+        'type': 'geojson',
+        'data': '/static/data/la_boundaries.json'
+      })
+      map.addLayer({
+        'id': 'laLayer',
+        'type': 'fill',
+        'source': 'laBoundaries',
+        'layout': {},
+        'paint': {
+          'fill-color': '#088',
+          'fill-opacity': 0.8
+        }
+      });
+    });
+  }
+
+  const map = createMap()
+  // add listener for when initial map loaded
+  map.on('load', function(e) {
+    console.log("map loaded")
+    renderBoundaries(map)
+  });
+  // add listener for when map clicked on
+  map.on('click', function(e) {
+    console.log("map clicked on", e)
+    console.log("click location", e.lngLat.lng, e.lngLat.lat)
+  });
+
+
+</script>
+{% endblock pageScripts %}

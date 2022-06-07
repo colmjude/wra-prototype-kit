@@ -5,10 +5,11 @@
   "scripts": {
     "build:stylesheets": "npm run nps build.stylesheets",
     "build:gel": "npm run nps build.gel",
+    "copy:js": "rsync -ar src/js/ application/static/javascripts",
     "watch:scss": "npm run nps watch.stylesheets",
     "watch": "npm-run-all --parallel watch:*",
     "nps": "nps -c ./node_modules/wra-frontend/package-scripts.js",
-    "postinstall": "npm run nps build.gel && npm run nps build.stylesheets"
+    "postinstall": "npm run copy:js && npm run nps build.gel && npm run nps build.stylesheets"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
     "url": "https://github.com/welsh-revenue-authority/flask-prototyping-kit/issues"
   },
   "dependencies": {
+    "geojson-validation": "^1.0.2",
     "wra-frontend": "https://gitpkg.now.sh/welsh-revenue-authority/wra-frontend/package?main"
   },
   "devDependencies": {
