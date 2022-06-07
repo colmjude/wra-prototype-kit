@@ -29,3 +29,8 @@ Finally to start the it run:
 ```
 flask run
 ```
+
+## To do
+
+* Replace Wales GEL compiled assets with building blocks
+* create jinja components for common components
