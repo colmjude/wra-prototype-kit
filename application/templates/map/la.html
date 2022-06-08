@@ -9,7 +9,13 @@
 {% block content %}
 <main id="content" role="main">
   <h1 class="govuk-heading-xl">Map</h1>
-  <div id="mapId" style="min-height: 700px;"></div>
+
+  <div class="row">
+    <div class="col-lg-8">
+      <div id="mapId" style="min-height: 600px;"></div>
+    </div>
+    <div class="col-lg-4">Panel</div>
+  </div>
 </main>
 {% endblock %}
 
@@ -19,8 +25,8 @@
     var map = new maplibregl.Map({
       container: "mapId",// container id
       style: "/static/javascripts/base-tile.json",
-      center: [-3.4, 52.4], // starting position [lng, lat]
-      zoom: 7// starting zoom
+      center: [-3.7, 52.4], // starting position [lng, lat]
+      zoom: 6.89// starting zoom
     });
 
     map.addControl(new maplibregl.FullscreenControl({
@@ -30,13 +36,13 @@
   };
 
   function renderBoundaries(map) {
-    fetch('/static/data/la_boundaries.json')
+    fetch('/static/data/la_boundaries_wgs84.geojson')
     .then(response => response.json())
     .then(function(data) {
       console.log(data)
       map.addSource('laBoundaries', {
         'type': 'geojson',
-        'data': '/static/data/la_boundaries.json'
+        'data': '/static/data/la_boundaries_wgs84.geojson'
       })
       map.addLayer({
         'id': 'laLayer',
@@ -45,7 +51,18 @@
         'layout': {},
         'paint': {
           'fill-color': '#088',
-          'fill-opacity': 0.8
+          'fill-opacity': 0.4
+        }
+      });
+      map.addLayer({
+        'id': 'laLayerLine',
+        'type': 'line',
+        'source': 'laBoundaries',
+        'layout': {},
+        'paint': {
+          'line-color': '#088',
+          'line-opacity': 0.8,
+          'line-width': 1
         }
       });
     });
