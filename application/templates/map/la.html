@@ -35,6 +35,10 @@
     return map;
   };
 
+  const createMarker = function () {
+    return new maplibregl.Marker()
+  }
+
   function renderBoundaries(map) {
     fetch('/static/data/la_boundaries_wgs84.geojson')
     .then(response => response.json())
@@ -69,6 +73,7 @@
   }
 
   const map = createMap()
+  const marker = createMarker()
   // add listener for when initial map loaded
   map.on('load', function(e) {
     console.log("map loaded")
@@ -78,6 +83,11 @@
   map.on('click', function(e) {
     console.log("map clicked on", e)
     console.log("click location", e.lngLat.lng, e.lngLat.lat)
+
+    // put marker at point user clicked
+    marker
+      .setLngLat([e.lngLat.lng, e.lngLat.lat])
+      .addTo(map)
   });
 
 
