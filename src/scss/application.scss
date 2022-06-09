@@ -29,3 +29,24 @@
   border-top: 10px solid #0360a6;
   padding-top: 25px;
 }
+
+.app-break-xl {
+  border-top: 0;
+  border-bottom: 5px solid #e5e5e5;
+  margin: 20px 0;
+  @include mq($from: tablet) {
+    margin: 30px 0;
+  }
+}
+
+.app-btn {
+  display: inline-block;
+  padding: 15px 20px;
+  background: transparent;
+  color: #0360a6;
+  border: 2px solid #0360a6;
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: none;
+  outline: 0;
+}
