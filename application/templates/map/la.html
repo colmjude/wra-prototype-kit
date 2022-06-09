@@ -16,7 +16,15 @@
     <div class="col-lg-8">
       <div id="mapId" style="min-height: 600px;"></div>
     </div>
-    <div class="col-lg-4">Panel</div>
+    <div class="col-lg-4">
+      <h2 class="wra-!-margin-top-0">Location details</h2>
+      <dl>
+        <dt>Latitude</dt>
+        <dd class="app-dynamic-latitude app-no-value">No location selected</dd>
+        <dt>Longitude</dt>
+        <dd class="app-dynamic-longitude app-no-value">No location selected</dd>
+      </dl>
+    </div>
   </div>
 </main>
 {% endblock %}
@@ -76,6 +84,9 @@
 
   const map = createMap()
   const marker = createMarker()
+  const $lat = document.querySelector('.app-dynamic-latitude')
+  const $lng = document.querySelector('.app-dynamic-longitude')
+
   // add listener for when initial map loaded
   map.on('load', function(e) {
     console.log("map loaded")
@@ -85,6 +96,11 @@
   map.on('click', function(e) {
     console.log("map clicked on", e)
     console.log("click location", e.lngLat.lng, e.lngLat.lat)
+
+    $lat.classList.remove("app-no-value")
+    $lat.textContent = e.lngLat.lat
+    $lng.classList.remove("app-no-value")
+    $lng.textContent = e.lngLat.lng
 
     // put marker at point user clicked
     marker
