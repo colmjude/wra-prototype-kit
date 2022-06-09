@@ -1,5 +1,10 @@
 {% extends 'wra-frontend/layouts/base.jinja' %}
 
+{%- block stylesheets -%}
+{{ super() }}
+<link rel="stylesheet" media="all" href="{{ assetPath }}/stylesheets/application.css" />
+{% endblock stylesheets -%}
+
 {% block phaseMarker %}
 <a id="alpha-btn" class="btn btn--beta btn--light">Proof of concept</a>
 {% endblock phaseMarker %}
