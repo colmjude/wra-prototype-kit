@@ -17,13 +17,27 @@
       <div id="mapId" style="min-height: 600px;"></div>
     </div>
     <div class="col-lg-4">
-      <h2 class="wra-!-margin-top-0">Location details</h2>
-      <dl>
-        <dt>Latitude</dt>
-        <dd class="app-dynamic-latitude app-no-value">No location selected</dd>
-        <dt>Longitude</dt>
-        <dd class="app-dynamic-longitude app-no-value">No location selected</dd>
-      </dl>
+      <div class="app-information-panel">
+        <h2 class="wra-!-margin-top-0 wra-!-margin-bottom-3">Location details</h2>
+        <dl>
+          <div class="app-dl-item">
+            <dt>Latitude</dt>
+            <dd class="app-dynamic-latitude app-no-value">No location selected</dd>
+          </div>
+          <div class="app-dl-item">
+            <dt>Longitude</dt>
+            <dd class="app-dynamic-longitude app-no-value">No location selected</dd>
+          </div>
+          <div class="app-dl-item">
+            <dt>Local authority</dt>
+            <dd class="app-no-value"></dd>
+          </div>
+          <div class="app-dl-item">
+            <dt>Tax rate</dt>
+            <dd class="app-no-value"></dd>
+          </div>
+        </dl>
+      </div>
     </div>
   </div>
 </main>
@@ -45,8 +59,9 @@
     return map;
   };
 
-  const createMarker = function () {
-    return new maplibregl.Marker()
+  const createMarker = function (colour) {
+    const c = colour || "red" 
+    return new maplibregl.Marker({ color: c })
   }
 
   function renderBoundaries(map) {

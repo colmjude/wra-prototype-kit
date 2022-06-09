@@ -6,3 +6,26 @@
   color: #666;
   font-weight: 300;
 }
+
+.app-dl-item {
+  padding: 10px 0;
+  border-bottom: 1px solid #b9b9b9;
+
+  dt, dd {
+    display: inline;
+  }
+
+  dt {
+    font-weight: bold;
+  }
+
+  dd {
+    font-size: 1em;
+    font-weight: normal;
+  }
+}
+
+.app-information-panel {
+  border-top: 10px solid #0360a6;
+  padding-top: 25px;
+}
