@@ -6,8 +6,8 @@
     "build:javascripts": "npm run nps build.javascripts",
     "build:stylesheets": "npm run nps build.stylesheets",
     "build:gel": "npm run nps build.gel",
-    "copy:js": "rsync -ar src/js/ application/static/javascripts",
-    "watch:scss": "npm run nps watch.stylesheets",
+    "copy:js": "rsync -ar src/javascripts/ application/static/javascripts",
+    "watch:assets": "npm run nps watch.assets",
     "watch": "npm-run-all --parallel watch:*",
     "nps": "nps -c ./node_modules/wra-frontend/package-scripts.js",
     "postinstall": "npm run copy:js && npm run nps build.gel && npm run nps build.stylesheets"

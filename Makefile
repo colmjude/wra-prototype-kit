@@ -18,3 +18,6 @@ black-check:
 
 flake8:
 	flake8 --exclude .venv,node_modules
+
+watch:
+	npm run watch
