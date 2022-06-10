@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "A prototype kit written in flask",
   "scripts": {
+    "build:javascripts": "npm run nps build.javascripts",
     "build:stylesheets": "npm run nps build.stylesheets",
     "build:gel": "npm run nps build.gel",
     "copy:js": "rsync -ar src/js/ application/static/javascripts",
