@@ -30,7 +30,7 @@
           </div>
           <div class="app-dl-item">
             <dt>Local authority</dt>
-            <dd class="app-no-value"></dd>
+            <dd class="app-dynamic-la-name app-no-value"></dd>
           </div>
           <div class="app-dl-item">
             <dt>Tax rate</dt>
@@ -106,10 +106,16 @@
     });
   }
 
+  const getLocalAuthorityFeatures = function (map, pt) {
+    const features = map.queryRenderedFeatures(pt)
+    return features.filter(feature => feature.layer.source === 'laBoundaries')
+  }
+
   const map = createMap()
   const marker = createMarker()
   const $lat = document.querySelector('.app-dynamic-latitude')
   const $lng = document.querySelector('.app-dynamic-longitude')
+  const $laName = document.querySelector('.app-dynamic-la-name')
 
   // add listener for when initial map loaded
   map.on('load', function(e) {
@@ -120,11 +126,18 @@
   map.on('click', function(e) {
     console.log("map clicked on", e)
     console.log("click location", e.lngLat.lng, e.lngLat.lat)
+    console.log("point", e.point)
+    const boundaries = getLocalAuthorityFeatures(map, e.point)
+    console.log("clicked on boundaries", boundaries)
 
     $lat.classList.remove("app-no-value")
     $lat.textContent = e.lngLat.lat
     $lng.classList.remove("app-no-value")
     $lng.textContent = e.lngLat.lng
+    
+    // need to handle no boundary returned
+    $laName.classList.remove("app-no-value")
+    $laName.textContent = boundaries[0].properties.name
 
     // put marker at point user clicked
     marker
