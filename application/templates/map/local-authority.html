@@ -1,0 +1,25 @@
+{% extends "layouts/layout.html" %}
+{% block page_title %}WRA Prototype Kit index{% endblock %}
+
+{% block headEnd %}
+<script src="https://unpkg.com/maplibre-gl@1.14.0-rc.1/dist/maplibre-gl.js"></script>
+<link href="https://unpkg.com/maplibre-gl@1.14.0-rc.1/dist/maplibre-gl.css" rel="stylesheet" />
+{% endblock headEnd %}
+
+{% block content %}
+<main id="content" role="main">
+
+<form action="">
+  <span class="app-caption wra-!-margin-top-9">Pinpoint a location</span>
+  <h1 class="h1-sm-and-up">{{ form.local_authority.label.text }}</h1>
+  <div class="form-group">
+    {{ form.local_authority(required=False, class="select wra-!-width-two-thirds")}}
+  </div>
+  <div class="form-group">
+    <button type="submit">Continue</button>
+  </div>
+</form>
+
+</main>
+{% endblock %}
+

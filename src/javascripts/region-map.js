@@ -27,7 +27,7 @@ const applyLayerFilters = function () {
     return false
   }
 
-  const filter = ['==', 'name', capitalizeFirstLetter(urlParams.get('region').toLowerCase())]
+  const filter = ['==', 'name', capitalizeFirstLetter(urlParams.get('region').toLowerCase().replace('+', ' '))]
   map.setFilter('laLayer', filter)
 
   let flownTo = false

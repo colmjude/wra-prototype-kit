@@ -1,0 +1,35 @@
+{% extends "layouts/layout.html" %}
+{% block page_title %}WRA Prototype Kit index{% endblock %}
+
+{% block headEnd %}
+<script src="https://unpkg.com/maplibre-gl@1.14.0-rc.1/dist/maplibre-gl.js"></script>
+<link href="https://unpkg.com/maplibre-gl@1.14.0-rc.1/dist/maplibre-gl.css" rel="stylesheet" />
+{% endblock headEnd %}
+
+{% block content %}
+<main id="content" role="main">
+
+  <form action="{{ url_for('map.know_address') }}" method="POST">
+    <span class="app-caption wra-!-margin-top-9">Pinpoint a location</span>
+    <h1 class="h1-sm-and-up">{{ form.has_address.label.text }}</h1>
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+      <div class="radios" data-module="radios">
+        {% for radio_option in form.has_address %}
+        <div class="radios__item">
+          {{ radio_option(required=False, class="radios__input") }}
+          <label class="label radios__label" for="{{ radio_option.id }}">
+            {{ radio_option.label }}
+          </label>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="form-group">
+      <button type="submit">Continue</button>
+    </div>
+  </form>
+  
+</main>
+{% endblock %}
+
