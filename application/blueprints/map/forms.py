@@ -16,6 +16,6 @@ class KnowAddressForm(FlaskForm):
 
 class LocalAuthorityForm(FlaskForm):
     local_authority = SelectField(
-        "Select the local authority",
+        "Do you know the local authority it is in?",
         validators=[DataRequired(message="Select Local Authority")],
     )
