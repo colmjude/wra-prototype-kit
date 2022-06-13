@@ -1,4 +1,9 @@
 /* global maplibregl, fetch */
+import mapHelpers from '../javascripts/map-helpers'
+
+// helpers used in script
+const createMarker = mapHelpers.createMarker
+
 const createMap = function () {
   const map = new maplibregl.Map({
     container: 'mapId', // container id
@@ -11,11 +16,6 @@ const createMap = function () {
     container: document.querySelector('#mapId')
   }), 'bottom-left')
   return map
-}
-
-const createMarker = function (colour) {
-  const c = colour || 'red'
-  return new maplibregl.Marker({ color: c })
 }
 
 function renderBoundaries (map) {

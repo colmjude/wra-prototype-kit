@@ -1,4 +1,11 @@
 /* global maplibregl, turf, fetch */
+
+import mapHelpers from '../javascripts/map-helpers'
+
+// helpers used in script
+const createMarker = mapHelpers.createMarker
+const getBBox = mapHelpers.generateBBox
+
 const createMap = function () {
   const map = new maplibregl.Map({
     container: 'mapId', // container id
@@ -15,11 +22,6 @@ const createMap = function () {
 
 function capitalizeFirstLetter (string) {
   return string.charAt(0).toUpperCase() + string.slice(1)
-}
-
-const createMarker = function (colour) {
-  const c = colour || 'red'
-  return new maplibregl.Marker({ color: c })
 }
 
 const applyLayerFilters = function () {
@@ -64,13 +66,6 @@ const flyToBoundary = function (map, filter, returnFeatures) {
   if (returnFeatures) {
     return matchedFeatures
   }
-}
-
-const getBBox = function (features) {
-  const collection = turf.featureCollection(features)
-  const bufferedCollection = turf.buffer(collection, 1)
-  const envelope = turf.envelope(bufferedCollection)
-  return envelope.bbox
 }
 
 function renderBoundaries (map) {
