@@ -1,10 +1,12 @@
-/* global maplibregl, turf, fetch */
+/* global maplibregl, fetch */
 
 import mapHelpers from '../javascripts/map-helpers'
+import utils from '../javascripts/utils'
 
 // helpers used in script
 const createMarker = mapHelpers.createMarker
 const getBBox = mapHelpers.generateBBox
+const capitalizeFirstLetter = utils.capitalizeFirstLetter
 
 const createMap = function () {
   const map = new maplibregl.Map({
@@ -18,10 +20,6 @@ const createMap = function () {
     container: document.querySelector('#mapId')
   }), 'bottom-left')
   return map
-}
-
-function capitalizeFirstLetter (string) {
-  return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
 const applyLayerFilters = function () {
@@ -175,3 +173,4 @@ map.on('click', function (e) {
 
 window.wramap = map
 window.flyToBoundary = flyToBoundary
+window.utils = utils
