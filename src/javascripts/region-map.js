@@ -13,6 +13,10 @@ const createMap = function () {
   return map
 }
 
+function capitalizeFirstLetter (string) {
+  return string.charAt(0).toUpperCase() + string.slice(1)
+}
+
 const createMarker = function (colour) {
   const c = colour || 'red'
   return new maplibregl.Marker({ color: c })
@@ -23,7 +27,7 @@ const applyLayerFilters = function () {
     return false
   }
 
-  const filter = ['==', 'name_cy', urlParams.get('region')]
+  const filter = ['==', 'name', capitalizeFirstLetter(urlParams.get('region').toLowerCase())]
   map.setFilter('laLayer', filter)
 
   let flownTo = false
@@ -40,7 +44,7 @@ const applyLayerFilters = function () {
       }
     }
   })
-  flyToBoundary(map, ['==', 'name_cy', urlParams.get('region')])
+  flyToBoundary(map, filter)
 }
 
 const flyToBoundary = function (map, filter, returnFeatures) {
