@@ -1,4 +1,4 @@
-/* global maplibregl, fetch */
+/* global maplibregl, turf, fetch */
 const createMap = function () {
   const map = new maplibregl.Map({
     container: 'mapId', // container id
@@ -19,9 +19,54 @@ const createMarker = function (colour) {
 }
 
 const applyLayerFilters = function () {
-  if (urlParams.has('region')) {
-    map.setFilter('laLayer', ['==', 'name_cy', urlParams.get('region')])
+  if (!urlParams.has('region')) {
+    return false
   }
+
+  const filter = ['==', 'name_cy', urlParams.get('region')]
+  map.setFilter('laLayer', filter)
+
+  let flownTo = false
+  const sourceName = 'laBoundaries'
+  map.on('sourcedata', function (e) {
+    console.log(e)
+    if (!flownTo) {
+      if (map.getSource(sourceName) && map.isSourceLoaded(sourceName)) {
+        const features = flyToBoundary(map, filter, true)
+
+        if (features.length) {
+          flownTo = true
+        }
+      }
+    }
+  })
+  flyToBoundary(map, ['==', 'name_cy', urlParams.get('region')])
+}
+
+const flyToBoundary = function (map, filter, returnFeatures) {
+  const matchedFeatures = map.querySourceFeatures('laBoundaries', {
+    filter: filter
+  })
+
+  console.log("attempting to fly to boundary")
+  console.log(map.isSourceLoaded('laBoundaries'))
+  console.log(filter, matchedFeatures)
+
+  if (matchedFeatures.length) {
+    const bbox = getBBox(matchedFeatures)
+    map.fitBounds([[bbox[0], bbox[1]], [bbox[2], bbox[3]]])
+  }
+
+  if (returnFeatures) {
+    return matchedFeatures
+  }
+}
+
+const getBBox = function (features) {
+  const collection = turf.featureCollection(features)
+  const bufferedCollection = turf.buffer(collection, 1)
+  const envelope = turf.envelope(bufferedCollection)
+  return envelope.bbox
 }
 
 function renderBoundaries (map) {
@@ -128,3 +173,6 @@ map.on('click', function (e) {
     .setLngLat([e.lngLat.lng, e.lngLat.lat])
     .addTo(map)
 })
+
+window.wramap = map
+window.flyToBoundary = flyToBoundary
