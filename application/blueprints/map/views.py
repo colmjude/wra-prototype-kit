@@ -19,3 +19,8 @@ def read_json_file(data_file_path):
 @map.route("/index")
 def index():
     return render_template("map/la.html")
+
+
+@map.route("/locate-a-region")
+def region():
+    return render_template("map/region.html")
