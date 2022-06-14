@@ -6,7 +6,7 @@
     "build:javascripts": "npm run nps build.javascripts",
     "build:stylesheets": "npm run nps build.stylesheets",
     "build:gel": "npm run nps build.gel",
-    "copy:js": "cp src/javascripts/base-tile.json application/static/javascripts/",
+    "copy:js": "copyfiles -f src/javascripts/base-tile.json application/static/javascripts/",
     "watch:assets": "npm run nps watch.assets",
     "watch": "npm-run-all --parallel watch:*",
     "nps": "nps -c ./node_modules/wra-frontend/package-scripts.js",
@@ -26,6 +26,7 @@
     "wra-frontend": "https://gitpkg.now.sh/welsh-revenue-authority/wra-frontend/package?main"
   },
   "devDependencies": {
+    "copyfiles": "^2.4.1",
     "npm-run-all": "^4.1.5",
     "standardx": "^7.0.0"
   }
