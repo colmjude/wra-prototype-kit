@@ -1,0 +1,22 @@
+.app-radios__item {
+  background: #e5e5e5;
+  padding: 0 0 0 20px;
+
+  &:not(:last-child) {
+    margin-bottom: 8px;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background: #b5b5b5;
+  }
+}
+
+.app-radios__label {
+  display: inline-block;
+  color: #1f1f1f;
+  margin-bottom: 0;
+  padding: 20px 20px 20px 0;
+  font-size: 18px;
+  font-weight: 400;
+}

@@ -6,7 +6,7 @@ from wtforms.validators import DataRequired
 class KnowAddressForm(FlaskForm):
     has_address = RadioField(
         "Do you have a postal address for the transaction item?",
-        validators=[DataRequired("You must select one")],
+        validators=[DataRequired("You must select one option")],
         choices=[
             ("Yes", "Yes, there is a postal address"),
             ("No", "No, I do not know the postal address"),

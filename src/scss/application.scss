@@ -4,6 +4,7 @@
 
 @import "components/back-link";
 @import "components/buttons";
+@import "components/radios";
 
 .app-no-value {
   color: #666;
@@ -63,4 +64,20 @@
   display: block;
   margin-bottom: 5px;
   font-weight: 400;
+}
+
+.app-form-group__error {
+  border-left: 3px solid #a11;
+  padding-left: 8px;
+}
+
+.app-form-group__error-message {
+  display: inline-block;
+  margin-left: -8px;
+  padding: 16px;
+  background-color: #ffe4e5;
+
+  &:last-of-type {
+    margin-bottom: 8px;
+  }
 }

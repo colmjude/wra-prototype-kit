@@ -13,13 +13,16 @@
     <span class="app-caption wra-!-margin-top-9">Pinpoint a location</span>
     <h1 class="h1-sm-and-up">{{ form.has_address.label.text }}</h1>
     {{ form.hidden_tag() }}
-    <div class="form-group">
+    <div class="form-group{{ ' app-form-group__error' if form.has_address.errors }}">
+      {% for error in form.has_address.errors %}
+      <span class="app-form-group__error-message">{{ error }}</span>
+      {% endfor %}
       <div class="radios" data-module="radios">
         {% for radio_option in form.has_address %}
-        <div class="radios__item">
+        <div class="app-radios__item">
           {{ radio_option(required=False, class="radios__input") }}
-          <label class="label radios__label" for="{{ radio_option.id }}">
-            {{ radio_option.label }}
+          <label class="label app-radios__label" for="{{ radio_option.id }}">
+            {{ radio_option.label.text }}
           </label>
         </div>
         {% endfor %}
