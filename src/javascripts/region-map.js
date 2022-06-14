@@ -6,7 +6,7 @@ import utils from '../javascripts/utils'
 // helpers used in script
 const createMarker = mapHelpers.createMarker
 const getBBox = mapHelpers.generateBBox
-const capitalizeFirstLetter = utils.capitalizeFirstLetter
+const capitalizeEachWord = utils.capitalizeEachWord
 
 // platform endpoint
 const LA_BOUNDARIES_ENDPOINT = 'http://51.142.169.254:8080/geoserver/test/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=test%3AHighWaterMark4326&maxFeatures=50&outputFormat=application%2Fjson'
@@ -31,7 +31,7 @@ const applyLayerFilters = function () {
     return false
   }
 
-  const filter = ['==', attrToMatchOn, capitalizeFirstLetter(urlParams.get('region').toLowerCase().replace('+', ' '))]
+  const filter = ['==', attrToMatchOn, capitalizeEachWord(urlParams.get('region').toLowerCase().replace('+', ' '))]
   map.setFilter('laLayer', filter)
 
   let flownTo = false

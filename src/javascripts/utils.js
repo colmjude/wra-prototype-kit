@@ -4,6 +4,14 @@ utils.capitalizeFirstLetter = function (string) {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
+utils.capitalizeEachWord = function (s) {
+  const words = s.split(' ')
+  const wordList = words.map(word => {
+    return word.charAt(0).toUpperCase() + word.slice(1)
+  })
+  return wordList.join(' ')
+}
+
 /*
   Takes 2 objects and performs a shallow merge
   Returns a new obj
