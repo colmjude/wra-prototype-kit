@@ -12,7 +12,8 @@
 <form action="">
   <span class="app-caption wra-!-margin-top-9">Pinpoint a location</span>
   <h1 class="h1-sm-and-up">{{ form.local_authority.label.text }}</h1>
-  <div class="form-group">
+  <div class="app-form-group">
+    <label for="local_authority" class="app-form-label">Select local authority</label>
     {{ form.local_authority(required=False, class="select wra-!-width-two-thirds")}}
   </div>
   <div class="form-group">
