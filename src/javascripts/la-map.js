@@ -6,6 +6,7 @@ const createMarker = mapHelpers.createMarker
 
 // platform endpoint
 const LA_BOUNDARIES_ENDPOINT = 'http://51.142.169.254:8080/geoserver/test/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=test%3AHighWaterMark4326&maxFeatures=50&outputFormat=application%2Fjson'
+const attrToMatchOn = 'name_en'
 
 const createMap = function () {
   const map = new maplibregl.Map({
@@ -111,7 +112,7 @@ map.on('click', function (e) {
 
   // need to handle no boundary returned
   $laName.classList.remove('app-no-value')
-  $laName.textContent = boundaries[0].properties.name
+  $laName.textContent = boundaries[0].properties[attrToMatchOn]
 
   // put marker at point user clicked
   marker
