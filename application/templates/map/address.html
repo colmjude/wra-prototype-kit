@@ -1,0 +1,22 @@
+{% extends "layouts/layout.html" %}
+{% block page_title %}WRA Prototype Kit index{% endblock %}
+
+{% block headEnd %}
+<script src="https://unpkg.com/maplibre-gl@1.14.0-rc.1/dist/maplibre-gl.js"></script>
+<link href="https://unpkg.com/maplibre-gl@1.14.0-rc.1/dist/maplibre-gl.css" rel="stylesheet" />
+{% endblock headEnd %}
+
+{% block content %}
+<main id="content" role="main">
+  <a class="app-back-link" href="{{ url_for('map.know_address') }}">Back to Do you know a postal address</a>
+
+  <span class="app-caption wra-!-margin-top-6">Pinpoint a location</span>
+  <h1 class="h1-sm-and-up">Excellent, you know the postal address.</h1>
+
+  <p class="wra-!-margin-top-6">
+    <a href="{{ url_for('base.index') }}" class="app-button app-button-black">Go to prototypes</a>
+  </p>
+  
+</main>
+{% endblock %}
+
