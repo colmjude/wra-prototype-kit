@@ -17,6 +17,11 @@
       <label for="local_authority" class="app-form-label">Select local authority</label>
       {{ form.local_authority(required=False, class="select wra-!-width-two-thirds")}}
     </div>
+
+    <div class="wra-!-margin-bottom-6">
+      <a class="app-link" href="{{ url_for('map.index') }}">I don't know the local authority</a>
+    </div>
+
     <div class="form-group">
       <button class="app-button app-button-black" type="submit">Continue</button>
     </div>
