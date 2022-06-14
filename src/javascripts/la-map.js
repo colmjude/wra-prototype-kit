@@ -4,6 +4,9 @@ import mapHelpers from '../javascripts/map-helpers'
 // helpers used in script
 const createMarker = mapHelpers.createMarker
 
+// platform endpoint
+const LA_BOUNDARIES_ENDPOINT = 'http://51.142.169.254:8080/geoserver/test/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=test%3AHighWaterMark4326&maxFeatures=50&outputFormat=application%2Fjson'
+
 const createMap = function () {
   const map = new maplibregl.Map({
     container: 'mapId', // container id
@@ -19,13 +22,13 @@ const createMap = function () {
 }
 
 function renderBoundaries (map) {
-  fetch('/static/data/la_boundaries_wgs84.geojson')
+  fetch(LA_BOUNDARIES_ENDPOINT)
     .then(response => response.json())
     .then(function (data) {
       console.log(data)
       map.addSource('laBoundaries', {
         type: 'geojson',
-        data: '/static/data/la_boundaries_wgs84.geojson'
+        data: LA_BOUNDARIES_ENDPOINT
       })
       map.addLayer({
         id: 'laLayer',

@@ -8,6 +8,10 @@ const createMarker = mapHelpers.createMarker
 const getBBox = mapHelpers.generateBBox
 const capitalizeFirstLetter = utils.capitalizeFirstLetter
 
+// platform endpoint
+const LA_BOUNDARIES_ENDPOINT = 'http://51.142.169.254:8080/geoserver/test/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=test%3AHighWaterMark4326&maxFeatures=50&outputFormat=application%2Fjson'
+const attrToMatchOn = 'name_en'
+
 const createMap = function () {
   const map = new maplibregl.Map({
     container: 'mapId', // container id
@@ -27,7 +31,7 @@ const applyLayerFilters = function () {
     return false
   }
 
-  const filter = ['==', 'name', capitalizeFirstLetter(urlParams.get('region').toLowerCase().replace('+', ' '))]
+  const filter = ['==', attrToMatchOn, capitalizeFirstLetter(urlParams.get('region').toLowerCase().replace('+', ' '))]
   map.setFilter('laLayer', filter)
 
   let flownTo = false
@@ -52,7 +56,7 @@ const flyToBoundary = function (map, filter, returnFeatures) {
     filter: filter
   })
 
-  console.log("attempting to fly to boundary")
+  console.log('attempting to fly to boundary')
   console.log(map.isSourceLoaded('laBoundaries'))
   console.log(filter, matchedFeatures)
 
@@ -67,13 +71,13 @@ const flyToBoundary = function (map, filter, returnFeatures) {
 }
 
 function renderBoundaries (map) {
-  fetch('/static/data/la_boundaries_wgs84.geojson')
+  fetch(LA_BOUNDARIES_ENDPOINT)
     .then(response => response.json())
     .then(function (data) {
       console.log(data)
       map.addSource('laBoundaries', {
         type: 'geojson',
-        data: '/static/data/la_boundaries_wgs84.geojson'
+        data: LA_BOUNDARIES_ENDPOINT
       })
       map.addLayer({
         id: 'laLayer',
@@ -163,7 +167,7 @@ map.on('click', function (e) {
 
   // need to handle no boundary returned
   $laName.classList.remove('app-no-value')
-  $laName.textContent = boundaries[0].properties.name
+  $laName.textContent = boundaries[0].properties[attrToMatchOn]
 
   // put marker at point user clicked
   marker
