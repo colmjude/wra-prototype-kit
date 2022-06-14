@@ -6,11 +6,11 @@
     "build:javascripts": "npm run nps build.javascripts",
     "build:stylesheets": "npm run nps build.stylesheets",
     "build:gel": "npm run nps build.gel",
-    "copy:js": "rsync -ar src/javascripts/ application/static/javascripts",
+    "copy:js": "cp src/javascripts/base-tile.json application/static/javascripts/",
     "watch:assets": "npm run nps watch.assets",
     "watch": "npm-run-all --parallel watch:*",
     "nps": "nps -c ./node_modules/wra-frontend/package-scripts.js",
-    "postinstall": "npm run copy:js && npm run nps build.gel && npm run nps build.stylesheets"
+    "postinstall": "npm run copy:js && npm run nps build.gel && npm run nps build.stylesheets && npm run nps build.javascripts"
   },
   "repository": {
     "type": "git",
