@@ -38,7 +38,6 @@ const applyLayerFilters = function () {
   let flownTo = false
   const sourceName = 'laBoundaries'
   map.on('sourcedata', function (e) {
-    console.log(e)
     if (!flownTo) {
       if (map.getSource(sourceName) && map.isSourceLoaded(sourceName)) {
         const features = flyToBoundary(map, filter, true)
