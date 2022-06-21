@@ -1,0 +1,43 @@
+{% extends "layouts/layout.html" %}
+{% block page_title %}WRA Prototype Kit index{% endblock %}
+
+{% block headEnd %}
+<script src="https://unpkg.com/maplibre-gl@1.14.0-rc.1/dist/maplibre-gl.js"></script>
+<link href="https://unpkg.com/maplibre-gl@1.14.0-rc.1/dist/maplibre-gl.css" rel="stylesheet" />
+{% endblock headEnd %}
+
+{% block content %}
+<main id="content" role="main">
+  <a class="app-back-link" href="{{ url_for('map.local_authority') }}">Back to Select a local authority</a>
+
+  <span class="app-caption wra-!-margin-top-6">Pinpoint a location</span>
+  <h1 class="h1-sm-and-up">Set a location on the map</h1>
+
+  <div class="row">
+    <div class="col-lg-8">
+      <p>Click on the map to select the location.</p>
+      <p>A marker will appear where you click. To update the location click on another area of the map.</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div id="mapId" style="min-height: 600px;"></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-8">
+      <hr class="app-break-xl" />
+      <p>This proof of concept uses <a href="https://datamap.gov.wales/layergroups/inspire-wg:LocalAuthorities">local authority boundaries</a> from <a href="https://datamap.gov.wales/">DataMapWales</a>.</p>
+      <p>We converted the coordinates from eastings and northings to wgs84 so that we could display the boundaries on the map.</p>
+      <a href="/static/data/la_boundaries_wgs84.geojson" class="app-btn wra-!-margin-top-3">Download the geojson</a>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block pageScripts %}
+<script src='https://unpkg.com/@turf/turf@6.3.0/turf.min.js'></script>
+<script src="/static/javascripts/explorer-map.js"></script>
+{% endblock pageScripts %}

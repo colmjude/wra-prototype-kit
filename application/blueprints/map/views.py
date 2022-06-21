@@ -55,3 +55,13 @@ def local_authority():
 @map.route("/locate-property/map")
 def region():
     return render_template("map/region.html", region=request.args.get("region"))
+
+
+# ================
+# Explorer version
+# ================
+
+
+@map.route("explorer")
+def explorer():
+    return render_template("map/explorer.html")

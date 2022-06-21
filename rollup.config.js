@@ -12,5 +12,12 @@ module.exports = [
       file: 'application/static/javascripts/region-map.js',
       format: 'iife'
     }
+  },
+  {
+    input: 'src/javascripts/explorer-map.js',
+    output: {
+      file: 'application/static/javascripts/explorer-map.js',
+      format: 'iife'
+    }
   }
 ]
