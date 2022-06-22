@@ -1,5 +1,6 @@
 /* global maplibregl, fetch */
 import mapHelpers from '../javascripts/map-helpers'
+import * as WRA from './map-prototypes'
 
 // helpers used in script
 const createMarker = mapHelpers.createMarker
@@ -8,20 +9,6 @@ const createMarker = mapHelpers.createMarker
 const LA_BOUNDARIES_ENDPOINT = 'https://geoserverlp.azurewebsites.net/geoserver/test/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=test%3AHighWaterMark4326&maxFeatures=50&outputFormat=application%2Fjson'
 //const LA_BOUNDARIES_ENDPOINT = '/static/data/platform-la-boundaries.json'
 const attrToMatchOn = 'name_en'
-
-const createMap = function () {
-  const map = new maplibregl.Map({
-    container: 'mapId', // container id
-    style: '/static/javascripts/base-tile.json',
-    center: [-3.7, 52.4], // starting position [lng, lat]
-    zoom: 6.89// starting zoom
-  })
-
-  map.addControl(new maplibregl.FullscreenControl({
-    container: document.querySelector('#mapId')
-  }), 'bottom-left')
-  return map
-}
 
 function renderBoundaries (map) {
   fetch(LA_BOUNDARIES_ENDPOINT)
@@ -87,17 +74,22 @@ const getLocalAuthorityFeatures = function (map, pt) {
   return features.filter(feature => feature.layer.source === 'laBoundaries')
 }
 
-const map = createMap()
+function loadHandler (module) {
+  console.log('handler', this)
+  renderBoundaries(module.getMap())
+}
+
+const $mapEl = document.querySelector('[data-module="wra-map"]')
+const mapComponent = new WRA.Map($mapEl).init({
+  onLoadCallback: loadHandler
+})
+
+const map = mapComponent.getMap()
 const marker = createMarker()
 const $lat = document.querySelector('.app-dynamic-latitude')
 const $lng = document.querySelector('.app-dynamic-longitude')
 const $laName = document.querySelector('.app-dynamic-la-name')
 
-// add listener for when initial map loaded
-map.on('load', function (e) {
-  console.log('map loaded')
-  renderBoundaries(map)
-})
 // add listener for when map clicked on
 map.on('click', function (e) {
   console.log('map clicked on', e)
