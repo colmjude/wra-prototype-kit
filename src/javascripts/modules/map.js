@@ -17,6 +17,37 @@ Map.prototype.init = function (opts) {
   return this
 }
 
+Map.prototype.addGeojsonSource = function (sourceName, endpoint) {
+  this.map.addSource(sourceName, {
+    type: 'geojson',
+    data: endpoint
+  })
+}
+
+Map.prototype.addPolygonLayer = function (layerName, sourceName, paintOptions) {
+  this.map.addLayer({
+    id: `${layerName}Fill`,
+    type: 'fill',
+    source: sourceName,
+    layout: {},
+    paint: {
+      'fill-color': paintOptions.fillColor,
+      'fill-opacity': paintOptions.fillOpacity
+    }
+  })
+  this.map.addLayer({
+    id: `${layerName}Line`,
+    type: 'line',
+    source: sourceName,
+    layout: {},
+    paint: {
+      'line-color': paintOptions.lineColor,
+      'line-opacity': paintOptions.lineOpacity,
+      'line-width': paintOptions.lineWidth
+    }
+  })
+}
+
 Map.prototype.createMap = function () {
   this.map = new maplibregl.Map({
     container: this.options.mapElementID, // container id

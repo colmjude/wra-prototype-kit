@@ -10,38 +10,23 @@ const LA_BOUNDARIES_ENDPOINT = 'https://geoserverlp.azurewebsites.net/geoserver/
 //const LA_BOUNDARIES_ENDPOINT = '/static/data/platform-la-boundaries.json'
 const attrToMatchOn = 'name_en'
 
-function renderBoundaries (map) {
+function renderBoundaries (module) {
   fetch(LA_BOUNDARIES_ENDPOINT)
     .then(response => response.json())
     .then(function (data) {
       console.log(data)
-      map.addSource('laBoundaries', {
-        type: 'geojson',
-        data: LA_BOUNDARIES_ENDPOINT
-      })
-      map.addLayer({
-        id: 'laLayer',
-        type: 'fill',
-        source: 'laBoundaries',
-        layout: {},
-        paint: {
-          'fill-color': '#088',
-          'fill-opacity': 0.4
-        }
-      })
-      map.addLayer({
-        id: 'laLayerLine',
-        type: 'line',
-        source: 'laBoundaries',
-        layout: {},
-        paint: {
-          'line-color': '#088',
-          'line-opacity': 0.8,
-          'line-width': 1
-        }
+
+      module.addGeojsonSource('laBoundaries', LA_BOUNDARIES_ENDPOINT)
+      module.addPolygonLayer('laLayer', 'laBoundaries', {
+        fillColor: '#088',
+        fillOpacity: 0.4,
+        lineColor: '#088',
+        lineOpacity: 0.8,
+        lineWidth: 1
       })
 
-      map.setPaintProperty('laLayer', 'fill-opacity', [
+      const map = module.getMap()
+      map.setPaintProperty('laLayerFill', 'fill-opacity', [
         'interpolate',
         // Set the exponential rate of change to 0.5
         ['exponential', 0.5],
@@ -76,7 +61,7 @@ const getLocalAuthorityFeatures = function (map, pt) {
 
 function loadHandler (module) {
   console.log('handler', this)
-  renderBoundaries(module.getMap())
+  renderBoundaries(module)
 }
 
 const $mapEl = document.querySelector('[data-module="wra-map"]')
@@ -112,3 +97,6 @@ map.on('click', function (e) {
     .setLngLat([e.lngLat.lng, e.lngLat.lat])
     .addTo(map)
 })
+
+window.WRA = WRA
+window.appmap = mapComponent
