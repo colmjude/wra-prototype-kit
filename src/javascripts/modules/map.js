@@ -8,6 +8,7 @@ function Map ($module) {
 
 Map.prototype.init = function (opts) {
   this.initialMapLoaded = false
+  this.events = {}
   this.setOptions(opts)
   this.createMap()
 
@@ -22,6 +23,7 @@ Map.prototype.addEventHandler = function (event, callback) {
   this.map.on(event, function (evt) {
     callback(evt, that)
   })
+  return this
 }
 
 Map.prototype.addGeojsonSource = function (sourceName, endpoint) {

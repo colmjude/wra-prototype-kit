@@ -10,6 +10,10 @@ const LA_BOUNDARIES_ENDPOINT = 'https://geoserverlp.azurewebsites.net/geoserver/
 //const LA_BOUNDARIES_ENDPOINT = '/static/data/platform-la-boundaries.json'
 const attrToMatchOn = 'name_en'
 
+function generateWTWEndpoint (lng, lat) {
+  return `https://mapapi.what3words.com/api/convert-to-3wa?coordinates=${lat}%2C${lng}&language=en&format=json`
+}
+
 function renderBoundaries (appmap) {
   fetch(LA_BOUNDARIES_ENDPOINT)
     .then(response => response.json())
@@ -47,6 +51,16 @@ const $lat = document.querySelector('.app-dynamic-latitude')
 const $lng = document.querySelector('.app-dynamic-longitude')
 const $laName = document.querySelector('.app-dynamic-la-name')
 
+function getWTW (coord) {
+  const endpoint = generateWTWEndpoint(coord.lng, coord.lat)
+  fetch(endpoint)
+    .then(response => response.json())
+    .then(function (data) {
+      console.log(data)
+      console.log('WTWs')
+    })
+}
+
 // add listener for when map clicked on
 mapComponent.addEventHandler('click', function (e, appmap) {
   const map = appmap.getMap()
@@ -69,6 +83,8 @@ mapComponent.addEventHandler('click', function (e, appmap) {
   marker
     .setLngLat([e.lngLat.lng, e.lngLat.lat])
     .addTo(map)
+
+  getWTW(e.lngLat)
 })
 
 window.WRA = WRA
