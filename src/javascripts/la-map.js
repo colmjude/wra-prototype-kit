@@ -50,6 +50,7 @@ const marker = createMarker()
 const $lat = document.querySelector('.app-dynamic-latitude')
 const $lng = document.querySelector('.app-dynamic-longitude')
 const $laName = document.querySelector('.app-dynamic-la-name')
+const $wtws = document.querySelector('.app-dynamic-wtws')
 
 function getWTW (coord) {
   const endpoint = generateWTWEndpoint(coord.lng, coord.lat)
@@ -58,6 +59,13 @@ function getWTW (coord) {
     .then(function (data) {
       console.log(data)
       console.log('WTWs')
+      $wtws.classList.remove('app-no-value')
+      $wtws.textContent = ''
+
+      const $link = document.createElement('a')
+      $link.href = data.map
+      $link.textContent = data.words
+      $wtws.appendChild($link)
     })
 }
 
