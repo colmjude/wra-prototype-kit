@@ -42,14 +42,14 @@ const mapComponent = new WRA.Map($mapEl).init({
   onLoadCallback: loadHandler
 })
 
-const map = mapComponent.getMap()
 const marker = createMarker()
 const $lat = document.querySelector('.app-dynamic-latitude')
 const $lng = document.querySelector('.app-dynamic-longitude')
 const $laName = document.querySelector('.app-dynamic-la-name')
 
 // add listener for when map clicked on
-map.on('click', function (e) {
+mapComponent.addEventHandler('click', function (e, appmap) {
+  const map = appmap.getMap()
   console.log('map clicked on', e)
   console.log('click location', e.lngLat.lng, e.lngLat.lat)
   console.log('point', e.point)

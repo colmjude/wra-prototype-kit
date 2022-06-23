@@ -17,6 +17,13 @@ Map.prototype.init = function (opts) {
   return this
 }
 
+Map.prototype.addEventHandler = function (event, callback) {
+  const that = this
+  this.map.on(event, function (evt) {
+    callback(evt, that)
+  })
+}
+
 Map.prototype.addGeojsonSource = function (sourceName, endpoint) {
   this.map.addSource(sourceName, {
     type: 'geojson',
