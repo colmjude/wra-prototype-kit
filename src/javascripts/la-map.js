@@ -10,47 +10,20 @@ const LA_BOUNDARIES_ENDPOINT = 'https://geoserverlp.azurewebsites.net/geoserver/
 //const LA_BOUNDARIES_ENDPOINT = '/static/data/platform-la-boundaries.json'
 const attrToMatchOn = 'name_en'
 
-function renderBoundaries (module) {
+function renderBoundaries (appmap) {
   fetch(LA_BOUNDARIES_ENDPOINT)
     .then(response => response.json())
     .then(function (data) {
       console.log(data)
 
-      module.addGeojsonSource('laBoundaries', LA_BOUNDARIES_ENDPOINT)
-      module.addPolygonLayer('laLayer', 'laBoundaries', {
+      appmap.addGeojsonSource('laBoundaries', LA_BOUNDARIES_ENDPOINT)
+      appmap.addPolygonLayer('laLayer', 'laBoundaries', {
         fillColor: '#088',
         fillOpacity: 0.4,
         lineColor: '#088',
         lineOpacity: 0.8,
         lineWidth: 1
       })
-
-      const map = module.getMap()
-      map.setPaintProperty('laLayerFill', 'fill-opacity', [
-        'interpolate',
-        // Set the exponential rate of change to 0.5
-        ['exponential', 0.5],
-        ['zoom'],
-        // When zoom is 15, buildings will be beige.
-        6,
-        0.6,
-        // When zoom is 18 or higher, buildings will be yellow.
-        15,
-        0.2
-      ])
-
-      map.setPaintProperty('laLayerLine', 'line-width', [
-        'interpolate',
-        // Set the exponential rate of change to 0.5
-        ['exponential', 0.5],
-        ['zoom'],
-        // When zoom is 15, buildings will be beige.
-        7,
-        1,
-        // When zoom is 18 or higher, buildings will be yellow.
-        15,
-        3
-      ])
     })
 }
 
