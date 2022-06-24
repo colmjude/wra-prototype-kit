@@ -1,0 +1,22 @@
+%wra-list {
+  margin-top: 0;
+  margin-bottom: wra-spacing(4);
+  padding-left: 0;
+  list-style-type: none;
+
+  // Add a top margin for nested lists
+  %wra-list {
+    margin-top: wra-spacing(2);
+  }
+}
+
+%wra-list > li {
+  // Lists without numbers or bullets should always have extra space between
+  // list items. Lists with numbers or bullets only have this extra space on
+  // tablet and above
+  margin-bottom: wra-spacing(1);
+}
+
+.wra-list {
+  @extend %wra-list;
+}

@@ -43,14 +43,14 @@
 
       <div class="app-map__wrapper" style="min-height: 700px;"> 
         <!-- map --> 
-        <div id="mapId" style="min-height: 600px;"></div>
+        <div class="app-map" id="mapId"></div>
         <!-- side panel -->
         <div class="app-map__side-panel app-map__side-panel--full js-hidden" tabindex="-1" role="dialog" aria-hidden="false" open="true" aria-modal="true">
-          <div class="app-map__side-panel__heading">
-            <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Datasets</h3>
+          <div class="app-map__pane__header">
+            <h3 class="app-map__pane__heading">Datasets</h3>
           </div>
-          <div class="app-map__side-panel__content">
-            <ul class="govuk-list govuk-!-margin-bottom-0" data-module="layer-controls" role="group">
+          <div class="app-map__pane__body">
+            <ul class="wra-list wra-!-margin-bottom-0" data-module="layer-controls" role="group">
               {% for dataset in datasets %}
               {{ layerControlItem(dataset) }}
               {% endfor %}

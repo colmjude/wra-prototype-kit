@@ -63,11 +63,11 @@ LayerControls.prototype.init = function (params) {
 
 LayerControls.prototype.createCloseButton = function () {
   const button = document.createElement('button')
-  button.classList.add('dl-map__close-btn')
+  button.classList.add('app-map__close-btn')
   button.dataset.action = 'close'
   const label = document.createElement('span')
   label.textContent = 'Close layer panel'
-  label.classList.add('govuk-visually-hidden')
+  label.classList.add('wra-visually-hidden')
   button.appendChild(label)
   this.$container.appendChild(button)
 
@@ -78,11 +78,11 @@ LayerControls.prototype.createCloseButton = function () {
 
 LayerControls.prototype.createOpenButton = function () {
   const button = document.createElement('button')
-  button.classList.add('dl-map__open-btn', 'dl-map__overlay', 'js-hidden')
+  button.classList.add('app-map__open-btn', 'app-map__overlay', 'js-hidden')
   button.dataset.action = 'open'
   const label = document.createElement('span')
   label.textContent = 'Open layer panel'
-  label.classList.add('govuk-visually-hidden')
+  label.classList.add('wra-visually-hidden')
   button.appendChild(label)
   this.wramap.getMap().getContainer().appendChild(button)
 
@@ -98,12 +98,12 @@ LayerControls.prototype.togglePanel = function (e) {
   this.$container.setAttribute('aria-hidden', !opening)
   this.$container.setAttribute('open', opening)
   if (opening) {
-    this.$container.classList.remove('dl-map__side-panel--collapsed')
+    this.$container.classList.remove('app-map__side-panel--collapsed')
     this.$openBtn.classList.add('js-hidden')
     // focus on the panel when opening
     this.$container.focus()
   } else {
-    this.$container.classList.add('dl-map__side-panel--collapsed')
+    this.$container.classList.add('app-map__side-panel--collapsed')
     this.$openBtn.classList.remove('js-hidden')
     // focus on open btn when closing panel
     this.$openBtn.focus()
@@ -288,7 +288,9 @@ const layerControsDefaults = {
   layerControlSelector: '[data-layer-control]',
   layerControlDeactivatedClass: 'deactivated-control',
   controlsContainerClass: 'app-map__side-panel',
-  layerURLParamName: 'dataset'
+  layerURLParamName: 'dataset',
+  closeBtnClass: 'app-map__close-btn',
+  openBtnClass: 'app-map__open-btn'
 }
 
 export default LayerControls
