@@ -67,6 +67,16 @@
   box-shadow: 0 0 3px rgba(11, 12, 12, .8);
 }
 
+.app-map__layer-item__loader {
+  display: none;
+  color: rgb(102, 102, 102);
+  font-size: 14px;
+
+  .layer-loading & {
+    display: block;
+  }
+}
+
 //----------------------------
 // Rules for panes that get added to side panel
 // ---------------------------

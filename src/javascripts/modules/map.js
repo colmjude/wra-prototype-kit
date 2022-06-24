@@ -102,6 +102,16 @@ Map.prototype.enableSmoothZoomForPolygonLayer = function (layerName) {
   })
 }
 
+Map.prototype.getFeaturesByPoint = function (pt) {
+  // could we use map.queryRenderedFeatures(bbox, {layers: clickableLayers})
+  let features = this.map.queryRenderedFeatures(pt)
+  // assuming all layers added are interactive
+  const interactiveLayers = Object.keys(this.polygonLayers)
+  // remove base vector layer features
+  features = features.filter(feature => interactiveLayers.indexOf(feature.layer.source) !== -1)
+  return this.removeDuplicates(features)
+}
+
 Map.prototype.getMap = function () {
   return this.map
 }
@@ -114,6 +124,25 @@ Map.prototype.onMapLoad = function (e) {
   if (this.options.onLoadCallback) {
     this.options.onLoadCallback(that)
   }
+}
+
+Map.prototype.removeDuplicates = function (features) {
+  const uniqueFeatures = []
+
+  return features.filter(function (feature) {
+    // this would be easier if there was a common idenitfier for every feature (id, name, etc)
+    // needs to be present for all features
+    const props = Object.keys(feature.properties)
+    if (props.includes('objectid') && uniqueFeatures.indexOf(feature.properties.objectid) === -1) {
+      uniqueFeatures.push(feature.properties.objectid)
+      return true
+    }
+    if (props.includes('ogc_fid') && uniqueFeatures.indexOf(feature.properties.ogc_fid) === -1) {
+      uniqueFeatures.push(feature.properties.ogc_fid)
+      return true
+    }
+    return false
+  })
 }
 
 Map.prototype.setOptions = function (opts) {

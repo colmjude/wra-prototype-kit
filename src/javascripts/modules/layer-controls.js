@@ -39,7 +39,6 @@ LayerControls.prototype.init = function (params) {
 
   // initial set up of controls (default or urlParams)
   const urlParams = (new URL(document.location)).searchParams
-  console.log('PARAMS', urlParams)
   if (!urlParams.has(this.options.layerURLParamName)) {
     // if not set then use default checked controls
     console.log('NO layer params exist')
@@ -164,6 +163,8 @@ LayerControls.prototype.loadAllLayers = function () {
       lineWidth: 1
     })
 
+    that.trackDataLoad($control, datasetName)
+
     //layers = [datasetName + 'Fill', datasetName + 'Line']
     //availableDatasets[datasetName] = layers
   })
@@ -213,6 +214,22 @@ LayerControls.prototype.setControls = function () {
   // pass correct this arg
   toEnable.forEach(this.enable, this)
   toDisable.forEach(this.disable, this)
+}
+
+LayerControls.prototype.trackDataLoad = function ($control, datasetName) {
+  // add a class for whilst it is loading
+  $control.classList.add('layer-loading')
+
+  const map = this.wramap.map
+
+  function loadedHandler (e) {
+    if (map.getSource(datasetName) && map.isSourceLoaded(datasetName)) {
+      console.log(`${datasetName} source loaded!`)
+      $control.classList.remove('layer-loading')
+      map.off('sourcedata', loadedHandler)
+    }
+  }
+  map.on('sourcedata', loadedHandler)
 }
 
 /**
