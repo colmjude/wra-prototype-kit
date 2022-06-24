@@ -47,8 +47,10 @@ const marker = createMarker()
 
 function loadHandler (module) {
   console.log('map loaded')
-  renderBoundaries(module)
-  renderNationalParks(module)
+  //renderBoundaries(module)
+  //renderNationalParks(module)
+  const $controlsList = document.querySelector('[data-module="layer-controls"]')
+  const layerControlsComponent = new WRA.LayerControls($controlsList, module).init({})
 }
 
 const $mapEl = document.querySelector('[data-module="wra-map"]')
@@ -70,3 +72,5 @@ mapComponent.addEventHandler('click', function (e, appmap) {
     .setLngLat([e.lngLat.lng, e.lngLat.lat])
     .addTo(map)
 })
+
+window.appmap = mapComponent

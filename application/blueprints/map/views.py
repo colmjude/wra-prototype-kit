@@ -71,7 +71,7 @@ def explorer():
             "display_name": "Local authority boundaries",
             "paint_options": {"colour": "#008888"},
             "endpoint": "https://geoserverlp.azurewebsites.net/geoserver/test/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=test%3AHighWaterMark4326&maxFeatures=50&outputFormat=application%2Fjson",
-            "checked": False,
+            "checked": True,
         },
         {
             "dataset": "nationalParks",
@@ -79,7 +79,7 @@ def explorer():
             "display_name": "National parks",
             "paint_options": {"colour": "#880000"},
             "endpoint": "https://geoserverlp.azurewebsites.net/geoserver/test/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=test%3ANRW_NATIONAL_PARKPolygon4326&maxFeatures=50&outputFormat=application%2Fjson",
-            "checked": False,
+            "checked": True,
         },
     ]
     return render_template("map/explorer.html", datasets=datasets)

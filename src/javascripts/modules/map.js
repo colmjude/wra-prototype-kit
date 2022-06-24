@@ -9,6 +9,7 @@ function Map ($module) {
 Map.prototype.init = function (opts) {
   this.initialMapLoaded = false
   this.events = {}
+  this.polygonLayers = {}
   this.setOptions(opts)
   this.createMap()
 
@@ -34,6 +35,11 @@ Map.prototype.addGeojsonSource = function (sourceName, endpoint) {
 }
 
 Map.prototype.addPolygonLayer = function (layerName, sourceName, paintOptions, defaultSmoothZoomingEnabled = true) {
+  if (Object.prototype.hasOwnProperty.call(this.polygonLayers, sourceName)) {
+    console.log(`already added layers for ${sourceName}`)
+    return this
+  }
+
   this.map.addLayer({
     id: `${layerName}Fill`,
     type: 'fill',
@@ -59,6 +65,9 @@ Map.prototype.addPolygonLayer = function (layerName, sourceName, paintOptions, d
   if (defaultSmoothZoomingEnabled) {
     this.enableSmoothZoomForPolygonLayer(layerName)
   }
+
+  this.polygonLayers[sourceName] = [`${layerName}Fill`, `${layerName}Line`]
+  return this
 }
 
 Map.prototype.createMap = function () {
@@ -122,6 +131,20 @@ Map.prototype.setLayerPaintPropertyZoomChange = function (layerName, propertyNam
     zoomSettings.maxLevel,
     zoomSettings.maxValue
   ])
+}
+
+Map.prototype._toggleLayer = function (layerId, visibility) {
+  this.map.setLayoutProperty(
+    layerId,
+    'visibility',
+    visibility
+  )
+}
+
+Map.prototype.togglePolygonLayerVisibility = function (layerName, toEnable) {
+  const visibility = (toEnable) ? 'visible' : 'none'
+  const layers = this.polygonLayers[layerName]
+  layers.forEach(layerId => this._toggleLayer(layerId, visibility))
 }
 
 const mapDefaults = {
