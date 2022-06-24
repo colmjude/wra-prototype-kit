@@ -29,7 +29,7 @@
       data-layer-endpoint="{{ layer.endpoint }}"
       data-layer-colour="{% if layer.paint_options %}{{ layer.paint_options.colour }}{% endif %}">
         <div class="app-checkboxes__item">
-          <input class="app-checkboxes__input" id="{{ layer.dataset }}" name="{{ layer.dataset }}" type="checkbox" value="{{ layer.dataset }}" {{ "checked='checked'" if layer.checked }}>
+          <input class="app-checkboxes__input" id="{{ layer.dataset }}" name="{{ layer.dataset }}" type="checkbox" value="{{ layer.dataset }}" {{ "checked='checked'" if layer.default_checked }}>
           <label class="app-label app-checkboxes__label" for="{{ layer.dataset }}">
             <span class="app-label__key">
               <span class="app-label__key__symbol"

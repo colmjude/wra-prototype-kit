@@ -3,6 +3,7 @@ import json
 from flask import redirect, render_template, Blueprint, current_app, url_for, request
 from application.blueprints.map.forms import KnowAddressForm, LocalAuthorityForm
 from application.las import LOCAL_AUTHORITIES
+from application.utils import readCSV
 
 
 map = Blueprint("map", __name__, url_prefix="/map")
@@ -64,22 +65,9 @@ def region():
 
 @map.route("explorer")
 def explorer():
-    datasets = [
-        {
-            "dataset": "laBoundaries",
-            "type": "polygon",
-            "display_name": "Local authority boundaries",
-            "paint_options": {"colour": "#008888"},
-            "endpoint": "https://geoserverlp.azurewebsites.net/geoserver/test/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=test%3AHighWaterMark4326&maxFeatures=50&outputFormat=application%2Fjson",
-            "checked": True,
-        },
-        {
-            "dataset": "nationalParks",
-            "type": "polygon",
-            "display_name": "National parks",
-            "paint_options": {"colour": "#880000"},
-            "endpoint": "https://geoserverlp.azurewebsites.net/geoserver/test/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=test%3ANRW_NATIONAL_PARKPolygon4326&maxFeatures=50&outputFormat=application%2Fjson",
-            "checked": True,
-        },
-    ]
+    datasets = readCSV(
+        "application/data/datasets.csv",
+        json_blobs=["paint_options"],
+        bool_fields=["default_checked"],
+    )
     return render_template("map/explorer.html", datasets=datasets)

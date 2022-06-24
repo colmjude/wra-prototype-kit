@@ -1,0 +1,3 @@
+dataset,type,display_name,paint_options,endpoint,default_checked
+laBoundaries,polygon,Local authority boundaries,{"colour": "#008888"},"https://geoserverlp.azurewebsites.net/geoserver/test/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=test%3AHighWaterMark4326&maxFeatures=50&outputFormat=application%2Fjson",True
+nationalParks,polygon,National Parks,{"colour": "#880000"},"https://geoserverlp.azurewebsites.net/geoserver/test/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=test%3ANRW_NATIONAL_PARKPolygon4326&maxFeatures=50&outputFormat=application%2Fjson",False
