@@ -8,15 +8,15 @@
 
 {% block content %}
 <main id="content" role="main">
-  <a class="app-back-link" href="{{ url_for('map.local_authority') }}">Back to Select a local authority</a>
+  <a class="app-back-link" href="{{ url_for('base.index') }}">Back to list of prototypes</a>
 
-  <span class="app-caption wra-!-margin-top-6">Pinpoint a location</span>
-  <h1 class="h1-sm-and-up">Set a location on the map</h1>
+  <span class="app-caption wra-!-margin-top-6">Data platform</span>
+  <h1 class="h1-sm-and-up">Explore land and property data</h1>
 
   <div class="row">
     <div class="col-lg-8">
-      <p>Click on the map to select the location.</p>
-      <p>A marker will appear where you click. To update the location click on another area of the map.</p>
+      <p>Data contained in the land and property data platform is displayed on the map.</p>
+      <p>You can click on a location to explore the data.</p>
     </div>
   </div>
 
@@ -66,9 +66,6 @@
   <div class="row">
     <div class="col-lg-8">
       <hr class="app-break-xl" />
-      <p>This proof of concept uses <a href="https://datamap.gov.wales/layergroups/inspire-wg:LocalAuthorities">local authority boundaries</a> from <a href="https://datamap.gov.wales/">DataMapWales</a>.</p>
-      <p>We converted the coordinates from eastings and northings to wgs84 so that we could display the boundaries on the map.</p>
-      <a href="/static/data/la_boundaries_wgs84.geojson" class="app-btn wra-!-margin-top-3">Download the geojson</a>
     </div>
   </div>
 </main>
