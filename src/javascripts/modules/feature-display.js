@@ -10,11 +10,18 @@ FeatureDisplay.prototype.init = function (opts) {
   this.setOptions(opts)
   this.$list = document.querySelector(this.options.listSelector)
 
+  this.$containerPane = this.$list.closest(this.options.paneSelector)
+
+  if (!this.options.onlyDisplayAfterFirstClick) {
+    this.showPane()
+  }
+
   const boundClickHandler = this.clickHandler.bind(this)
   this.map.on('click', boundClickHandler)
 }
 
 FeatureDisplay.prototype.clickHandler = function (e) {
+  this.showPane()
   console.log('click location', e.lngLat.lng, e.lngLat.lat)
   const clickedOnFeatures = this.mapModule.getFeaturesByPoint(e.point)
   console.log('clicked on features', clickedOnFeatures)
@@ -66,6 +73,14 @@ FeatureDisplay.prototype.displayFeatureData = function (feature, ind) {
   this.$list.appendChild($item)
 }
 
+FeatureDisplay.prototype.hidePane = function () {
+  this.$containerPane.classList.add('js-hidden')
+}
+
+FeatureDisplay.prototype.showPane = function () {
+  this.$containerPane.classList.remove('js-hidden')
+}
+
 FeatureDisplay.prototype.setOptions = function (opts) {
   const options = opts || {}
   this.options = utils.extend(optionDefaults, options)
@@ -73,7 +88,9 @@ FeatureDisplay.prototype.setOptions = function (opts) {
 
 const optionDefaults = {
   itemClass: 'app-features__list',
-  listSelector: '.app-features__list'
+  listSelector: '.app-features__list',
+  paneSelector: '.app-map__pane',
+  onlyDisplayAfterFirstClick: false
 }
 
 export default FeatureDisplay

@@ -15,7 +15,9 @@ function loadHandler (module) {
   console.log('map loaded')
   //renderBoundaries(module)
   //renderNationalParks(module)
-  const featureDisplay = new WRA.FeatureDisplay(module).init({})
+  const featureDisplay = new WRA.FeatureDisplay(module).init({
+    onlyDisplayAfterFirstClick: true
+  })
   const $controlsList = document.querySelector('[data-module="layer-controls"]')
   const layerControlsComponent = new WRA.LayerControls($controlsList, module).init({})
   const osmComponent = new WRA.OSM(module.getMap()).init({})
@@ -30,13 +32,6 @@ const mapComponent = new WRA.Map($mapEl).init({
 // add listener for when map clicked on
 mapComponent.addEventHandler('click', function (e, appmap) {
   const map = appmap.getMap()
-  // console.log('map clicked on', e)
-  // console.log('click location', e.lngLat.lng, e.lngLat.lat)
-  // console.log('point', e.point)
-  // const boundaries = appmap.getFeaturesByPoint(e.point)
-  // console.log('clicked on features', boundaries)
-
-  mapHelpers.getOSMData(e.lngLat)
 
   // put marker at point user clicked
   marker
