@@ -124,6 +124,10 @@
   .app-map__pane {
     flex: 1;
     overflow: auto;
+
+    & + .app-map__pane {
+      border-top: 1px solid black;
+    }
   }
 }
 

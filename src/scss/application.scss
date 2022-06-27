@@ -87,3 +87,26 @@
     margin-bottom: 8px;
   }
 }
+
+// -----------------------------------
+
+.app-features__list,
+.properties-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+.app-features__list {
+  font-family: monospace;
+  font-size: 14px;
+
+  .app-features__list__heading {
+    margin: 5px 0;
+    font-size: 15px;
+    text-decoration: underline;
+  }
+
+  .properties-list {
+    font-size: 14px;
+  }
+}
