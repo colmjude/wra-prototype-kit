@@ -1,4 +1,3 @@
-/* global maplibregl, fetch */
 import mapHelpers from '../javascripts/map-helpers'
 import * as WRA from './map-prototypes'
 
@@ -33,6 +32,8 @@ mapComponent.addEventHandler('click', function (e, appmap) {
   console.log('point', e.point)
   const boundaries = appmap.getFeaturesByPoint(e.point)
   console.log('clicked on features', boundaries)
+
+  mapHelpers.getOSMData(e.lngLat)
 
   // put marker at point user clicked
   marker

@@ -1,0 +1,20 @@
+/// Form control border width
+///
+/// @type Number
+/// @access public
+
+$wra-border-width-form-element: 2px !default;
+
+/// Border width of focus outline
+///
+/// @type Number
+/// @access public
+
+$wra-focus-width: 3px !default;
+
+/// Hover width for form controls with a hover state
+///
+/// @type Number
+/// @access public
+
+$wra-hover-width: 10px !default;

@@ -1,10 +1,13 @@
 @import "wra-frontend/wra-frontend";
 
+@import "settings/all";
+
 @import "common/typography";
 @import "common/lists";
 
 @import "components/back-link";
 @import "components/buttons";
+@import "components/checkboxes";
 @import "components/map";
 @import "components/radios";
 

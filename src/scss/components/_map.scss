@@ -67,6 +67,42 @@
   box-shadow: 0 0 3px rgba(11, 12, 12, .8);
 }
 
+.app-map__layer-item {
+  .app-checkboxes__item {
+    padding-right: 40px;
+    padding-left: 0;
+    cursor: pointer;
+  }
+
+  .app-checkboxes__input {
+    right: -10px;
+    left: unset;
+  }
+
+  .app-checkboxes__label {
+    display: block;
+    padding-left: 0;
+
+    &:before {
+      top: 8px;
+      right: 0;
+      left: unset;
+      width: 24px;
+      height: 24px;
+    }
+
+    &:after {
+      top: 14px;
+      right: 4px;
+      left: unset;
+      width: 16px;
+      height: 9px;
+      border-width: 0 0 4px 4px;
+    }
+  }
+  
+}
+
 .app-map__layer-item__loader {
   display: none;
   color: rgb(102, 102, 102);

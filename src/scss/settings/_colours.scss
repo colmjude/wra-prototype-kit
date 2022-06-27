@@ -1,0 +1,18 @@
+/// Focus colour
+///
+/// Used for outline (and background, where appropriate) when interactive
+/// elements (links, form controls) have keyboard focus.
+///
+/// @type Colour
+/// @access public
+
+$wra-focus-colour: #ffd530 !default;
+
+/// Input hover colour
+///
+/// Used for hover states on form controls
+///
+/// @type Colour
+/// @access public
+
+$wra-hover-colour: #b1b4b6;

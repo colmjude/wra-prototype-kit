@@ -1,0 +1,249 @@
+$wra-touch-target-size: 44px;
+$wra-checkboxes-size: 40px;
+$wra-small-checkboxes-size: 24px;
+$wra-checkboxes-label-padding-left-right: 15px;
+
+.app-checkboxes__item {
+  font-size: 19;
+
+  display: block;
+  position: relative;
+
+  min-height: $wra-checkboxes-size;
+
+  margin-bottom: wra-spacing(2);
+  padding-left: $wra-checkboxes-size;
+
+  clear: left;
+}
+
+.app-checkboxes__item:last-child,
+.app-checkboxes__item:last-of-type {
+  margin-bottom: 0;
+}
+
+.app-checkboxes__input {
+  $input-offset: ($wra-touch-target-size - $wra-checkboxes-size) / 2;
+
+  cursor: pointer;
+
+    position: absolute;
+
+    z-index: 1;
+    top: $input-offset * -1;
+    left: $input-offset * -1;
+
+    width: $wra-touch-target-size;
+    height: $wra-touch-target-size;
+    margin: 0;
+
+    opacity: 0;
+}
+
+.app-checkboxes__label {
+  display: inline-block;
+  margin-bottom: 0;
+  padding: 8px $wra-checkboxes-label-padding-left-right 5px;
+  cursor: pointer;
+  // remove 300ms pause on mobile
+  touch-action: manipulation;
+}
+
+.app-checkboxes__label:before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: $wra-checkboxes-size;
+  height: $wra-checkboxes-size;
+  border: 1px solid currentcolor;
+  background: transparent;
+}
+
+// ✔ Check mark
+//
+// The check mark is a box with a border on the left and bottom side (└──),
+// rotated 45 degrees
+.app-checkboxes__label:after {
+  content: "";
+  box-sizing: border-box;
+
+  position: absolute;
+  top: 11px;
+  left: 9px;
+  width: 23px;
+  height: 12px;
+
+  transform: rotate(-45deg);
+  border: solid;
+  border-width: 0 0 5px 5px;
+  // Fix bug in IE11 caused by transform rotate (-45deg).
+  // See: alphagov/govuk_elements/issues/518
+  border-top-color: transparent;
+
+  opacity: 0;
+
+  background: transparent;
+}
+
+.app-checkboxes__hint {
+  display: block;
+  padding-right: $wra-checkboxes-label-padding-left-right;
+  padding-left: $wra-checkboxes-label-padding-left-right;
+}
+
+// Focused state
+.app-checkboxes__input:focus + .app-checkboxes__label:before {
+  border-width: 4px;
+
+  // When colours are overridden, the yellow box-shadow becomes invisible
+  // which means the focus state is less obvious. By adding a transparent
+  // outline, which becomes solid (text-coloured) in that context, we ensure
+  // the focus remains clearly visible.
+  outline: $wra-focus-width solid transparent;
+  outline-offset: 1px;
+
+  // When in an explicit forced-color mode, we can use the Highlight system
+  // color for the outline to better match focus states of native controls
+  @media screen and (forced-colors: active), (-ms-high-contrast: active) {
+    outline-color: Highlight;
+  }
+
+  box-shadow: 0 0 0 $wra-focus-width $wra-focus-colour;
+}
+
+// Selected state
+.app-checkboxes__input:checked + .app-checkboxes__label:after {
+  opacity: 1;
+}
+
+// Disabled state
+.app-checkboxes__input:disabled,
+.app-checkboxes__input:disabled + .app-checkboxes__label {
+  cursor: default;
+}
+
+.app-checkboxes__input:disabled + .app-checkboxes__label,
+.app-checkboxes__input:disabled ~ .app-hint {
+  opacity: .5;
+}
+
+
+// =========================================================
+// Small checkboxes
+// =========================================================
+
+.app-checkboxes--small {
+
+  $input-offset: ($wra-touch-target-size - $wra-small-checkboxes-size) / 2;
+  $label-offset: $wra-touch-target-size - $input-offset;
+
+  .app-checkboxes__item {
+    @include wra-clearfix;
+    min-height: 0;
+    margin-bottom: 0;
+    padding-left: $label-offset;
+    float: left;
+  }
+
+  // Shift the touch target into the left margin so that the visible edge of
+  // the control is aligned
+  //
+  //   ┆What colours do you like?
+  //  ┌┆───┐
+  //  │┆[] │ Purple
+  //  └┆▲──┘
+  //  ▲┆└─ Check box pseudo element, aligned with margin
+  //  └─── Touch target (invisible input), shifted into the margin
+  .app-checkboxes__input {
+    left: $input-offset * -1;
+  }
+
+  // Adjust the size and position of the label.
+  //
+  // Unlike larger checkboxes, we also have to float the label in order to
+  // 'shrink' it, preventing the hover state from kicking in across the full
+  // width of the parent element.
+  .app-checkboxes__label {
+    margin-top: -2px;
+    padding: 13px 15px 13px 1px;
+    float: left;
+
+    @include mq($from: tablet) {
+      padding: 11px 15px 10px 1px;
+    }
+  }
+
+  // [ ] Check box
+  //
+  // Reduce the size of the check box [1], vertically center it within the
+  // touch target [2]
+  .app-checkboxes__label:before {
+    top: $input-offset - $wra-border-width-form-element; // 2
+    width: $wra-small-checkboxes-size; // 1
+    height: $wra-small-checkboxes-size; // 1
+  }
+
+  // ✔ Check mark
+  //
+  // Reduce the size of the check mark and re-align within the checkbox
+  .app-checkboxes__label:after {
+    top: 15px;
+    left: 6px;
+    width: 12px;
+    height: 6.5px;
+    border-width: 0 0 3px 3px;
+  }
+
+  // Fix position of hint with small checkboxes
+  //
+  // Do not use hints with small checkboxes – because they're within the input
+  // wrapper they trigger the hover state, but clicking them doesn't actually
+  // activate the control.
+  //
+  // (If you do use them, they won't look completely broken... but seriously,
+  // don't use them)
+  .app-checkboxes__hint {
+    padding: 0;
+    clear: both;
+  }
+
+  // Hover state for small checkboxes.
+  //
+  // We use a hover state for small checkboxes because the touch target size
+  // is so much larger than their visible size, and so we need to provide
+  // feedback to the user as to which checkbox they will select when their
+  // cursor is outside of the visible area.
+  .app-checkboxes__item:hover .app-checkboxes__input:not(:disabled) + .app-checkboxes__label:before {
+    box-shadow: 0 0 0 $wra-hover-width $wra-hover-colour;
+  }
+
+  // Because we've overridden the border-shadow provided by the focus state,
+  // we need to redefine that too.
+  //
+  // We use two box shadows, one that restores the original focus state [1]
+  // and another that then applies the hover state [2].
+  .app-checkboxes__item:hover .app-checkboxes__input:focus + .app-checkboxes__label:before {
+    box-shadow:
+      0 0 0 $wra-focus-width $wra-focus-colour, // 1
+      0 0 0 $wra-hover-width $wra-hover-colour; // 2
+  }
+
+  // For devices that explicitly don't support hover, don't provide a hover
+  // state (e.g. on touch devices like iOS).
+  //
+  // We can't use `@media (hover: hover)` because we wouldn't get the hover
+  // state in browsers that don't support `@media (hover)` (like Internet
+  // Explorer) – so we have to 'undo' the hover state instead.
+  @media (hover: none), (pointer: coarse) {
+    .app-checkboxes__item:hover .app-checkboxes__input:not(:disabled) + .app-checkboxes__label:before {
+      box-shadow: initial;
+    }
+
+    .app-checkboxes__item:hover .app-checkboxes__input:focus + .app-checkboxes__label:before {
+      box-shadow: 0 0 0 $wra-focus-width $wra-focus-colour;
+    }
+  }
+}
+

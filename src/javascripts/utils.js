@@ -1,3 +1,5 @@
+/* global fetch */
+
 const utils = {}
 
 utils.capitalizeFirstLetter = function (string) {
