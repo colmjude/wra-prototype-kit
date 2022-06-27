@@ -17,6 +17,7 @@ function loadHandler (module) {
   //renderNationalParks(module)
   const $controlsList = document.querySelector('[data-module="layer-controls"]')
   const layerControlsComponent = new WRA.LayerControls($controlsList, module).init({})
+  const osmComponent = new WRA.OSM(module.getMap(), '.app-dynamic__osm-address').init()
 }
 
 const $mapEl = document.querySelector('[data-module="wra-map"]')

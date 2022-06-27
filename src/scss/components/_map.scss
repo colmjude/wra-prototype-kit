@@ -21,6 +21,9 @@
 }
 
 .app-map__side-panel--full {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
   height: calc(100% - 30px);
 }
 
@@ -116,6 +119,13 @@
 //----------------------------
 // Rules for panes that get added to side panel
 // ---------------------------
+
+.app-map__side-panel--full {
+  .app-map__pane {
+    flex: 1;
+    overflow: auto;
+  }
+}
 
 .app-map__pane__header {
   box-sizing: border-box;
