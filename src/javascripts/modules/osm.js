@@ -1,3 +1,5 @@
+import utils from '../utils.js'
+
 /* global fetch */
 
 function OSM (map, selector) {
@@ -5,8 +7,9 @@ function OSM (map, selector) {
   this.selector = selector
 }
 
-OSM.prototype.init = function () {
-  this.$element = document.querySelector(this.selector)
+OSM.prototype.init = function (opts) {
+  this.setOptions(opts)
+  this.$element = document.querySelector(this.options.elementSelector)
 
   const boundClickHandler = this.clickHandler.bind(this)
   this.map.on('click', boundClickHandler)
@@ -31,6 +34,15 @@ OSM.prototype.getOSMData = function (coord) {
     .then(function (data) {
       that.displayAddress(data)
     })
+}
+
+OSM.prototype.setOptions = function (opts) {
+  const options = opts || {}
+  this.options = utils.extend(osmDefaults, options)
+}
+
+const osmDefaults = {
+  elementSelector: '.app-dynamic__osm-address'
 }
 
 export default OSM

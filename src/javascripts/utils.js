@@ -34,4 +34,14 @@ utils.extend = function (obj1, obj2) {
   return extended
 }
 
+utils.createLink = function (href, text, classes = []) {
+  const $link = document.createElement('a')
+  $link.href = href
+  $link.textContent = text
+  if (classes.length) {
+    $link.classList.add(...classes)
+  }
+  return $link
+}
+
 export default utils
