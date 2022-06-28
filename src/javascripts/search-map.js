@@ -1,7 +1,7 @@
 import * as WRA from './map-prototypes'
 // import DrawRectangle from './vendor/mapbox-gl-draw-rectangle-mode'
 
-/* global MapboxDraw, turf */
+/* global MapboxDraw, turf, fetch */
 
 function addQueryLayers (map) {
   map.addSource('query', {
@@ -60,18 +60,57 @@ function addQueryLayers (map) {
   })
 }
 
+function addResponseLayers (map) {
+  // use this to set the data as the response from fetch
+  map.addSource('response', {
+    type: 'geojson',
+    data: {
+      type: 'FeatureCollection',
+      features: []
+    }
+  })
+  map.addLayer({
+    id: 'response-fill',
+    type: 'fill',
+    source: 'response',
+    paint: {
+      'fill-color': 'hsl(140, 0%, 50%)',
+      'fill-opacity': 0.2
+    }
+  })
+  map.addLayer({
+    id: 'response-line',
+    type: 'line',
+    source: 'response',
+    paint: {
+      'line-color': '#006600',
+      'line-width': 2,
+      'line-dasharray': [2, 2],
+      'line-opacity': 0.5
+    }
+  })
+}
+
 function getBBox (feature) {
   return turf.bbox(feature)
 }
 
-function performQuery (bbox) {
-  const endpoint = `https://geoserverlp.azurewebsites.net/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test%3AHighWaterMark4326&bbox=-5.670340987883478%2C51.374967138080336%2C-2.649867414033135%2C53.4357252657539&width=768&height=523&srs=EPSG%3A4326&styles=&format=geojson`
+function performQuery (bbox, map) {
+  const endpoint = `https://geoserverlp.azurewebsites.net/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test%3AHighWaterMark4326,test:NRW_NATIONAL_PARKPolygon4326&bbox=${bbox[0]}%2C${bbox[1]}%2C${bbox[2]}%2C${bbox[3]}&width=768&height=523&srs=EPSG%3A4326&styles=&format=geojson`
+  console.log(endpoint)
+  fetch(endpoint)
+    .then(response => response.json())
+    .then(function (data) {
+      console.log(data)
+      map.getSource('response').setData(data)
+    })
 }
 
 function loadHandler (appmap) {
   console.log('map loaded')
   const map = appmap.getMap()
   addQueryLayers(map)
+  addResponseLayers(map)
 
   const draw = new MapboxDraw({
     displayControlsDefault: false, // Don't add any tools other than those below
@@ -88,6 +127,7 @@ function loadHandler (appmap) {
     const feature = e.features[0]
     const bbox = getBBox(feature)
     console.log(bbox)
+    performQuery(bbox, map)
     map.getSource('query').setData(feature)
     map.getSource('bbox-query').setData(turf.bboxPolygon(bbox))
     draw.deleteAll()
