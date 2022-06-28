@@ -149,12 +149,18 @@ LayerControls.prototype.loadAllLayers = function () {
   this.$controls.forEach(function ($control) {
     const datasetName = that.getDatasetName($control)
     const endpoint = that.getDatasetEndpoint($control)
-    // in future might be more than polygon
-    //const dataType = that.getDatasetType($control)
     const layerColour = that.getDatasetColour($control)
-    //let layers
 
-    that.wramap.addGeojsonSource(datasetName, endpoint)
+    // handle cases where endpoint has been left blank
+    // allows data to be loaded/added at a later point
+    if (endpoint) {
+      that.wramap.addGeojsonSource(datasetName, endpoint)
+      that.trackDataLoad($control, datasetName)
+    } else {
+      that.wramap.addEmptySource(datasetName, endpoint)
+    }
+
+    // in future might be more than polygon
     that.wramap.addPolygonLayer(datasetName, datasetName, {
       fillColor: layerColour,
       fillOpacity: 0.4,
@@ -162,13 +168,7 @@ LayerControls.prototype.loadAllLayers = function () {
       lineOpacity: 0.8,
       lineWidth: 1
     })
-
-    that.trackDataLoad($control, datasetName)
-
-    //layers = [datasetName + 'Fill', datasetName + 'Line']
-    //availableDatasets[datasetName] = layers
   })
-  //return availableDatasets
 }
 
 LayerControls.prototype.enable = function ($control) {

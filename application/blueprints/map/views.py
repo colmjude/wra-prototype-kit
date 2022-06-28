@@ -83,4 +83,6 @@ def search():
     layer_names = []
     for d in datasets:
         layer_names.append(d["geoserver_layer_name"])
-    return render_template("map/search.html", layer_names=";".join(layer_names))
+    return render_template(
+        "map/search.html", datasets=datasets, layer_names=";".join(layer_names)
+    )

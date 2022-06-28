@@ -26,13 +26,12 @@
     <div class="col-lg-12">
 
       {% macro layerControlItem(layer) %}
-      <li class="app-map__layer-item" data-layer-control="{{ layer.dataset }}"
+      <li class="app-map__layer-item" data-layer-control="{{ layer.geoserver_layer_name|replace('test:', '') }}"
       {% if layer.type %}data-layer-type={{layer.type}}{% endif %} 
-      data-layer-endpoint="{{ layer.endpoint }}"
       data-layer-colour="{% if layer.paint_options %}{{ layer.paint_options.colour }}{% endif %}">
         <div class="app-checkboxes__item">
-          <input class="app-checkboxes__input" id="{{ layer.dataset }}" name="{{ layer.dataset }}" type="checkbox" value="{{ layer.dataset }}" {{ "checked='checked'" if layer.default_checked }}>
-          <label class="app-label app-checkboxes__label" for="{{ layer.dataset }}">
+          <input class="app-checkboxes__input" id="{{ layer.geoserver_layer_name|replace('test:', '') }}" name="{{ layer.geoserver_layer_name|replace('test:', '') }}" type="checkbox" value="{{ layer.geoserver_layer_name|replace('test:', '') }}" checked='checked'>
+          <label class="app-label app-checkboxes__label" for="{{ layer.geoserver_layer_name|replace('test:', '') }}">
             <span class="app-label__key">
               <span class="app-label__key__symbol"
               style="border-color: {{layer.paint_options.colour|default('#003078')}}; background: rgba({{layer.paint_options.colour|default('#003078')|hex_to_rgb}},0.5);"></span>
@@ -46,7 +45,23 @@
 
       <div class="app-map__wrapper" style="min-height: 700px;" data-module="wra-map" data-layer-names="{{ layer_names }}"> 
         <!-- map --> 
-        <div class="app-map" id="mapId"></div>
+        <div class="app-map" id="mapId"></div><!-- /end map-->
+        <!-- side panel -->
+        <div class="app-map__side-panel app-map__side-panel--full js-hidden" tabindex="-1" role="dialog" aria-hidden="false" open="true" aria-modal="true">
+          <!-- pane 1 -->
+          <div class="app-map__pane">
+            <div class="app-map__pane__header">
+              <h3 class="app-map__pane__heading">Datasets</h3>
+            </div>
+            <div class="app-map__pane__body">
+              <ul class="wra-list app-checkboxes wra-!-margin-bottom-0" data-module="layer-controls" role="group">
+                {% for dataset in datasets %}
+                {{ layerControlItem(dataset) }}
+                {% endfor %}
+              </ul>
+            </div>
+          </div><!-- /end pane 1 -->
+        </div><!-- /end side-panel -->
       </div>
 
     </div>

@@ -79,6 +79,21 @@ Map.prototype.addPolygonLayer = function (layerName, sourceName, paintOptions, d
   return this
 }
 
+Map.prototype._bringToFront = function (layer) {
+  this.map.moveLayer(layer)
+}
+
+Map.prototype.bringToFront = function (layer) {
+  const that = this
+  if (Array.isArray(layer)) {
+    layer.forEach(function (l) {
+      that._bringToFront(l)
+    })
+  } else {
+    this._bringToFront(layer)
+  }
+}
+
 Map.prototype.createMap = function () {
   this.map = new maplibregl.Map({
     container: this.options.mapElementID, // container id

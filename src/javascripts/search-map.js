@@ -35,8 +35,8 @@ function addQueryLayers (map) {
     type: 'line',
     source: 'bbox-query',
     paint: {
-      'line-color': '#990000',
-      'line-width': 2,
+      'line-color': '#FF30DA',
+      'line-width': 4,
       'line-dasharray': [2, 2]
     }
   })
@@ -50,6 +50,16 @@ function addQueryLayers (map) {
     },
     filter: ['==', ['geometry-type'], 'Polygon']
   })
+  // map.addLayer({
+  //   id: 'bbox-query-fill',
+  //   type: 'fill',
+  //   source: 'bbox-query',
+  //   paint: {
+  //     'fill-color': 'hsl(140, 0%, 50%)',
+  //     'fill-opacity': 0.2
+  //   },
+  //   filter: ['==', ['geometry-type'], 'Polygon']
+  // })
 
   map.addLayer({
     id: 'query-circle',
@@ -153,7 +163,7 @@ function performQuery (bbox, map) {
     .then(function (data) {
       console.log(data)
       splitFeaturesAcrossLayers(data, layerNames)
-      map.getSource('response').setData(data)
+      // map.getSource('response').setData(data)
     })
 }
 
@@ -161,9 +171,13 @@ function loadHandler (appmap) {
   console.log('map loaded')
   const map = appmap.getMap()
 
+  const $controlsList = document.querySelector('[data-module="layer-controls"]')
+  const layerControlsComponent = new WRA.LayerControls($controlsList, appmap).init({})
+
   addQueryLayers(map)
   addResponseLayers(map)
-  addGeoserverLayers(appmap)
+
+  // addGeoserverLayers(appmap)
 
   const draw = new MapboxDraw({
     displayControlsDefault: false, // Don't add any tools other than those below
@@ -183,6 +197,7 @@ function loadHandler (appmap) {
     performQuery(bbox, map)
     map.getSource('query').setData(feature)
     map.getSource('bbox-query').setData(turf.bboxPolygon(bbox))
+    appmap.bringToFront(['query-fill', 'query-line', 'bbox-query-line'])
     draw.deleteAll()
   })
 }
