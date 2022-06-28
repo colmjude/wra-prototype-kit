@@ -19,5 +19,12 @@ module.exports = [
       file: 'application/static/javascripts/explorer-map.js',
       format: 'iife'
     }
+  },
+  {
+    input: 'src/javascripts/search-map.js',
+    output: {
+      file: 'application/static/javascripts/search-map.js',
+      format: 'iife'
+    }
   }
 ]
