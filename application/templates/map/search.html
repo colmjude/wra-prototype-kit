@@ -1,0 +1,66 @@
+{% extends "layouts/layout.html" %}
+{% block page_title %}WRA Prototype Kit index{% endblock %}
+
+{% block headEnd %}
+<script src="https://unpkg.com/maplibre-gl@1.14.0-rc.1/dist/maplibre-gl.js"></script>
+<link href="https://unpkg.com/maplibre-gl@1.14.0-rc.1/dist/maplibre-gl.css" rel="stylesheet" />
+
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/mapbox-gl-draw.css" type="text/css" />
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/mapbox-gl-draw.js"></script>
+{% endblock headEnd %}
+
+{% block content %}
+<main id="content" role="main">
+  <a class="app-back-link" href="{{ url_for('base.index') }}">Back to list of prototypes</a>
+
+  <span class="app-caption wra-!-margin-top-6">Data platform</span>
+  <h1 class="h1-sm-and-up">Search land and property data</h1>
+
+  <div class="row">
+    <div class="col-lg-8">
+      <p>Draw ...</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+
+      {% macro layerControlItem(layer) %}
+      <li class="app-map__layer-item" data-layer-control="{{ layer.dataset }}"
+      {% if layer.type %}data-layer-type={{layer.type}}{% endif %} 
+      data-layer-endpoint="{{ layer.endpoint }}"
+      data-layer-colour="{% if layer.paint_options %}{{ layer.paint_options.colour }}{% endif %}">
+        <div class="app-checkboxes__item">
+          <input class="app-checkboxes__input" id="{{ layer.dataset }}" name="{{ layer.dataset }}" type="checkbox" value="{{ layer.dataset }}" {{ "checked='checked'" if layer.default_checked }}>
+          <label class="app-label app-checkboxes__label" for="{{ layer.dataset }}">
+            <span class="app-label__key">
+              <span class="app-label__key__symbol"
+              style="border-color: {{layer.paint_options.colour|default('#003078')}}; background: rgba({{layer.paint_options.colour|default('#003078')|hex_to_rgb}},0.5);"></span>
+              {{ layer.display_name }}
+            </span>
+            <span class="app-map__layer-item__loader">Loading...</span>
+          </label>
+        </div>
+      </li>
+      {% endmacro %}
+
+      <div class="app-map__wrapper" style="min-height: 700px;"> 
+        <!-- map --> 
+        <div class="app-map" id="mapId"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-8">
+      <hr class="app-break-xl" />
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block pageScripts %}
+<script src='https://unpkg.com/@turf/turf@6.3.0/turf.min.js'></script>
+<script src="/static/javascripts/search-map.js"></script>
+{% endblock pageScripts %}

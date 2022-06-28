@@ -71,3 +71,8 @@ def explorer():
         bool_fields=["default_checked"],
     )
     return render_template("map/explorer.html", datasets=datasets)
+
+
+@map.route("search")
+def search():
+    return render_template("map/search.html")
