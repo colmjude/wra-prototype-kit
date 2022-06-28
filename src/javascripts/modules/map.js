@@ -27,7 +27,16 @@ Map.prototype.addEventHandler = function (event, callback) {
   return this
 }
 
+Map.prototype.addEmptySource = function (sourceName) {
+  // same as a geojson layer but with empty Feature collection
+  this.addGeojsonSource(sourceName, {
+    type: 'FeatureCollection',
+    features: []
+  })
+}
+
 Map.prototype.addGeojsonSource = function (sourceName, endpoint) {
+  // to do: change param name from endpoint to ?
   this.map.addSource(sourceName, {
     type: 'geojson',
     data: endpoint
@@ -160,6 +169,10 @@ Map.prototype.setLayerPaintPropertyZoomChange = function (layerName, propertyNam
     zoomSettings.maxLevel,
     zoomSettings.maxValue
   ])
+}
+
+Map.prototype.setSourceData = function (sourceName, data) {
+  this.map.getSource(sourceName).setData(data)
 }
 
 Map.prototype._toggleLayer = function (layerId, visibility) {

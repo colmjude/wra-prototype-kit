@@ -1,4 +1,6 @@
+import utils from '../javascripts/utils'
 import * as WRA from './map-prototypes'
+
 // import DrawRectangle from './vendor/mapbox-gl-draw-rectangle-mode'
 
 /* global MapboxDraw, turf, fetch */
@@ -91,6 +93,20 @@ function addResponseLayers (map) {
   })
 }
 
+function addGeoserverLayers (appmap) {
+  layerNames.forEach(function (name) {
+    appmap.addEmptySource(name)
+    const hexColour = utils.randomHexColorCode()
+    appmap.addPolygonLayer(name, name, {
+      fillColor: hexColour,
+      fillOpacity: 0.4,
+      lineColor: hexColour,
+      lineOpacity: 0.8,
+      lineWidth: 1
+    })
+  })
+}
+
 function getBBox (feature) {
   return turf.bbox(feature)
 }
@@ -102,23 +118,30 @@ function emptyFeatureCollection () {
   }
 }
 
+// bit messy because mapComponent is declared further down the script
+function setSourceLayerData (featureCollections) {
+  for (const collectionName in featureCollections) {
+    mapComponent.setSourceData(collectionName, featureCollections[collectionName])
+  }
+}
+
 function splitFeaturesAcrossLayers (featureCollection, layerNames) {
-  const layers = layerNames.map(name => name.replace(/^test:/gi, ''))
-  console.log(layers)
   const layerCollections = {}
 
-  layers.forEach(function (layer) {
+  layerNames.forEach(function (layer) {
     layerCollections[layer] = emptyFeatureCollection()
   })
 
   console.log(layerCollections)
   for (const featureKey in featureCollection.features) {
-    layers.forEach(function (layer) {
+    layerNames.forEach(function (layer) {
       if (featureCollection.features[featureKey].id.includes(layer)) {
         layerCollections[layer].features.push(featureCollection.features[featureKey])
       }
     })
   }
+
+  setSourceLayerData(layerCollections)
   console.log(layerCollections)
 }
 
@@ -137,8 +160,10 @@ function performQuery (bbox, map) {
 function loadHandler (appmap) {
   console.log('map loaded')
   const map = appmap.getMap()
+
   addQueryLayers(map)
   addResponseLayers(map)
+  addGeoserverLayers(appmap)
 
   const draw = new MapboxDraw({
     displayControlsDefault: false, // Don't add any tools other than those below
@@ -163,7 +188,7 @@ function loadHandler (appmap) {
 }
 
 const $mapEl = document.querySelector('[data-module="wra-map"]')
-const layerNames = $mapEl.dataset.layerNames.split(';')
+const layerNames = $mapEl.dataset.layerNames.split(';').map(name => name.replace(/^test:/gi, ''))
 console.log(layerNames)
 const mapComponent = new WRA.Map($mapEl).init({
   onLoadCallback: loadHandler
