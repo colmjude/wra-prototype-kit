@@ -63,16 +63,24 @@ def region():
 # ================
 
 
-@map.route("explorer")
-def explorer():
-    datasets = readCSV(
+def get_dataset_list():
+    return readCSV(
         "application/data/datasets.csv",
         json_blobs=["paint_options"],
         bool_fields=["default_checked"],
     )
+
+
+@map.route("explorer")
+def explorer():
+    datasets = get_dataset_list()
     return render_template("map/explorer.html", datasets=datasets)
 
 
 @map.route("search")
 def search():
-    return render_template("map/search.html")
+    datasets = get_dataset_list()
+    layer_names = []
+    for d in datasets:
+        layer_names.append(d["geoserver_layer_name"])
+    return render_template("map/search.html", layer_names=";".join(layer_names))

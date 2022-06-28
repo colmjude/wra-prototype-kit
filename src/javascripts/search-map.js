@@ -95,13 +95,41 @@ function getBBox (feature) {
   return turf.bbox(feature)
 }
 
+function emptyFeatureCollection () {
+  return {
+    type: 'FeatureCollection',
+    features: []
+  }
+}
+
+function splitFeaturesAcrossLayers (featureCollection, layerNames) {
+  const layers = layerNames.map(name => name.replace(/^test:/gi, ''))
+  console.log(layers)
+  const layerCollections = {}
+
+  layers.forEach(function (layer) {
+    layerCollections[layer] = emptyFeatureCollection()
+  })
+
+  console.log(layerCollections)
+  for (const featureKey in featureCollection.features) {
+    layers.forEach(function (layer) {
+      if (featureCollection.features[featureKey].id.includes(layer)) {
+        layerCollections[layer].features.push(featureCollection.features[featureKey])
+      }
+    })
+  }
+  console.log(layerCollections)
+}
+
 function performQuery (bbox, map) {
-  const endpoint = `https://geoserverlp.azurewebsites.net/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test%3AHighWaterMark4326,test:NRW_NATIONAL_PARKPolygon4326&bbox=${bbox[0]}%2C${bbox[1]}%2C${bbox[2]}%2C${bbox[3]}&width=768&height=523&srs=EPSG%3A4326&styles=&format=geojson`
+  const endpoint = `https://geoserverlp.azurewebsites.net/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=${layerNames.join(',')}&bbox=${bbox[0]}%2C${bbox[1]}%2C${bbox[2]}%2C${bbox[3]}&width=768&height=523&srs=EPSG%3A4326&styles=&format=geojson`
   console.log(endpoint)
   fetch(endpoint)
     .then(response => response.json())
     .then(function (data) {
       console.log(data)
+      splitFeaturesAcrossLayers(data, layerNames)
       map.getSource('response').setData(data)
     })
 }
@@ -135,6 +163,8 @@ function loadHandler (appmap) {
 }
 
 const $mapEl = document.querySelector('[data-module="wra-map"]')
+const layerNames = $mapEl.dataset.layerNames.split(';')
+console.log(layerNames)
 const mapComponent = new WRA.Map($mapEl).init({
   onLoadCallback: loadHandler
 })
