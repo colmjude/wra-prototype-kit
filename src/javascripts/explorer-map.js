@@ -13,8 +13,6 @@ const marker = createMarker()
 
 function loadHandler (module) {
   console.log('map loaded')
-  //renderBoundaries(module)
-  //renderNationalParks(module)
   const featureDisplay = new WRA.FeatureDisplay(module).init({
     onlyDisplayAfterFirstClick: true
   })
@@ -26,7 +24,8 @@ function loadHandler (module) {
 
 const $mapEl = document.querySelector('[data-module="wra-map"]')
 const mapComponent = new WRA.Map($mapEl).init({
-  onLoadCallback: loadHandler
+  onLoadCallback: loadHandler,
+  permalink: true
 })
 
 // add listener for when map clicked on

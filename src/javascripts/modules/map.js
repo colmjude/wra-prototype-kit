@@ -1,4 +1,5 @@
 import utils from '../utils.js'
+import Permalink from './permalink'
 
 /* global maplibregl */
 
@@ -95,12 +96,25 @@ Map.prototype.bringToFront = function (layer) {
 }
 
 Map.prototype.createMap = function () {
+  let initialPosition = {
+    center: [-3.7, 52.4],
+    zoom: 6.89
+  }
+  if (this.options.permalink) {
+    initialPosition = Permalink.getMapLocation(6.89, [-3.7, 52.4])
+  }
+
+  console.log(initialPosition)
   this.map = new maplibregl.Map({
     container: this.options.mapElementID, // container id
     style: '/static/javascripts/base-tile.json',
-    center: [-3.7, 52.4], // starting position [lng, lat]
-    zoom: 6.89// starting zoom
+    center: initialPosition.center, // starting position [lng, lat]
+    zoom: initialPosition.zoom// starting zoom
   })
+
+  if (this.options.permalink) {
+    Permalink.setup(this.map)
+  }
 
   if (this.options.fullscreen) {
     this.map.addControl(new maplibregl.FullscreenControl({
