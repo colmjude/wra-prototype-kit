@@ -164,6 +164,7 @@ Map.prototype.onMapLoad = function (e) {
   }
 }
 
+// problematic function when there is no consistency between attributes used by datasets
 Map.prototype.removeDuplicates = function (features) {
   const uniqueFeatures = []
 
@@ -176,6 +177,10 @@ Map.prototype.removeDuplicates = function (features) {
       return true
     }
     if (props.includes('ogc_fid') && uniqueFeatures.indexOf(feature.properties.ogc_fid) === -1) {
+      uniqueFeatures.push(feature.properties.ogc_fid)
+      return true
+    }
+    if (props.includes('inspireid') && uniqueFeatures.indexOf(feature.properties.ogc_fid) === -1) {
       uniqueFeatures.push(feature.properties.ogc_fid)
       return true
     }
