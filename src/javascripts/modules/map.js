@@ -155,7 +155,6 @@ Map.prototype.getMap = function () {
 }
 
 Map.prototype.onMapLoad = function (e) {
-  console.log('map has loaded')
   this.initialMapLoaded = true
 
   const that = this

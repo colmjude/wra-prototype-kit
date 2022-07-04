@@ -28,7 +28,6 @@ LayerControls.prototype.init = function (params) {
 
   // create mapping between dataset and layer, one per control item
   this.loadAllLayers()
-  console.log(this.wramap.polygonLayers)
 
   // listen for changes to URL
   const boundSetControls = this.setControls.bind(this)
@@ -41,11 +40,9 @@ LayerControls.prototype.init = function (params) {
   const urlParams = (new URL(document.location)).searchParams
   if (!urlParams.has(this.options.layerURLParamName)) {
     // if not set then use default checked controls
-    console.log('NO layer params exist')
     this.updateURL()
   } else {
     // use URL params if available
-    console.log('layer params exist')
     this.setControls()
     this._initialLoadWithLayers = true
   }
@@ -53,7 +50,6 @@ LayerControls.prototype.init = function (params) {
   // listen for changes on each checkbox and change the URL
   const boundControlChkbxChangeHandler = this.onControlChkbxChange.bind(this)
   this.$controls.forEach(function ($control) {
-    console.log(this)
     $control.addEventListener('change', boundControlChkbxChangeHandler, true)
   }, this)
 
@@ -209,7 +205,6 @@ LayerControls.prototype.setControls = function () {
   // map the names to the controls
   const toEnable = enabledLayerNames.map(name => this.getControlByName(name))
   const toDisable = disabledLayerNames.map(name => this.getControlByName(name))
-  console.log(toEnable, toDisable)
 
   // pass correct this arg
   toEnable.forEach(this.enable, this)
