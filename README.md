@@ -30,6 +30,12 @@ Finally to start the it run:
 flask run
 ```
 
+## Adding layers to the map
+
+You can add layers by adding a record to `application/data/datasets.csv` with the respective details.
+
+Note, you may need to tweak the URL that geoserver gives you to make sure it returns all the features for a layer. By default geoserver adds the param `&maxFeatures=50` which limits the returned features to 50. Change this to get more. It does mean you need to know the total number of features in the dataset.
+
 ## To do
 
 * Replace Wales GEL compiled assets with building blocks
