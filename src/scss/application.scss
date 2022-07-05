@@ -2,8 +2,7 @@
 
 @import "settings/all";
 
-@import "common/typography";
-@import "common/lists";
+@import "common/all";
 
 @import "components/back-link";
 @import "components/buttons";
@@ -108,5 +107,30 @@
 
   .properties-list {
     font-size: 14px;
+  }
+}
+
+// ----------------------------------
+// index page styles
+// ----------------------------------
+
+.app-index-list__heading {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 20px;
+  margin-top: 0;
+  font-size: 22px;
+  color: #aa1111;
+  font-weight: bold;
+  display: block;
+  text-decoration: none;
+  margin-top: 0;
+}
+
+.index-list__item {
+  margin-bottom: $wra-gutter;
+
+  p {
+    margin-bottom: 0;
   }
 }
