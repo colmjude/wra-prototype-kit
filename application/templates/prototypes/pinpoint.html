@@ -1,0 +1,22 @@
+{% extends "layouts/layout.html" %}
+{% block page_title %}WRA Prototype Kit index{% endblock %}
+
+{% block headEnd %}
+<script src="https://unpkg.com/maplibre-gl@1.14.0-rc.1/dist/maplibre-gl.js"></script>
+<link href="https://unpkg.com/maplibre-gl@1.14.0-rc.1/dist/maplibre-gl.css" rel="stylesheet" />
+{% endblock headEnd %}
+
+{% block content %}
+<main id="content" role="main">
+  <a class="app-back-link" href="{{ url_for('base.index') }}">Back to list of prototypes</a>
+
+  <span class="app-caption wra-!-margin-top-6">What we know about a location</span>
+  <h1 class="h1-sm-and-up">Enter location</h1>
+  
+</main>
+{% endblock %}
+
+{% block pageScripts %}
+<script src='https://unpkg.com/@turf/turf@6.3.0/turf.min.js'></script>
+<script src="/static/javascripts/pinpoint.js"></script>
+{% endblock pageScripts %}

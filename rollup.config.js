@@ -26,5 +26,12 @@ module.exports = [
       file: 'application/static/javascripts/search-map.js',
       format: 'iife'
     }
+  },
+  {
+    input: 'src/javascripts/pinpoint.js',
+    output: {
+      file: 'application/static/javascripts/pinpoint.js',
+      format: 'iife'
+    }
   }
 ]

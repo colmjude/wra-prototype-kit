@@ -40,6 +40,10 @@ def register_blueprints(app):
 
     app.register_blueprint(map)
 
+    from application.blueprints.prototypes.views import prototypes
+
+    app.register_blueprint(prototypes)
+
 
 def register_context_processors(app):
     """
