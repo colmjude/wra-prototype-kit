@@ -156,7 +156,7 @@ function splitFeaturesAcrossLayers (featureCollection, layerNames) {
 }
 
 function performQuery (bbox, map) {
-  const endpoint = `https://geoserverlp.azurewebsites.net/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=${layerNames.join(',')}&bbox=${bbox[0]}%2C${bbox[1]}%2C${bbox[2]}%2C${bbox[3]}&width=768&height=523&srs=EPSG%3A4326&styles=&format=geojson`
+  const endpoint = `https://landplatform.azurefd.net/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=${layerNames.join(',')}&bbox=${bbox[0]}%2C${bbox[1]}%2C${bbox[2]}%2C${bbox[3]}&width=768&height=523&srs=EPSG%3A4326&styles=&format=geojson`
   console.log(endpoint)
   fetch(endpoint)
     .then(response => response.json())

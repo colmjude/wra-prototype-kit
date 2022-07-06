@@ -9,7 +9,7 @@ const getBBox = mapHelpers.generateBBox
 const capitalizeEachWord = utils.capitalizeEachWord
 
 // platform endpoint
-const LA_BOUNDARIES_ENDPOINT = 'https://geoserverlp.azurewebsites.net/geoserver/test/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=test%3AHighWaterMark4326&maxFeatures=50&outputFormat=application%2Fjson'
+const LA_BOUNDARIES_ENDPOINT = 'https://landplatform.azurefd.net/geoserver/test/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=test%3AHighWaterMark4326&maxFeatures=50&outputFormat=application%2Fjson'
 //const LA_BOUNDARIES_ENDPOINT = '/static/data/platform-la-boundaries.json'
 const attrToMatchOn = 'name_en'
 
