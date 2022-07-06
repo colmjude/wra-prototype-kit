@@ -4,11 +4,6 @@ import * as WRA from './map-prototypes'
 // helpers used in script
 const createMarker = mapHelpers.createMarker
 
-// platform endpoint
-const LA_BOUNDARIES_ENDPOINT = 'https://landplatform.azurefd.net/geoserver/test/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=test%3AHighWaterMark4326&maxFeatures=50&outputFormat=application%2Fjson'
-//const LA_BOUNDARIES_ENDPOINT = '/static/data/platform-la-boundaries.json'
-const attrToMatchOn = 'name_en'
-
 const marker = createMarker()
 
 function loadHandler (module) {
