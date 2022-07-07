@@ -42,7 +42,7 @@ function displayLocation (coords) {
 function fetchData (bbox, successCallback, errorCallback) {
   // need to make sure all layers are listed
   // https://landplatform.azurefd.net/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=HighWaterMark4326,NRW_NATIONAL_PARKPolygon4326,GWC21_Community_Wards4326,conservation_areas&bbox=-4.057148676659978%2C51.90456243131746%2C-2.923089621907593%2C52.3365572489885&width=768&height=523&srs=EPSG%3A4326&styles=&format=geojson
-  const endpoint = `https://landplatform.azurefd.net/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=HighWaterMark4326,NRW_NATIONAL_PARKPolygon4326,GWC21_Community_Wards4326,conservation_areas&bbox=${bbox[1]}%2C${bbox[0]}%2C${bbox[3]}%2C${bbox[2]}&width=768&height=523&srs=EPSG%3A4326&styles=&format=geojson`
+  const endpoint = `https://landplatform.azurefd.net/geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=HighWaterMark4326,NRW_NATIONAL_PARKPolygon4326,GWC21_Community_Wards4326,conservation_areas,nationalBoundaries&bbox=${bbox[1]}%2C${bbox[0]}%2C${bbox[3]}%2C${bbox[2]}&width=768&height=523&srs=EPSG%3A4326&styles=&format=geojson`
   console.log('query endpoint', endpoint)
   fetch(endpoint)
     .then(response => response.json())
