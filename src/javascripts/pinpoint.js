@@ -55,4 +55,18 @@ const whichWardCheck = new Checker($wardItem).init({
   dataRecordType: 'ward'
 })
 
-window.checkers = [inWalesCheck, whichLocalAuthorityCheck, whichWardCheck]
+const $nationalParklItem = document.querySelector('[data-dynamic-element="which-national-park"]')
+const whichNationalPark = new Checker($nationalParklItem).init({
+  datasetName: 'NATIONAL_PARK',
+  dataRecordType: 'national park',
+  nameAttribute: 'np_name'
+})
+
+const $conservationAreaItem = document.querySelector('[data-dynamic-element="which-conservation-area"]')
+const whichConservationAreaCheck = new Checker($conservationAreaItem).init({
+  datasetName: 'conservation_areas',
+  dataRecordType: 'conservation area',
+  nameAttribute: 'sitename'
+})
+
+window.checkers = [inWalesCheck, whichLocalAuthorityCheck, whichWardCheck, whichNationalPark, whichConservationAreaCheck]

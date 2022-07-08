@@ -105,9 +105,13 @@ Locator.prototype.performQuery = function (coords) {
 }
 
 Locator.prototype.useDefaultCoords = function () {
+  // const coords = {
+  //   latitude: 52.05935795369581,
+  //   longitude: -3.5725398780735134
+  // }
   const coords = {
-    latitude: 52.05935795369581,
-    longitude: -3.5725398780735134
+    latitude: 51.85804448624384,
+    longitude: -3.138910073077568
   }
   this.displayLocation(coords)
   this.performQuery(coords)
