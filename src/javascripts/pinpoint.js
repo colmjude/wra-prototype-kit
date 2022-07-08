@@ -47,8 +47,33 @@ function fetchData (bbox, successCallback, errorCallback) {
   fetch(endpoint)
     .then(response => response.json())
     .then(function (data) {
+      displayIfInWales(isInWales(data.features))
       console.log(data)
     })
+}
+
+function isInWales (features) {
+  const statisticalGeographyField = 'ctry18cd'
+  const statisticalGeographyWales = 'W92000004'
+  return features.filter(function (feature) {
+    // only interested in national boundaries
+    if (feature.id.includes('nationalBoundaries')) {
+      if (feature.properties[statisticalGeographyField] && feature.properties[statisticalGeographyField] == statisticalGeographyWales) {
+        return true
+      }
+    }
+    return false
+  })
+}
+
+function displayIfInWales (feature) {
+  const $walesStatement = document.querySelector('[data-dynamic-element="in-wales-check"]')
+  $walesStatement.classList.remove('js-hidden')
+  let statement = 'Location NOT in Wales'
+  if (feature.length) {
+    statement = 'Location in Wales'
+  }
+  $walesStatement.textContent = statement
 }
 
 const $curentLocationBtn = document.querySelector('.app-current-location-button')
