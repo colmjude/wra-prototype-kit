@@ -48,4 +48,11 @@ const whichLocalAuthorityCheck = new Checker($localAuthorityItem).init({
   dataRecordType: 'local authority',
   nameAttribute: 'name_en'
 })
-window.checkers = [inWalesCheck, whichLocalAuthorityCheck]
+
+const $wardItem = document.querySelector('[data-dynamic-element="which-ward"]')
+const whichWardCheck = new Checker($wardItem).init({
+  datasetName: 'Community_Wards',
+  dataRecordType: 'ward'
+})
+
+window.checkers = [inWalesCheck, whichLocalAuthorityCheck, whichWardCheck]

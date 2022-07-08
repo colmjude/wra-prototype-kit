@@ -78,7 +78,7 @@ Checker.prototype.setOptions = function (opts) {
 const checkerDefaults = {
   containerSelector: '[data-locator="locator-summary"]',
   dataEventName: 'dataRetrieved',
-  datasetName: 'nationalBoundaries',
+  datasetName: 'nationalBoundaries', // should rename to dataset name part
   dataRecordType: 'national boundary',
   nameAttribute: 'name'
 }
