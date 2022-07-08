@@ -25,6 +25,8 @@ Checker.prototype.check = function (features) {
     this.showItem()
     this.display(features)
     console.log(this.options.datasetName, 'display the item and change the text')
+  } else {
+    this.hideItem()
   }
 }
 
