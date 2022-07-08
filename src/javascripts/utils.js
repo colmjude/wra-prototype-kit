@@ -19,7 +19,9 @@ utils.capitalizeEachWord = function (s) {
   Returns a new obj
 */
 utils.extend = function (obj1, obj2) {
-  const extended = obj1
+  // use the spread operator to force a (shallow) clone of the obj instead of a reference
+  // https://stackoverflow.com/questions/12690107/clone-object-without-reference-javascript
+  const extended = { ...obj1 }
 
   const merge = function (obj) {
     for (const prop in obj) {
