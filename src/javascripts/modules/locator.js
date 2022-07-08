@@ -26,6 +26,10 @@ Locator.prototype.init = function (options) {
   this.$defaultLocationBtn = this.$inputContainer.querySelector('.app-default-location-button')
   const boundUseDefaultCoords = this.useDefaultCoords.bind(this)
   this.$defaultLocationBtn.addEventListener('click', boundUseDefaultCoords)
+
+  this.$input = this.$inputContainer.querySelector('[data-locator="locator-input"]')
+  const boundInputHandler = this.inputHandler.bind(this)
+  this.$input.addEventListener('blur', boundInputHandler)
 }
 
 Locator.prototype.dispatchDataEvent = function (data) {
@@ -53,6 +57,33 @@ Locator.prototype.getCurrentLocation = function () {
   }, function (e) {
     console.log('Error', e)
   })
+}
+
+Locator.prototype.getLatLng = function (s) {
+  const inputSplit = s.split(',')
+  console.log(inputSplit)
+  if (inputSplit.length !== 2) {
+    return { error: "can't parse string" }
+  }
+  return {
+    latitude: parseFloat(inputSplit[0]),
+    longitude: parseFloat(inputSplit[1])
+  }
+  // if (inputSplit.every((input) => typeof (parseFloat(input)) === 'number')) {
+  //   return { error: 'input not floats' }
+  // }
+}
+
+Locator.prototype.inputHandler = function (e) {
+  console.log('input blur event fired')
+  const inputValue = e.target.value
+  const parsedInput = this.getLatLng(inputValue)
+  if (Object.keys(parsedInput).includes('error')) {
+    console.log('Error with input', parsedInput)
+  } else {
+    this.displayLocation(parsedInput)
+    this.performQuery(parsedInput)
+  }
 }
 
 Locator.prototype.performQuery = function (coords) {
