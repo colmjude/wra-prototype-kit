@@ -57,9 +57,11 @@ Locator.prototype.getBBoxFromPoint = function (coords) {
 
 Locator.prototype.getCurrentLocation = function () {
   const that = this
+  this.$curentLocationBtn.parentElement.classList.add('loading')
   geoHelpers.getLocation(function (e) {
     that.displayLocation(e.coords)
     that.performQuery(e.coords)
+    that.$curentLocationBtn.parentElement.classList.remove('loading')
   }, function (e) {
     console.log('Error', e)
   })

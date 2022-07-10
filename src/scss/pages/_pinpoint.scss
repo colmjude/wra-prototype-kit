@@ -1,3 +1,7 @@
+.app-locator-inputs {
+  border-bottom: 3px solid $wra-border-colour;
+}
+
 .app-current-location {
   margin-bottom: $wra-gutter;
 }
@@ -13,4 +17,17 @@
 .app-statement--error {
   background: $app-error-bg-colour;
   border-color: $app-error-colour;
+}
+
+
+.app-secondary-text {
+  color: $wra-secondary-text-colour;
+}
+
+.app-input__loader {
+  display: none;
+}
+
+.loading > .app-input__loader {
+  display: inline;
 }
