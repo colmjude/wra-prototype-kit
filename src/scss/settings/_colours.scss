@@ -18,3 +18,14 @@ $wra-focus-colour: #ffd530 !default;
 /// @access public
 
 $wra-hover-colour: #b1b4b6;
+
+
+/// Error colours
+///
+/// Used to show errors and falsey things
+///
+/// @type Colour
+/// @access public
+
+$app-error-colour: #a11;
+$app-error-bg-colour: #ffe4e5;

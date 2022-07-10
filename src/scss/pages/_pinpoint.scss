@@ -5,3 +5,8 @@
   background: $wra-border-colour;
   border-left: 4px solid $wra-organisation-colour;
 }
+
+.app-statement--error {
+  background: $app-error-bg-colour;
+  border-color: $app-error-colour;
+}
