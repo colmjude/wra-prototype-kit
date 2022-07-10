@@ -30,6 +30,12 @@ Locator.prototype.init = function (options) {
   this.$input = this.$inputContainer.querySelector('[data-locator="locator-input"]')
   const boundInputHandler = this.inputHandler.bind(this)
   this.$input.addEventListener('blur', boundInputHandler)
+  this.$input.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.keyCode === 13) {
+      e.preventDefault()
+      boundInputHandler(e)
+    }
+  })
 }
 
 Locator.prototype.dispatchDataEvent = function (data) {
