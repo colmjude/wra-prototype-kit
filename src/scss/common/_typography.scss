@@ -1,6 +1,6 @@
 .app-caption {
   display: block;
-  color: #666;
+  color: $wra-secondary-text-colour;
   font-size: 14px;
   letter-spacing: .08em;
   line-height: 20px;
@@ -26,4 +26,6 @@
 
 .app-form-hint {
   display: block;
+  margin-bottom: 5px;
+  color: $wra-secondary-text-colour;
 }
