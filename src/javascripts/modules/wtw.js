@@ -11,8 +11,12 @@ WTW.prototype.init = function (opts) {
   this.setOptions(opts)
   this.$element = document.querySelector(this.options.elementSelector)
 
-  const boundClickHandler = this.clickHandler.bind(this)
-  this.map.on('click', boundClickHandler)
+  if (this.options.mapInteractionEnabled) {
+    const boundClickHandler = this.clickHandler.bind(this)
+    this.map.on('click', boundClickHandler)
+  }
+
+  return this
 }
 
 WTW.prototype.clickHandler = function (evt) {
@@ -48,6 +52,7 @@ WTW.prototype.setOptions = function (opts) {
 
 const WTWDefaults = {
   elementSelector: '.app-dynamic__wtw',
+  mapInteractionEnabled: true,
   noValueClass: 'app-no-value'
 }
 

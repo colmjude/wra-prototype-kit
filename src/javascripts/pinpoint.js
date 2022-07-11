@@ -2,6 +2,7 @@ import Locator from './modules/locator'
 import InWales from './modules/checks/wales'
 import Checker from './modules/checker'
 import OSM from './modules/osm'
+import WTW from './modules/wtw'
 
 
 const $inputContainer = document.querySelector('[data-locator="locator-inputs"]')
@@ -40,11 +41,16 @@ const whichConservationAreaCheck = new Checker($conservationAreaItem).init({
 const osmModule = new OSM().init({
   mapInteractionEnabled: false
 })
+const wtwModule = new WTW().init({
+  mapInteractionEnabled: false
+})
 $summaryContainer.addEventListener('locationSet', function (e) {
-  osmModule.getOSMData({
+  const latlng = {
     lat: e.detail.coordinates.latitude,
     lng: e.detail.coordinates.longitude
-  })
+  }
+  osmModule.getOSMData(latlng)
+  wtwModule.getWTWData(latlng)
 })
 
 window.checkers = [inWalesCheck, whichLocalAuthorityCheck, whichWardCheck, whichNationalPark, whichConservationAreaCheck]
