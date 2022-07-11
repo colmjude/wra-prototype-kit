@@ -16,8 +16,8 @@
   <div class="app-locator-inputs" data-locator="locator-inputs">
     <form action="">
       <div class="app-form-group">
-        <label for="local_authority" class="app-form-label">Enter a latitude and a longitude</label>
-        <span class="app-form-hint">For example, 52.011,-3.458</span>
+        <label for="local_authority" class="app-form-label">Search for a location</label>
+        <span class="app-form-hint">Enter either a post code, for example, SA71 5AT. Or a lat and lng, for example, 52.011,-3.458.</span>
         <input class="app-form-input" type="text" data-locator="locator-input">
       </div>
     
@@ -41,6 +41,10 @@
 
     <div class="app-current-location">
       <h2>Location</h2>
+      <div>
+        <span class="app-current-location--postcode"></span>
+        <br />centre at 
+      </div>
       <span class="app-current-location--latitude"></span>,
       <span class="app-current-location--longitude"></span>
     </div>

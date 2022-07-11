@@ -27,4 +27,15 @@ mapHelpers.getOSMData = function (coord) {
     })
 }
 
+mapHelpers.performOSMQuery = function (query, callback) {
+  const endpoint = `https://nominatim.openstreetmap.org/search.php?q=${query}&format=jsonv2`
+  fetch(endpoint)
+    .then(response => response.json())
+    .then(function (data) {
+      if (callback) {
+        callback(data)
+      }
+    })
+}
+
 export default mapHelpers

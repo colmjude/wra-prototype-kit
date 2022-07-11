@@ -1,5 +1,6 @@
 import utils from '../utils.js'
 import geoHelpers from '../geohelpers'
+import mapHelpers from '../map-helpers.js'
 
 /* global fetch, CustomEvent */
 
@@ -48,13 +49,24 @@ Locator.prototype.dispatchLocationEvent = function (coords) {
   this.$summaryContainer.dispatchEvent(locationEvent)
 }
 
-Locator.prototype.displayLocation = function (coords) {
+Locator.prototype.displayLocation = function (coords, postcode) {
   this.$locationDisplay.classList.remove('js-hidden')
   const $lat = this.$locationDisplay.querySelector('.app-current-location--latitude')
   const $lng = this.$locationDisplay.querySelector('.app-current-location--longitude')
+  this.displayPostcode(postcode)
   $lat.textContent = coords.latitude
   $lng.textContent = coords.longitude
   this.dispatchLocationEvent(coords)
+}
+
+Locator.prototype.displayPostcode = function (postcode) {
+  const $postcode = this.$locationDisplay.querySelector('.app-current-location--postcode')
+  const $container = $postcode.parentElement
+  $container.classList.add('js-hidden')
+  if (postcode) {
+    $postcode.textContent = postcode.toUpperCase()
+    $container.classList.remove('js-hidden')
+  }
 }
 
 Locator.prototype.getBBoxFromPoint = function (coords) {
@@ -88,15 +100,31 @@ Locator.prototype.getLatLng = function (s) {
   // }
 }
 
+// Was written at speed so definitely needs rewriting!
 Locator.prototype.inputHandler = function (e) {
   console.log('input blur event fired')
+  const that = this
   const inputValue = e.target.value
-  const parsedInput = this.getLatLng(inputValue)
-  if (Object.keys(parsedInput).includes('error')) {
-    console.log('Error with input', parsedInput)
+  // check for post codes first
+  const postcodeMatches = inputValue.match(this.options.postcodeRegex)
+  if (postcodeMatches.length) {
+    // handle post codes
+    mapHelpers.performOSMQuery(postcodeMatches[0], function (data) {
+      const coords = {
+        latitude: parseFloat(data[0].lat),
+        longitude: parseFloat(data[0].lon)
+      }
+      that.displayLocation(coords, postcodeMatches[0])
+      that.performQuery(coords)
+    })
   } else {
-    this.displayLocation(parsedInput)
-    this.performQuery(parsedInput)
+    const parsedInput = this.getLatLng(inputValue)
+    if (Object.keys(parsedInput).includes('error')) {
+      console.log('Error with input', parsedInput)
+    } else {
+      this.displayLocation(parsedInput)
+      this.performQuery(parsedInput)
+    }
   }
 }
 
@@ -138,7 +166,8 @@ Locator.prototype.setOptions = function (opts) {
 
 const locatorDefaults = {
   elementSelector: '.app-dynamic__osm-address',
-  layersStr: 'HighWaterMark4326,NRW_NATIONAL_PARKPolygon4326,GWC21_Community_Wards4326,conservation_areas,nationalBoundaries'
+  layersStr: 'HighWaterMark4326,NRW_NATIONAL_PARKPolygon4326,GWC21_Community_Wards4326,conservation_areas,nationalBoundaries',
+  postcodeRegex: /[A-Z]{1,2}[0-9][0-9A-Z]?\s?[0-9][A-Z]{2}/gi
 }
 
 export default Locator
