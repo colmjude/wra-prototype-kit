@@ -43,12 +43,18 @@ Locator.prototype.dispatchDataEvent = function (data) {
   this.$summaryContainer.dispatchEvent(dataEvent)
 }
 
+Locator.prototype.dispatchLocationEvent = function (coords) {
+  const locationEvent = new CustomEvent('locationSet', { detail: { coordinates: coords } })
+  this.$summaryContainer.dispatchEvent(locationEvent)
+}
+
 Locator.prototype.displayLocation = function (coords) {
   this.$locationDisplay.classList.remove('js-hidden')
   const $lat = this.$locationDisplay.querySelector('.app-current-location--latitude')
   const $lng = this.$locationDisplay.querySelector('.app-current-location--longitude')
   $lat.textContent = coords.latitude
   $lng.textContent = coords.longitude
+  this.dispatchLocationEvent(coords)
 }
 
 Locator.prototype.getBBoxFromPoint = function (coords) {

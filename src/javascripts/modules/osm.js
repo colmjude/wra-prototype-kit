@@ -11,8 +11,12 @@ OSM.prototype.init = function (opts) {
   this.setOptions(opts)
   this.$element = document.querySelector(this.options.elementSelector)
 
-  const boundClickHandler = this.clickHandler.bind(this)
-  this.map.on('click', boundClickHandler)
+  if (this.options.mapInteractionEnabled) {
+    const boundClickHandler = this.clickHandler.bind(this)
+    this.map.on('click', boundClickHandler)
+  }
+
+  return this
 }
 
 OSM.prototype.clickHandler = function (evt) {
@@ -42,7 +46,8 @@ OSM.prototype.setOptions = function (opts) {
 }
 
 const osmDefaults = {
-  elementSelector: '.app-dynamic__osm-address'
+  elementSelector: '.app-dynamic__osm-address',
+  mapInteractionEnabled: true
 }
 
 export default OSM
