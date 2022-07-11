@@ -35,3 +35,26 @@
 .loading > .app-input__loader {
   display: inline;
 }
+
+.app-statement__properties {
+  padding: $wra-gutter-half;
+  margin-top: $wra-gutter;
+  margin-bottom: 0;
+  background: #fff;
+  font-size: 16px;
+}
+
+// to do: equal dynamic width dts
+.app-dl__item__group {
+  dt,
+  dd {
+    display: inline-block;
+    font-weight: normal;
+  }
+
+  dt {
+    min-width: 130px;
+    padding-right: $wra-gutter * 2;
+    font-weight: bold;
+  }
+}

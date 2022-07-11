@@ -10,6 +10,8 @@ Checker.prototype.init = function (options) {
 
   this.$container = this.$item.closest(this.options.containerSelector)
 
+  this.$propertiesList = this.$item.querySelector('.app-statement__properties')
+
   const boundDataRetrievedHandler = this.dataRetrievedHandler.bind(this)
   this.$container.addEventListener(this.options.dataEventName, boundDataRetrievedHandler)
 
@@ -30,6 +32,15 @@ Checker.prototype.check = function (features) {
   }
 }
 
+Checker.prototype.createElement = function (tag, textContent, classlist) {
+  const $el = document.createElement(tag)
+  $el.textContent = textContent
+  if (classlist && classlist.length) {
+    classlist.forEach((cls) => $el.classList.add(cls))
+  }
+  return $el
+}
+
 Checker.prototype.dataRetrievedHandler = function (e) {
   console.log('data retrieved, perform check for ', typeof (this))
   const relevantFeatures = this.getRelevantFeatures(e.detail.data.features)
@@ -41,6 +52,23 @@ Checker.prototype.display = function (features) {
   const $value = this.$item.querySelector('[data-locator="date-record-value"]')
   $type.textContent = this.options.dataRecordType
   $value.textContent = features[0].properties[this.options.nameAttribute]
+  // if markup for properties list exists then display the properties
+  if (this.$propertiesList) {
+    this.displayProperties(features[0])
+  }
+}
+
+Checker.prototype.displayProperties = function (feature) {
+  const that = this
+  // reset list
+  this.$propertiesList.textContent = ''
+
+  Object.keys(feature.properties).forEach(function (property) {
+    const $group = that.createElement('div', '', ['app-dl__item__group'])
+    $group.appendChild(that.createElement('dt', property))
+    $group.appendChild(that.createElement('dd', feature.properties[property]))
+    that.$propertiesList.appendChild($group)
+  })
 }
 
 Checker.prototype.getItem = function () {
