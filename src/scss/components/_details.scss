@@ -1,0 +1,31 @@
+.app-details__summary {
+  position: relative;
+  cursor: pointer;
+  padding-right: 14px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.app-details__summary::-webkit-details-marker {
+  display: none;
+}
+
+// Append our own open / closed marker using a pseudo-element
+.app-details__summary:before {
+  content: "";
+  position: absolute;
+
+  top: -1px;
+  bottom: 0;
+  right: 0;
+
+  margin: auto;
+
+  @include govuk-shape-arrow($direction: left, $base: 14px, $colour: #505a5f);
+
+  .app-details[open] > & {
+    @include govuk-shape-arrow($direction: down, $base: 14px, $colour: #505a5f);
+  }
+}

@@ -51,12 +51,14 @@
 
     {% macro appStatementItem(params) %}
     <li class="app-statement" data-dynamic-element="{{ params.dataElementName }}">
-      <div class="app-collapsible__summary">
-        Location is in the <span data-locator="date-record-type"></span> of <span data-locator="date-record-value"></span>
-      </div>
-      <div class="app-collapsible__body">
-        <dl class="app-statement__properties"></dl>
-      </div>
+      <details class="app-details">
+        <summary class="app-details__summary app-collapsible__summary">
+          Location is in the <span data-locator="date-record-type"></span> of <span data-locator="date-record-value"></span>
+        </summary>
+        <div class="app-details__details app-collapsible__body">
+          <dl class="app-statement__properties"></dl>
+        </div>
+      </details>
     </li>
     {% endmacro %}
 
