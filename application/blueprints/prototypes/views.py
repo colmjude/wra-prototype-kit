@@ -19,6 +19,6 @@ def pinpoint():
 
 @prototypes.route("/<lang>/pinpoint")
 def pinpoint_bi(lang):
-    if lang not in ["en", "cy"]:
+    if lang.lower() not in ["en", "cy"]:
         abort(404)
-    return render_template("prototypes/pinpoint.html", pageLang=lang)
+    return render_template("prototypes/pinpoint.html", pageLang=lang.lower())

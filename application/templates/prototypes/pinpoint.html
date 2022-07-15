@@ -1,10 +1,23 @@
 {% extends "layouts/layout.html" %}
+{% from 'components/masthead.html' import appMasthead %}
 {% block page_title %}WRA Prototype Kit index{% endblock %}
 
 {% block headEnd %}
 <script src="https://unpkg.com/maplibre-gl@1.14.0-rc.1/dist/maplibre-gl.js"></script>
 <link href="https://unpkg.com/maplibre-gl@1.14.0-rc.1/dist/maplibre-gl.css" rel="stylesheet" />
 {% endblock headEnd %}
+
+{% block masthead %}
+  {% set langLinkSetting = "en" if pageLang == "cy" else "cy"  %}
+  {% set mastHeadHtml %}
+  <a class="btn btn--black btn--on-black" href="{{ url_for('prototypes.pinpoint_bi', lang=langLinkSetting) }}">{{ "English" if pageLang == "cy" else "Cymraeg" }}</a>
+  {% endset %}
+  {{ appMasthead({
+    "options": { 
+      "html": mastHeadHtml
+    }
+  }) }}
+{% endblock masthead %}
 
 {% block content %}
 <main id="content" role="main">
