@@ -48,8 +48,8 @@ Checker.prototype.dataRetrievedHandler = function (e) {
 }
 
 Checker.prototype.display = function (features) {
-  const $type = this.$item.querySelector('[data-locator="date-record-type"]')
-  const $value = this.$item.querySelector('[data-locator="date-record-value"]')
+  const $type = this.$item.querySelector('[data-locator="data-record-type"]')
+  const $value = this.$item.querySelector('[data-locator="data-record-value"]')
   $type.textContent = $type.dataset.recordType
   $value.textContent = features[0].properties[this.options.nameAttribute]
   // if markup for properties list exists then display the properties
