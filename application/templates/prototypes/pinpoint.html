@@ -66,7 +66,7 @@
     <li class="app-statement" data-dynamic-element="{{ params.dataElementName }}">
       <details class="app-details">
         <summary class="app-details__summary app-collapsible__summary">
-          Location is in the <span data-locator="date-record-type"></span> of <span data-locator="date-record-value"></span>
+          {{ _('Location is in the') }} <span data-locator="date-record-type" data-record-type="{{ params.dataRecordType }}"></span> {{ _('of') }} <span data-locator="date-record-value"></span>
         </summary>
         <div class="app-details__details app-collapsible__body">
           <dl class="app-statement__properties"></dl>
@@ -79,13 +79,13 @@
       <h3>{{ _('Results from the Land and property platform') }}</h3>
       <ul class="wra-list">
         <li class="app-statement" data-dynamic-element="in-wales-check" data-passed-check-text="{{ _('Location in Wales') }}" data-not-passed-check-text="{{ _('Location NOT in Wales') }}"></li>
-        {{ appStatementItem({ "dataElementName": "which-local-authority" }) }}
-        {{ appStatementItem({ "dataElementName": "which-ward" }) }}
-        {{ appStatementItem({ "dataElementName": "which-national-park" }) }}
-        {{ appStatementItem({ "dataElementName": "which-conservation-area" }) }}
+        {{ appStatementItem({ "dataElementName": "which-local-authority", "dataRecordType": _('local authority') }) }}
+        {{ appStatementItem({ "dataElementName": "which-ward", "dataRecordType": _('ward') }) }}
+        {{ appStatementItem({ "dataElementName": "which-national-park", "dataRecordType": _('national park') }) }}
+        {{ appStatementItem({ "dataElementName": "which-conservation-area", "dataRecordType": _('conservation area') }) }}
       </ul>
 
-      <h3>Results from external services</h3>
+      <h3>{{ _('Results from external services') }}</h3>
       <ul class="wra-list">
         <li class="app-statement app-statement--external">{{ _('OSM address') }}:
           <span class="app-dynamic__osm-address"></span>

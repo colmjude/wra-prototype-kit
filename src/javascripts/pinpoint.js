@@ -14,27 +14,23 @@ const $localAuthorityItem = document.querySelector('[data-dynamic-element="which
 const inWalesCheck = new InWales($walesStatement).init({})
 const whichLocalAuthorityCheck = new Checker($localAuthorityItem).init({
   datasetName: 'localauthorities',
-  dataRecordType: 'local authority',
   nameAttribute: 'name_en'
 })
 
 const $wardItem = document.querySelector('[data-dynamic-element="which-ward"]')
 const whichWardCheck = new Checker($wardItem).init({
-  datasetName: 'Community_Wards',
-  dataRecordType: 'ward'
+  datasetName: 'Community_Wards'
 })
 
 const $nationalParklItem = document.querySelector('[data-dynamic-element="which-national-park"]')
 const whichNationalPark = new Checker($nationalParklItem).init({
   datasetName: 'NATIONAL_PARK',
-  dataRecordType: 'national park',
   nameAttribute: 'np_name'
 })
 
 const $conservationAreaItem = document.querySelector('[data-dynamic-element="which-conservation-area"]')
 const whichConservationAreaCheck = new Checker($conservationAreaItem).init({
   datasetName: 'conservation_areas',
-  dataRecordType: 'conservation area',
   nameAttribute: 'sitename'
 })
 

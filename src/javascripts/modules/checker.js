@@ -50,7 +50,7 @@ Checker.prototype.dataRetrievedHandler = function (e) {
 Checker.prototype.display = function (features) {
   const $type = this.$item.querySelector('[data-locator="date-record-type"]')
   const $value = this.$item.querySelector('[data-locator="date-record-value"]')
-  $type.textContent = this.options.dataRecordType
+  $type.textContent = $type.dataset.recordType
   $value.textContent = features[0].properties[this.options.nameAttribute]
   // if markup for properties list exists then display the properties
   if (this.$propertiesList) {
@@ -107,7 +107,6 @@ const checkerDefaults = {
   containerSelector: '[data-locator="locator-summary"]',
   dataEventName: 'dataRetrieved',
   datasetName: 'nationalBoundaries', // should rename to dataset name part
-  dataRecordType: 'national boundary',
   nameAttribute: 'name'
 }
 

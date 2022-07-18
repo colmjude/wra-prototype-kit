@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-18 15:24+0100\n"
+"POT-Creation-Date: 2022-07-18 15:37+0100\n"
 "PO-Revision-Date: 2022-07-18 14:24+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: cy\n"
@@ -68,24 +68,51 @@ msgstr "Lleoliad"
 msgid "centre at"
 msgstr "ganolfan yn"
 
+#: application/templates/prototypes/pinpoint.html:69
+msgid "Location is in the"
+msgstr "Mae lleoliad yn y"
+
+#: application/templates/prototypes/pinpoint.html:69
+msgid "of"
+msgstr "o"
+
 #: application/templates/prototypes/pinpoint.html:79
 msgid "Results from the Land and property platform"
 msgstr "Canlyniadau o'r llwyfan Tir ac eiddo"
 
 #: application/templates/prototypes/pinpoint.html:81
-#: application/templates/prototypes/pinpoint.html:82
 msgid "Location in Wales"
 msgstr "Lleoliad yng Nghymru"
 
-#: application/templates/prototypes/pinpoint.html:82
+#: application/templates/prototypes/pinpoint.html:81
 msgid "Location NOT in Wales"
 msgstr "Lleoliad NID yng Nghymru"
 
-#: application/templates/prototypes/pinpoint.html:91
+#: application/templates/prototypes/pinpoint.html:82
+msgid "local authority"
+msgstr "awdurdod lleol"
+
+#: application/templates/prototypes/pinpoint.html:83
+msgid "ward"
+msgstr "etholaeth"
+
+#: application/templates/prototypes/pinpoint.html:84
+msgid "national park"
+msgstr "Parc Cenedlaethol"
+
+#: application/templates/prototypes/pinpoint.html:85
+msgid "conservation area"
+msgstr "ardal gadwraeth"
+
+#: application/templates/prototypes/pinpoint.html:88
+msgid "Results from external services"
+msgstr "Canlyniadau gwasanaethau allanol"
+
+#: application/templates/prototypes/pinpoint.html:90
 msgid "OSM address"
 msgstr "OSM cyfeiriad"
 
-#: application/templates/prototypes/pinpoint.html:94
+#: application/templates/prototypes/pinpoint.html:93
 msgid "What Three Words"
 msgstr "What Three Words"
 
