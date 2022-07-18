@@ -4,7 +4,7 @@ Flask app factory class
 """
 import os
 
-from flask import Flask, render_template, session
+from flask import Flask, render_template, session, g, request
 from flask.cli import load_dotenv
 
 load_dotenv()
@@ -66,7 +66,15 @@ def register_extensions(app):
     """
     Import and register flask extensions and initialize with app object
     """
-    pass
+    from application.extensions import babel
+
+    babel.init_app(app)
+    # set up babel - could this go in extensions.py ?
+    @babel.localeselector
+    def get_locale():
+        if not g.get("lang_code", None):
+            g.lang_code = request.accept_languages.best_match(app.config["LANGUAGES"])
+        return g.lang_code
 
 
 def register_templates(app):

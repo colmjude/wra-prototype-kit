@@ -21,16 +21,16 @@
 
 {% block content %}
 <main id="content" role="main">
-  <a class="app-back-link" href="{{ url_for('base.index') }}">Back to list of prototypes</a>
+  <a class="app-back-link" href="{{ url_for('base.index') }}">{{ _("Back to list of prototypes") }}</a>
 
-  <span class="app-caption wra-!-margin-top-6">Land and property platform</span>
-  <h1 class="h1-sm-and-up">Tell me about a location</h1>
+  <span class="app-caption wra-!-margin-top-6">{{ _('Land and property platform') }}</span>
+  <h1 class="h1-sm-and-up">{{ _('Tell me about a location') }}</h1>
   
   <div class="app-locator-inputs" data-locator="locator-inputs">
     <form action="">
       <div class="app-form-group">
-        <label for="local_authority" class="app-form-label">Search for a location</label>
-        <span class="app-form-hint">Enter either a post code, for example, SA71 5AT. Or a lat and lng, for example, 52.011,-3.458.</span>
+        <label for="local_authority" class="app-form-label">{{ _('Search for a location') }}</label>
+        <span class="app-form-hint">{{ _('Enter either a post code, for example, SA71 5AT. Or a lat and lng, for example, 52.011,-3.458.') }}</span>
         <input class="app-form-input" type="text" data-locator="locator-input">
       </div>
     
@@ -39,24 +39,24 @@
     <p>or</p>
 
     <div class="app-form-group">
-      <button class="app-current-location-button app-button app-button-black">Use current location</button>
-      <span class="app-input__loader app-secondary-text">Getting location...</span>
+      <button class="app-current-location-button app-button app-button-black">{{ _('Use current location') }}</button>
+      <span class="app-input__loader app-secondary-text">{{ _('Getting location...') }}</span>
     </div>
 
     <p>or</p>
 
     <div class="app-form-group">
-      <a class="app-default-location-button" href="#">Use a default location in Wales</a>
+      <a class="app-default-location-button" href="#">{{ _('Use a default location in Wales') }}</a>
     </div>
   </div>
 
   <div data-locator="locator-summary">
 
     <div class="app-current-location">
-      <h2>Location</h2>
+      <h2>{{ _('Location') }}</h2>
       <div>
         <span class="app-current-location--postcode"></span>
-        <br />centre at 
+        <br />{{ _('centre at') }} 
       </div>
       <span class="app-current-location--latitude"></span>,
       <span class="app-current-location--longitude"></span>
@@ -76,7 +76,7 @@
     {% endmacro %}
 
     <div class="app-locator-results">
-      <h3>Results from the Land and property platform</h3>
+      <h3>{{ _('Results from the Land and property platform') }}</h3>
       <ul class="wra-list">
         <li class="app-statement" data-dynamic-element="in-wales-check"></li>
         {{ appStatementItem({ "dataElementName": "which-local-authority" }) }}
@@ -87,10 +87,10 @@
 
       <h3>Results from external services</h3>
       <ul class="wra-list">
-        <li class="app-statement app-statement--external">OSM address:
+        <li class="app-statement app-statement--external">{{ _('OSM address') }}:
           <span class="app-dynamic__osm-address"></span>
         </li>
-        <li class="app-statement app-statement--external">What Three Words:
+        <li class="app-statement app-statement--external">{{ _('What Three Words') }}:
           <span class="app-dynamic__wtw"></span>
         </li>
       </ul>

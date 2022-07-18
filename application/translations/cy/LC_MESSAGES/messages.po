@@ -1,0 +1,78 @@
+# Welsh translations for PROJECT.
+# Copyright (C) 2022 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2022-07-18 14:24+0100\n"
+"PO-Revision-Date: 2022-07-18 14:24+0100\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: cy\n"
+"Language-Team: cy <LL@li.org>\n"
+"Plural-Forms: nplurals=5; plural=(n==1 ? 1 : n==2 ? 2 : n==3 ? 3 : n==6 ?"
+" 4 : 0);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.10.3\n"
+
+#: application/templates/prototypes/pinpoint.html:24
+msgid "Back to list of prototypes"
+msgstr "Yn ôl i'r rhestr o brototeipiau"
+
+#: application/templates/prototypes/pinpoint.html:26
+msgid "Land and property platform"
+msgstr "Llwyfan tir ac eiddo"
+
+#: application/templates/prototypes/pinpoint.html:27
+msgid "Tell me about a location"
+msgstr "Dywedwch wrthyf am leoliad"
+
+#: application/templates/prototypes/pinpoint.html:32
+msgid "Search for a location"
+msgstr "Chwiliwch am leoliad"
+
+#: application/templates/prototypes/pinpoint.html:33
+msgid ""
+"Enter either a post code, for example, SA71 5AT. Or a lat and lng, for "
+"example, 52.011,-3.458."
+msgstr ""
+"Rhowch god post, er enghraifft, SA71 5AT. Neu lat a lng, ar gyfer"
+"enghraifft, 52.011,-3.458."
+
+
+#: application/templates/prototypes/pinpoint.html:42
+msgid "Use current location"
+msgstr "Defnyddiwch y lleoliad presennol"
+
+#: application/templates/prototypes/pinpoint.html:43
+msgid "Getting location..."
+msgstr "Cael lleoliad..."
+
+#: application/templates/prototypes/pinpoint.html:49
+msgid "Use a default location in Wales"
+msgstr "Defnyddiwch leoliad diofyn yng Nghymru"
+
+#: application/templates/prototypes/pinpoint.html:56
+msgid "Location"
+msgstr "Lleoliad"
+
+#: application/templates/prototypes/pinpoint.html:59
+msgid "centre at"
+msgstr "ganolfan yn"
+
+#: application/templates/prototypes/pinpoint.html:79
+msgid "Results from the Land and property platform"
+msgstr "Canlyniadau o'r llwyfan Tir ac eiddo"
+
+#: application/templates/prototypes/pinpoint.html:90
+msgid "OSM address"
+msgstr "OSM cyfeiriad"
+
+#: application/templates/prototypes/pinpoint.html:93
+msgid "What Three Words"
+msgstr "What Three Words"
+
