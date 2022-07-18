@@ -36,14 +36,14 @@
     
     </form>
 
-    <p>or</p>
+    <p>{{ _('or') }}</p>
 
     <div class="app-form-group">
       <button class="app-current-location-button app-button app-button-black">{{ _('Use current location') }}</button>
       <span class="app-input__loader app-secondary-text">{{ _('Getting location...') }}</span>
     </div>
 
-    <p>or</p>
+    <p>{{ _('or') }}</p>
 
     <div class="app-form-group">
       <a class="app-default-location-button" href="#">{{ _('Use a default location in Wales') }}</a>
@@ -78,7 +78,7 @@
     <div class="app-locator-results">
       <h3>{{ _('Results from the Land and property platform') }}</h3>
       <ul class="wra-list">
-        <li class="app-statement" data-dynamic-element="in-wales-check"></li>
+        <li class="app-statement" data-dynamic-element="in-wales-check" data-passed-check-text="{{ _('Location in Wales') }}" data-not-passed-check-text="{{ _('Location NOT in Wales') }}"></li>
         {{ appStatementItem({ "dataElementName": "which-local-authority" }) }}
         {{ appStatementItem({ "dataElementName": "which-ward" }) }}
         {{ appStatementItem({ "dataElementName": "which-national-park" }) }}

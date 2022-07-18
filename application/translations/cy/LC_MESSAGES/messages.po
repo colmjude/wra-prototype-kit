@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-18 14:24+0100\n"
+"POT-Creation-Date: 2022-07-18 15:24+0100\n"
 "PO-Revision-Date: 2022-07-18 14:24+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: cy\n"
@@ -40,9 +40,13 @@ msgid ""
 "Enter either a post code, for example, SA71 5AT. Or a lat and lng, for "
 "example, 52.011,-3.458."
 msgstr ""
-"Rhowch god post, er enghraifft, SA71 5AT. Neu lat a lng, ar gyfer"
-"enghraifft, 52.011,-3.458."
+"Rhowch god post, er enghraifft, SA71 5AT. Neu lat a lng, ar "
+"gyferenghraifft, 52.011,-3.458."
 
+#: application/templates/prototypes/pinpoint.html:39
+#: application/templates/prototypes/pinpoint.html:46
+msgid "or"
+msgstr "neu"
 
 #: application/templates/prototypes/pinpoint.html:42
 msgid "Use current location"
@@ -68,11 +72,20 @@ msgstr "ganolfan yn"
 msgid "Results from the Land and property platform"
 msgstr "Canlyniadau o'r llwyfan Tir ac eiddo"
 
-#: application/templates/prototypes/pinpoint.html:90
+#: application/templates/prototypes/pinpoint.html:81
+#: application/templates/prototypes/pinpoint.html:82
+msgid "Location in Wales"
+msgstr "Lleoliad yng Nghymru"
+
+#: application/templates/prototypes/pinpoint.html:82
+msgid "Location NOT in Wales"
+msgstr "Lleoliad NID yng Nghymru"
+
+#: application/templates/prototypes/pinpoint.html:91
 msgid "OSM address"
 msgstr "OSM cyfeiriad"
 
-#: application/templates/prototypes/pinpoint.html:93
+#: application/templates/prototypes/pinpoint.html:94
 msgid "What Three Words"
 msgstr "What Three Words"
 

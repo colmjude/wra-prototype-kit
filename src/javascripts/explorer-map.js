@@ -1,8 +1,14 @@
 import mapHelpers from '../javascripts/map-helpers'
 import * as WRA from './map-prototypes'
+import geoHelpers from './geohelpers'
 
 // helpers used in script
 const createMarker = mapHelpers.createMarker
+
+// platform endpoint
+const LA_BOUNDARIES_ENDPOINT = 'https://landplatform.azurefd.net/geoserver/test/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=test%3AHighWaterMark4326&maxFeatures=50&outputFormat=application%2Fjson'
+//const LA_BOUNDARIES_ENDPOINT = '/static/data/platform-la-boundaries.json'
+const attrToMatchOn = 'name_en'
 
 const marker = createMarker()
 
@@ -31,6 +37,14 @@ mapComponent.addEventHandler('click', function (e, appmap) {
   marker
     .setLngLat([e.lngLat.lng, e.lngLat.lat])
     .addTo(map)
+})
+
+geoHelpers.getLocation(function (e) {
+  console.log('Success', e)
+  const bbox = geoHelpers.getBBox(geoHelpers.convertPointToFeature(e.coords.latitude, e.coords.longitude, 0.01))
+  console.log('Current location', bbox)
+}, function (e) {
+  console.log('Error', e)
 })
 
 window.appmap = mapComponent

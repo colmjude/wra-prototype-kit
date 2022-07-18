@@ -11,9 +11,9 @@ InWales.prototype.check = function (features) {
   console.log('relevant features', features)
   this.showItem()
   this.addClass('app-statement--error')
-  let statement = 'Location NOT in Wales'
+  let statement = this.$item.dataset.notPassedCheckText
   if (features.length) {
-    statement = 'Location in Wales'
+    statement = this.$item.dataset.passedCheckText
     this.removeClass('app-statement--error')
   }
   this.$item.textContent = statement
