@@ -7,6 +7,24 @@
 <link href="https://unpkg.com/maplibre-gl@1.14.0-rc.1/dist/maplibre-gl.css" rel="stylesheet" />
 {% endblock headEnd %}
 
+{% block headerTop -%}
+  {% from 'wra-frontend/components/header/macro.jinja' import wraHeader -%}
+  {{ wraHeader({
+    "phaseMarker": {
+      "id": "alpha-btn",
+      "classes": "btn btn--beta btn--light",
+      "text": _("Proof of concept")
+    },
+    "feedback": {
+      "email": "#",
+      "text": _("Give feedback")
+    },
+    "minimise": {
+      "text": _("minimise")
+    }
+  }) }}
+{%- endblock headerTop %}
+
 {% block masthead %}
   {% set langLinkSetting = "en" if pageLang == "cy" else "cy"  %}
   {% set mastHeadHtml %}
