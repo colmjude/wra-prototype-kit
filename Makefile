@@ -21,3 +21,10 @@ flake8:
 
 watch:
 	npm run watch
+
+extract-strings:
+	pybabel extract -F babel.cfg -o messages.pot .
+	pybabel update -i messages.pot -d application/translations -l cy
+
+compile-translations:
+	pybabel compile -d application/translations
