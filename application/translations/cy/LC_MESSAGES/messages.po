@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-18 17:20+0100\n"
+"POT-Creation-Date: 2022-07-19 14:41+0100\n"
 "PO-Revision-Date: 2022-07-18 14:24+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: cy\n"
@@ -96,6 +96,10 @@ msgstr "Mae lleoliad yn y"
 #: application/templates/prototypes/pinpoint.html:87
 msgid "of"
 msgstr "o"
+
+#: application/templates/prototypes/pinpoint.html:87
+msgid "Welsh name not in data record"
+msgstr "Enw Cymraeg ddim yn y cofnod data"
 
 #: application/templates/prototypes/pinpoint.html:97
 msgid "Results from the Land and property platform"

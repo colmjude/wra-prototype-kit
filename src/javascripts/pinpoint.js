@@ -14,7 +14,10 @@ const $localAuthorityItem = document.querySelector('[data-dynamic-element="which
 const inWalesCheck = new InWales($walesStatement).init({})
 const whichLocalAuthorityCheck = new Checker($localAuthorityItem).init({
   datasetName: 'localauthorities',
-  nameAttribute: 'name_en'
+  nameAttribute: {
+    en: 'name_en',
+    cy: 'name_cy'
+  }
 })
 
 const $wardItem = document.querySelector('[data-dynamic-element="which-ward"]')

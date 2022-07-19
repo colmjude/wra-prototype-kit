@@ -7,6 +7,7 @@ function Checker ($item) {
 Checker.prototype.init = function (options) {
   this.setOptions(options)
   console.log('init checker for', this.options.datasetName)
+  this.pageLang = document.querySelector('html').lang
 
   this.$container = this.$item.closest(this.options.containerSelector)
 
@@ -51,7 +52,22 @@ Checker.prototype.display = function (features) {
   const $type = this.$item.querySelector('[data-locator="data-record-type"]')
   const $value = this.$item.querySelector('[data-locator="data-record-value"]')
   $type.textContent = $type.dataset.recordType
-  $value.textContent = features[0].properties[this.options.nameAttribute]
+
+  // use attribute relevant to page language - defaults to english
+  let attributeLang = 'en'
+  const hasLangOption = Object.keys(this.options.nameAttribute).includes(this.pageLang)
+  if (hasLangOption) {
+    attributeLang = this.pageLang
+  }
+  $value.textContent = features[0].properties[this.options.nameAttribute[attributeLang]]
+
+  // temporary for prototype
+  // add warning message if welsh name not available
+  if (!hasLangOption) {
+    const warningText = $value.dataset.noWelshWarning
+    $value.appendChild(this.createElement('span', `(${warningText})`, ['app-statement__warning']))
+  }
+
   // if markup for properties list exists then display the properties
   if (this.$propertiesList) {
     this.displayProperties(features[0])
@@ -101,6 +117,13 @@ Checker.prototype.setOptions = function (opts) {
   const options = opts || {}
   this.options = utils.extend(checkerDefaults, options)
   console.log(this.options)
+  // check if string or object provided for nameAttribute
+  if (typeof this.options.nameAttribute === 'string') {
+    const en = this.options.nameAttribute
+    this.options.nameAttribute = {
+      en: en
+    }
+  }
 }
 
 const checkerDefaults = {

@@ -23,6 +23,11 @@
   border-color: $app-error-colour;
 }
 
+.app-statement__warning {
+  padding-left: $wra-gutter-half;
+  color: $wra-secondary-text-colour;
+  font-size: 16px;
+}
 
 .app-secondary-text {
   color: $wra-secondary-text-colour;
