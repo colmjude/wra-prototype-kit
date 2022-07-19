@@ -1,3 +1,4 @@
+from datetime import datetime
 from flask import (
     abort,
     redirect,
@@ -7,8 +8,11 @@ from flask import (
     url_for,
     request,
     g,
+    jsonify,
 )
 from flask_babel import refresh
+
+from application.utils import readCSV
 
 
 prototypes = Blueprint("prototypes", __name__, url_prefix="/prototypes")
@@ -26,3 +30,24 @@ def pinpoint_bi(lang):
     g.lang_code = lang
     refresh()
     return render_template("prototypes/pinpoint.html", pageLang=lang.lower())
+
+
+@prototypes.route("/council-tax")
+def council_tax():
+
+    bands = readCSV("application/data/council_tax/council-tax-band.csv")
+    rates = readCSV("application/data/council_tax/council-tax-rate.csv")
+
+    if request.args and request.args.get("geography"):
+        la_geography = request.args.get("geography")
+        rates = [r for r in rates if r["geography"] == la_geography]
+
+    # for now just reutrn current rates
+    today = datetime.today()
+    rates = [
+        r
+        for r in rates
+        if r["end-date"] is None or datetime.strptime(r["end-date"], "%Y-%m-%d") > today
+    ]
+
+    return jsonify(rates)
