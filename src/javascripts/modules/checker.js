@@ -9,6 +9,7 @@ Checker.prototype.init = function (options) {
   console.log('init checker for', this.options.datasetName)
   this.pageLang = document.querySelector('html').lang
 
+  // this is the container of all the results
   this.$container = this.$item.closest(this.options.containerSelector)
 
   this.$propertiesList = this.$item.querySelector('.app-statement__properties')
@@ -44,6 +45,7 @@ Checker.prototype.createElement = function (tag, textContent, classlist) {
 
 Checker.prototype.dataRetrievedHandler = function (e) {
   console.log('data retrieved, perform check for ', typeof (this))
+  this.allFeatures = e.detail.data.features
   const relevantFeatures = this.getRelevantFeatures(e.detail.data.features)
   this.check(relevantFeatures)
 }

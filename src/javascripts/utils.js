@@ -51,4 +51,13 @@ utils.randomHexColorCode = function () {
   return '#' + n.slice(0, 6)
 }
 
+utils.getRelevantFeatures = function (features, dataType) {
+  return features.filter(function (feature) {
+    if (feature.id.includes(dataType)) {
+      return true
+    }
+    return false
+  })
+}
+
 export default utils

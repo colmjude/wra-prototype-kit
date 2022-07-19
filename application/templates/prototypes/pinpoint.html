@@ -103,6 +103,16 @@
         {{ appStatementItem({ "dataElementName": "which-conservation-area", "dataRecordType": _('conservation area') }) }}
       </ul>
 
+      <div class="app-tax-section">
+        <h3>Tax information</h3>
+        <ul class="wra-list">
+          <li class="app-statement app-statement--tax" data-tax-info="ltt">
+          </li>
+          <li class="app-statement app-statement--tax" data-tax-info="council-tax">
+          </li>
+        </ul>
+      </div>
+
       <h3>{{ _('Results from external services') }}</h3>
       <ul class="wra-list">
         <li class="app-statement app-statement--external">{{ _('OSM address') }}:

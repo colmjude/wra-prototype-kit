@@ -23,6 +23,10 @@
   border-color: $app-error-colour;
 }
 
+.app-statement--tax {
+  border-color: rgb(189,66,64);
+}
+
 .app-statement__warning {
   padding-left: $wra-gutter-half;
   color: $wra-secondary-text-colour;

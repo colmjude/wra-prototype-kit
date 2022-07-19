@@ -3,6 +3,7 @@ import InWales from './modules/checks/wales'
 import Checker from './modules/checker'
 import OSM from './modules/osm'
 import WTW from './modules/wtw'
+import TaxRates from './modules/tax-rates'
 
 
 const $inputContainer = document.querySelector('[data-locator="locator-inputs"]')
@@ -51,5 +52,9 @@ $summaryContainer.addEventListener('locationSet', function (e) {
   osmModule.getOSMData(latlng)
   wtwModule.getWTWData(latlng)
 })
+
+// a section for displaying tax related information
+const $taxSection = document.querySelector('.app-tax-section')
+const taxRates = new TaxRates($taxSection).init({})
 
 window.checkers = [inWalesCheck, whichLocalAuthorityCheck, whichWardCheck, whichNationalPark, whichConservationAreaCheck]
