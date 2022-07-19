@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-19 21:32+0100\n"
+"POT-Creation-Date: 2022-07-19 22:09+0100\n"
 "PO-Revision-Date: 2022-07-18 14:24+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: cy\n"
@@ -160,15 +160,39 @@ msgstr "Cyfraddau treth preswyl uwch"
 msgid "See a breakdown of the LTT rates"
 msgstr "Gweld dadansoddiad o'r cyfraddau LTT"
 
-#: application/templates/prototypes/pinpoint.html:142
+#: application/templates/prototypes/pinpoint.html:137
+msgid "per year"
+msgstr "y flwyddyn"
+
+#: application/templates/prototypes/pinpoint.html:138
+msgid "Council tax"
+msgstr "Treth y Cyngor"
+
+#: application/templates/prototypes/pinpoint.html:141
+msgid "These are the rates for "
+msgstr "Dyma'r cyfraddau ar gyfer "
+
+#: application/templates/prototypes/pinpoint.html:144
+msgid "Council tax band"
+msgstr "Band Treth y Cyngor"
+
+#: application/templates/prototypes/pinpoint.html:145
+msgid "Amount"
+msgstr "Swm"
+
+#: application/templates/prototypes/pinpoint.html:152
+msgid "See source of council tax rates"
+msgstr "Gweler ffynhonnell cyfraddau treth y cyngor"
+
+#: application/templates/prototypes/pinpoint.html:160
 msgid "Results from external services"
 msgstr "Canlyniadau gwasanaethau allanol"
 
-#: application/templates/prototypes/pinpoint.html:144
+#: application/templates/prototypes/pinpoint.html:162
 msgid "OSM address"
 msgstr "OSM cyfeiriad"
 
-#: application/templates/prototypes/pinpoint.html:147
+#: application/templates/prototypes/pinpoint.html:165
 msgid "What 3 Words"
 msgstr "What 3 Words"
 

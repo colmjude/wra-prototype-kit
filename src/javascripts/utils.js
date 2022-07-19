@@ -36,6 +36,15 @@ utils.extend = function (obj1, obj2) {
   return extended
 }
 
+utils.createElement = function (tag, textContent, classlist) {
+  const $el = document.createElement(tag)
+  $el.textContent = textContent
+  if (classlist && classlist.length) {
+    classlist.forEach((cls) => $el.classList.add(cls))
+  }
+  return $el
+}
+
 utils.createLink = function (href, text, classes = []) {
   const $link = document.createElement('a')
   $link.href = href
