@@ -60,8 +60,8 @@ msgid ""
 "Enter a post code, for example, SA71 5AT. Or a lat and lng, for "
 "example, 52.011,-3.458."
 msgstr ""
-"Cofnodi god post, er enghraifft, SA71 5AT. Neu 
-lledred a hydred, ar "
+"Cofnodi god post, er enghraifft, SA71 5AT. Neu "
+"lledred a hydred, ar "
 "gyferenghraifft, 52.011,-3.458."
 
 #: application/templates/prototypes/pinpoint.html:57
