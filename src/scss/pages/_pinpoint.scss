@@ -12,6 +12,11 @@
   padding: $wra-gutter;
   background: $wra-border-colour;
   border-left: 4px solid $wra-organisation-colour;
+
+  // used by wales-gel
+  .table {
+    margin-bottom: 0;
+  }
 }
 
 .app-statement--external {
@@ -30,6 +35,11 @@
 .app-statement__warning {
   padding-left: $wra-gutter-half;
   color: $wra-secondary-text-colour;
+  font-size: 16px;
+}
+
+.app-statement__extra-info {
+  margin: $wra-gutter 0 0;
   font-size: 16px;
 }
 

@@ -104,9 +104,35 @@
       </ul>
 
       <div class="app-tax-section">
-        <h3>Tax information</h3>
+        <h3>{{ _('Tax information') }}</h3>
         <ul class="wra-list">
           <li class="app-statement app-statement--tax" data-tax-info="ltt">
+            <h4>{{ _('Land transaction tax') }}</h4>
+              <div class="table">
+                <div class="table__wrap"><table class="Table">
+                  <caption>{{ _('From 1 July 2021') }}</caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">{{ _('LTT band') }}</th>
+                      <th scope="col">{{ _('LTT rate range') }}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{{ _('Main residential tax rates') }}</td>
+                      <td>0% - 12%</td>
+                    </tr>
+                    <tr>
+                      <td>{{ _('Higher residential tax rates') }}</td>
+                      <td>3% - 15%</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p class="app-statement__extra-info">
+                  <a href="https://gov.wales/land-transaction-tax-rates-and-bands">{{ _('See a breakdown of the LTT rates') }}</a>
+                </p>
+              </div>
+            </div>
           </li>
           <li class="app-statement app-statement--tax" data-tax-info="council-tax">
           </li>

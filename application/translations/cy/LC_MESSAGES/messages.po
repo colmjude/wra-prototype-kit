@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-19 14:41+0100\n"
+"POT-Creation-Date: 2022-07-19 21:32+0100\n"
 "PO-Revision-Date: 2022-07-18 14:24+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: cy\n"
@@ -57,11 +57,10 @@ msgstr "Chwiliwch am leoliad"
 
 #: application/templates/prototypes/pinpoint.html:51
 msgid ""
-"Enter a post code, for example, SA71 5AT. Or a lat and lng, for "
-"example, 52.011,-3.458."
+"Enter a post code, for example, SA71 5AT. Or a lat and lng, for example, "
+"52.011,-3.458."
 msgstr ""
-"Cofnodi god post, er enghraifft, SA71 5AT. Neu "
-"lledred a hydred, ar "
+"Cofnodi god post, er enghraifft, SA71 5AT. Neu lledred a hydred, ar "
 "gyferenghraifft, 52.011,-3.458."
 
 #: application/templates/prototypes/pinpoint.html:57
@@ -129,15 +128,47 @@ msgstr "Parc Cenedlaethol"
 msgid "conservation area"
 msgstr "ardal gadwraeth"
 
-#: application/templates/prototypes/pinpoint.html:106
+#: application/templates/prototypes/pinpoint.html:107
+msgid "Tax information"
+msgstr "Gwybodaeth dreth"
+
+#: application/templates/prototypes/pinpoint.html:110
+msgid "Land transaction tax"
+msgstr "Treth Trafodiad Tir"
+
+#: application/templates/prototypes/pinpoint.html:113
+msgid "From 1 July 2021"
+msgstr "O 1 Gorffennaf 2021"
+
+#: application/templates/prototypes/pinpoint.html:116
+msgid "LTT band"
+msgstr "Band LTT"
+
+#: application/templates/prototypes/pinpoint.html:117
+msgid "LTT rate range"
+msgstr "Ystod Cyfradd LTT"
+
+#: application/templates/prototypes/pinpoint.html:122
+msgid "Main residential tax rates"
+msgstr "Prif gyfraddau treth preswyl"
+
+#: application/templates/prototypes/pinpoint.html:126
+msgid "Higher residential tax rates"
+msgstr "Cyfraddau treth preswyl uwch"
+
+#: application/templates/prototypes/pinpoint.html:132
+msgid "See a breakdown of the LTT rates"
+msgstr "Gweld dadansoddiad o'r cyfraddau LTT"
+
+#: application/templates/prototypes/pinpoint.html:142
 msgid "Results from external services"
 msgstr "Canlyniadau gwasanaethau allanol"
 
-#: application/templates/prototypes/pinpoint.html:108
+#: application/templates/prototypes/pinpoint.html:144
 msgid "OSM address"
 msgstr "OSM cyfeiriad"
 
-#: application/templates/prototypes/pinpoint.html:111
+#: application/templates/prototypes/pinpoint.html:147
 msgid "What 3 Words"
 msgstr "What 3 Words"
 
