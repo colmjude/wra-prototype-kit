@@ -17,6 +17,11 @@
   .table {
     margin-bottom: 0;
   }
+
+  // overriding Wales gel making it secondary text colour
+  caption {
+    color: $wra-text-colour;
+  }
 }
 
 .app-statement--external {
@@ -30,6 +35,10 @@
 
 .app-statement--tax {
   border-color: rgb(189,66,64);
+
+  .app-dynamic--council-tax-area {
+    font-weight: bold;
+  }
 }
 
 .app-statement__warning {
@@ -40,6 +49,15 @@
 
 .app-statement__extra-info {
   margin: $wra-gutter 0 0;
+  font-size: 16px;
+
+  & + .app-statement__disclaimer {
+    margin-top: $wra-gutter-half;
+    margin-bottom: 0;
+  }
+}
+
+.app-statement__disclaimer {
   font-size: 16px;
 }
 

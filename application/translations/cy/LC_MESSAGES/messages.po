@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-19 22:09+0100\n"
+"POT-Creation-Date: 2022-07-20 11:13+0100\n"
 "PO-Revision-Date: 2022-07-18 14:24+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: cy\n"
@@ -184,15 +184,23 @@ msgstr "Swm"
 msgid "See source of council tax rates"
 msgstr "Gweler ffynhonnell cyfraddau treth y cyngor"
 
-#: application/templates/prototypes/pinpoint.html:160
+#: application/templates/prototypes/pinpoint.html:155
+msgid ""
+"This data has been created for this prototype and is not guaranteed to be"
+" accurate"
+msgstr ""
+"Mae'r data hwn wedi'i greu ar gyfer y prototeip hwn ac nid yw'n sicr o fod"
+" gywir"
+
+#: application/templates/prototypes/pinpoint.html:163
 msgid "Results from external services"
 msgstr "Canlyniadau gwasanaethau allanol"
 
-#: application/templates/prototypes/pinpoint.html:162
+#: application/templates/prototypes/pinpoint.html:165
 msgid "OSM address"
 msgstr "OSM cyfeiriad"
 
-#: application/templates/prototypes/pinpoint.html:165
+#: application/templates/prototypes/pinpoint.html:168
 msgid "What 3 Words"
 msgstr "What 3 Words"
 

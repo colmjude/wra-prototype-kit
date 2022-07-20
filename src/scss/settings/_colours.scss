@@ -3,6 +3,15 @@ $wra-organisation-colour: rgb(41,35,92);
 
 $govuk-orange: #f47738;
 
+/// Text colour
+///
+/// Used for headings and main body text
+///
+/// @type Colour
+/// @access public
+
+$wra-text-colour: #1f1f1f;
+
 /// Focus colour
 ///
 /// Used for outline (and background, where appropriate) when interactive
