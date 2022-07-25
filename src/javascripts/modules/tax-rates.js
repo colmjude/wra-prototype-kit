@@ -29,6 +29,10 @@ TaxRates.prototype.init = function (options) {
   const boundInWalesHandler = this.inWalesHandler.bind(this)
   this.$container.addEventListener(this.options.customEventName, boundInWalesHandler)
 
+  // if location not in Wales make sure no tax sections are showing
+  const boundNotInWalesHandler = this.notInWalesHandler.bind(this)
+  this.$container.addEventListener('notInWales', boundNotInWalesHandler)
+
   return this
 }
 
@@ -65,6 +69,12 @@ TaxRates.prototype.getCouncilTaxRates = function () {
 
 TaxRates.prototype.hideSection = function () {
   this.$taxSection.classList.add('js-hidden')
+}
+
+TaxRates.prototype.notInWalesHandler = function (e) {
+  console.log('notInWales event heard')
+  console.log(e)
+  this.hideSection()
 }
 
 TaxRates.prototype.populateCouncilTaxTable = function (rates) {

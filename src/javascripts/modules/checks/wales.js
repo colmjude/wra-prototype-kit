@@ -19,13 +19,20 @@ InWales.prototype.check = function (features) {
     this.removeClass('app-statement--error')
     // fire event to say location is in Wales
     this.dispatchInWales()
+  } else {
+    this.dispatchNotInWales()
   }
   this.$item.textContent = statement
 }
 
 InWales.prototype.dispatchInWales = function () {
-  console.log('dispatching event')
   const dataEvent = new CustomEvent('inWales', { detail: { data: this.allFeatures } })
+  this.$container.dispatchEvent(dataEvent)
+}
+
+InWales.prototype.dispatchNotInWales = function () {
+  console.log('Dispatch not in Wales event')
+  const dataEvent = new CustomEvent('notInWales', { detail: {} })
   this.$container.dispatchEvent(dataEvent)
 }
 
