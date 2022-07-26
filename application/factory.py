@@ -4,7 +4,7 @@ Flask app factory class
 """
 import os
 
-from flask import Flask, render_template, session, g, request
+from flask import Flask, g, render_template, request, session
 from flask.cli import load_dotenv
 
 load_dotenv()

@@ -19,6 +19,9 @@ black-check:
 flake8:
 	flake8 --exclude .venv,node_modules
 
+isort:
+	isort --profile black .
+
 watch:
 	npm run watch
 

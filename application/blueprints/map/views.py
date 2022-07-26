@@ -1,10 +1,10 @@
 import json
 
-from flask import redirect, render_template, Blueprint, current_app, url_for, request
+from flask import Blueprint, current_app, redirect, render_template, request, url_for
+
 from application.blueprints.map.forms import KnowAddressForm, LocalAuthorityForm
 from application.las import LOCAL_AUTHORITIES
 from application.utils import readCSV
-
 
 map = Blueprint("map", __name__, url_prefix="/map")
 

@@ -1,19 +1,19 @@
 from datetime import datetime
+
 from flask import (
-    abort,
-    redirect,
-    render_template,
     Blueprint,
+    abort,
     current_app,
-    url_for,
-    request,
     g,
     jsonify,
+    redirect,
+    render_template,
+    request,
+    url_for,
 )
 from flask_babel import refresh
 
 from application.utils import readCSV
-
 
 prototypes = Blueprint("prototypes", __name__, url_prefix="/prototypes")
 

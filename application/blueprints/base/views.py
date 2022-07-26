@@ -1,8 +1,7 @@
 import json
 
-from flask import render_template, Blueprint, current_app, g, abort, url_for, redirect
+from flask import Blueprint, abort, current_app, g, redirect, render_template, url_for
 from flask_babel import refresh
-
 
 base = Blueprint("base", __name__)
 
