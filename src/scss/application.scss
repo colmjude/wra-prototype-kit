@@ -2,6 +2,7 @@
 
 @import "settings/all";
 @import "helpers/all";
+@import "objects/all";
 
 @import "common/all";
 
@@ -135,7 +136,15 @@
 .index-list__item {
   margin-bottom: $wra-gutter;
 
+  .index-list__title {
+    text-decoration: underline;
+  }
+
   p {
     margin-bottom: 0;
   }
+}
+
+.index-list__meta {
+  color: $wra-secondary-text-colour;
 }

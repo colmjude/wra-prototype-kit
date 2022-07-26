@@ -1,0 +1,15 @@
+// these are all items inherited from wales-gel
+
+.container-fluid {
+  & > .row {
+    .col-lg-4:first-child,
+    .col-lg-8:first-child {
+      padding-left: 0;
+    }
+
+    .col-lg-4:last-child,
+    .col-lg-8:last-child {
+      padding-right: 0;
+    }
+  }
+}
