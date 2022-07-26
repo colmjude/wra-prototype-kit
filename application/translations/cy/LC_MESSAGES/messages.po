@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-26 15:43+0100\n"
+"POT-Creation-Date: 2022-07-26 15:46+0100\n"
 "PO-Revision-Date: 2022-07-18 14:24+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: cy\n"
@@ -19,11 +19,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.10.3\n"
 
-#: application/templates/index.html:19
+#: application/templates/index.html:2
+msgid "Index page for Welseh Revenue Authority Prototype Kit"
+msgstr "Tudalen fynegai ar gyfer Pecyn Prototeip Awdurdod Cyllid Cymru"
+
+#: application/templates/index.html:23
 msgid "WRA Prototypes"
 msgstr "WRA Prototeipiau"
 
-#: application/templates/index.html:21
+#: application/templates/index.html:25
 msgid ""
 "The following links are to individual prototypes and page designs created"
 " by the Welsh Revenue Authority whilst exploring a land and property data"
@@ -33,68 +37,68 @@ msgstr ""
 "grëwyd gan Awdurdod Cyllid Cymru wrth archwilio llwyfan data tir ac "
 "eiddo."
 
-#: application/templates/index.html:29
+#: application/templates/index.html:33
 msgid "Services"
 msgstr "Gwasanaethau"
 
-#: application/templates/index.html:32
+#: application/templates/index.html:36
 msgid "Prototypes and experiments to explore a land and property data platform."
 msgstr "Prototeipiau ac arbrofion i archwilio llwyfan data tir ac eiddo."
 
-#: application/templates/index.html:39
+#: application/templates/index.html:43
 msgid "Platform proof-of-concept"
 msgstr "Platfform prawf-o-cysyniad"
 
-#: application/templates/index.html:40
+#: application/templates/index.html:44
 msgid "A site for the proof-of-concept data platform."
 msgstr "Gwefan ar gyfer y llwyfan data prawf-cysyniad."
 
-#: application/templates/index.html:43
+#: application/templates/index.html:47
 msgid "Is it in Wales?"
 msgstr "Ydy e yng Nghymru?"
 
-#: application/templates/index.html:44
+#: application/templates/index.html:48
 msgid "A lightweight test service that could be built on top of a platform."
 msgstr "Gwasanaeth prawf ysgafn y gellid ei adeiladu ar ben platfform"
 
-#: application/templates/index.html:56
+#: application/templates/index.html:60
 msgid "Website"
 msgstr "Gwefan"
 
-#: application/templates/index.html:59
+#: application/templates/index.html:63
 msgid "Prototypes and experiments for working in the open."
 msgstr "Prototeipiau ac arbrofion ar gyfer gweithio yn yr awyr agored."
 
-#: application/templates/index.html:66
+#: application/templates/index.html:70
 msgid "Welsh Revenue Authority Land and property proof-of-concept team site"
 msgstr "Awdurdod Cyllid Cymru Safle tîm prawf o gysyniad tir ac eiddo"
 
-#: application/templates/index.html:70
+#: application/templates/index.html:74
 msgid "Team weeknotes"
 msgstr "Nodiadau wythnos tîm"
 
-#: application/templates/index.html:82
+#: application/templates/index.html:86
 #: application/templates/layouts/layout.html:20
 msgid "Prototypes"
 msgstr "Prototeipiau"
 
-#: application/templates/index.html:85
+#: application/templates/index.html:89
 msgid "Small, throw away experiments to try out a thing"
 msgstr "Arbrofion bach, taflu i ffwrdd i roi cynnig ar rywbeth"
 
-#: application/templates/index.html:92
+#: application/templates/index.html:96
 msgid "Local authority region map"
 msgstr "Map rhanbarth awdurdod lleol"
 
-#: application/templates/index.html:93
+#: application/templates/index.html:97
 msgid "Testing out showing boundary data on a map"
 msgstr "Profi dangos data ffiniau ar fap"
 
-#: application/templates/index.html:96
+#: application/templates/index.html:100
 msgid "Provide a location journey"
 msgstr "Darparu taith lleoliad"
 
-#: application/templates/index.html:97
+#: application/templates/index.html:101
 msgid ""
 "Testing out a flow to help a user narrow down the area they will select a"
 " location in"
@@ -102,11 +106,11 @@ msgstr ""
 "Profi llif i helpu defnyddiwr i leihau'r ardal y bydd yn dewis lleoliad "
 "ynddi"
 
-#: application/templates/index.html:100
+#: application/templates/index.html:104
 msgid "Explore land and property data"
 msgstr "Archwilio data tir ac eiddo"
 
-#: application/templates/index.html:101
+#: application/templates/index.html:105
 msgid ""
 "This prototype tests displaying and interacting with multiple datasets on"
 " a map"
@@ -115,20 +119,20 @@ msgstr ""
 "lluosog ar fapMae'r prototeip hwn yn profi arddangos a rhyngweithio â "
 "setiau data lluosog ar fap"
 
-#: application/templates/index.html:104
+#: application/templates/index.html:108
 msgid "Draw to search"
 msgstr "Tynnu llun i chwilio"
 
-#: application/templates/index.html:105
+#: application/templates/index.html:109
 msgid "A prototype to test using the bounding box API capability"
 msgstr "Prototeip i'w brofi gan ddefnyddio gallu API y blwch ffiniol"
 
-#: application/templates/index.html:108
+#: application/templates/index.html:112
 #: application/templates/prototypes/pinpoint.html:31
 msgid "Tell me about a location"
 msgstr "Dywedwch wrthyf am leoliad"
 
-#: application/templates/index.html:109
+#: application/templates/index.html:113
 msgid ""
 "A prototype of a map-less service that tells a user information about a "
 "location"
@@ -171,6 +175,10 @@ msgid ""
 msgstr ""
 "Cofnodi god post, er enghraifft, SA71 5AT. Neu lledred a hydred, ar "
 "gyferenghraifft, 52.011,-3.458."
+
+#: application/templates/prototypes/pinpoint.html:39
+msgid "Search"
+msgstr "Chwiliwch"
 
 #: application/templates/prototypes/pinpoint.html:44
 #: application/templates/prototypes/pinpoint.html:51

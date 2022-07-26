@@ -1,6 +1,6 @@
 {% extends "layouts/layout.html" %}
 {% from 'components/masthead.html' import appMasthead %}
-{% block page_title %}WRA Prototype Kit index{% endblock %}
+{% block page_title %}Index page for Welseh Revenue Authority Prototype Kit{% endblock %}
 
 {% block headEnd %}
 <script src="https://unpkg.com/maplibre-gl@1.14.0-rc.1/dist/maplibre-gl.js"></script>
@@ -36,7 +36,7 @@
         <label for="local_authority" class="app-form-label">{{ _('Search for a location') }}</label>
         <span class="app-form-hint">{{ _('Enter a post code, for example, SA71 5AT. Or a lat and lng, for example, 52.011,-3.458.') }}</span>
         <input class="app-form-input" type="text" data-locator="locator-input">
-        <button class="app-button app-button-black" data-locator="search-button">Search</button>
+        <button class="app-button app-button-black" data-locator="search-button">{{ _('Search') }}</button>
       </div>
     
     </form>
