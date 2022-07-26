@@ -1,10 +1,24 @@
 {% extends "layouts/layout.html" %}
 {% block page_title %}WRA Prototype Kit index{% endblock %}
+
+{% from 'components/masthead.html' import appMasthead %}
+{% block masthead %}
+  {% set langLinkSetting = "en" if pageLang == "cy" else "cy"  %}
+  {% set mastHeadHtml %}
+  <a class="btn btn--black btn--on-black" href="{{ url_for('base.index_bi', lang=langLinkSetting) }}">{{ "English" if pageLang == "cy" else "Cymraeg" }}</a>
+  {% endset %}
+  {{ appMasthead({
+    "options": { 
+      "html": mastHeadHtml
+    }
+  }) }}
+{% endblock masthead %}
+
 {% block content %}
 <main id="content" role="main">
-  <h1 class="govuk-heading-xl">WRA Prototypes</h1>
+  <h1 class="govuk-heading-xl">{{ _('WRA Prototypes') }}</h1>
 
-  <p>The following links are to individual prototypes and page designs created by the WRA whilst exploring a land and property data platform.</p>
+  <p>{{ _('The following links are to individual prototypes and page designs created by the Welsh Revenue Authority whilst exploring a land and property data platform.') }}</p>
 
   <div class="content-entity container-fluid">
   
@@ -12,10 +26,10 @@
       <div class="content-entity__block content-entity__block--thick-bdr">
         <div class="col-lg-4 list-group--large categories">
           <div class="index-list__title">
-            <h3 class="app-index-list__heading">Services</h3>
+            <h3 class="app-index-list__heading">{{ _('Services') }}</h3>
           </div>
           <div class="index-list__meta">
-            <span>Prototypes and experiments to explore a land and property data platform.</span>
+            <span>{{ _('Prototypes and experiments to explore a land and property data platform.') }}</span>
           </div>
         </div>
         <div class="col-lg-8">
@@ -23,14 +37,14 @@
             <ul class="wra-list index-list__items">
               <li class="index-list__item">
                 <div class="index-list__title">
-                  <a href="https://land-property-platform.herokuapp.com/"><span>Platform POC</span></a>
-                  <p>A site for the proof of concept data platform.</p>
+                  <a href="https://land-property-platform.herokuapp.com/"><span>{{ _('Platform proof-of-concept') }}</span></a>
+                  <p>{{ _('A site for the proof-of-concept data platform.') }}</p>
                 </div>
               </li>
               <li class="index-list__item">
                 <div class="index-list__title">
-                  <a href="http://www.isitin.wales/"><span>Is it in Wales?</span></a>
-                  <p>A lightweight test service that could be built on top of a platform.</p>
+                  <a href="http://www.isitin.wales/"><span>{{ _('Is it in Wales?') }}</span></a>
+                  <p>{{ _('A lightweight test service that could be built on top of a platform.') }}</p>
                 </div>
               </li>
             </ul>
@@ -43,10 +57,10 @@
       <div class="content-entity__block content-entity__block--thick-bdr">
         <div class="col-lg-4 list-group--large categories">
           <div class="index-list__title">
-            <h3 class="app-index-list__heading">Website</h3>
+            <h3 class="app-index-list__heading">{{ _('Website') }}</h3>
           </div>
           <div class="index-list__meta">
-            <span>Prototypes and experiments for working in the open.</span>
+            <span>{{ _('Prototypes and experiments for working in the open.') }}</span>
           </div>
         </div>
         <div class="col-lg-8">
@@ -54,13 +68,13 @@
             <ul class="wra-list index-list__items">
               <li class="index-list__item">
                 <div class="index-list__title">
-                  <a href="https://welsh-revenue-authority.github.io/property-data-poc/en/"><span>WRA Land and property data poc team site</span></a>
+                  <a href="https://welsh-revenue-authority.github.io/property-data-poc/en/"><span>{{ _('WRA Land and property data proof-of-concept team site') }}</span></a>
                 </div>
               </li>
 
               <li class="index-list__item">
                 <div class="index-list__title">
-                  <a href="https://welsh-revenue-authority.github.io/weeknotes/property-data-poc/"><span>Team weeknotes</span></a>
+                  <a href="https://welsh-revenue-authority.github.io/weeknotes/property-data-poc/"><span>{{ _('Team weeknotes') }}</span></a>
                 </div>
               </li>
             </ul>
@@ -73,10 +87,10 @@
       <div class="content-entity__block content-entity__block--thick-bdr">
         <div class="col-lg-4 list-group--large categories">
           <div class="index-list__title">
-            <h3 class="app-index-list__heading">Prototypes</h3>
+            <h3 class="app-index-list__heading">{{ _('Prototypes') }}</h3>
           </div>
           <div class="index-list__meta">
-            <span>Small, throw away experiments to try out a thing.</span>
+            <span>{{ _('Small, throw away experiments to try out a thing') }}.</span>
           </div>
         </div>
         <div class="col-lg-8">
@@ -84,32 +98,32 @@
             <ul class="wra-list index-list__items">
               <li class="index-list__item">
                 <div class="index-list__title">
-                  <a href="{{ url_for('map.index') }}"><span>Local authority region map</span></a>
-                  <p>Testing out putting some boundary data on a map.</p>
+                  <a href="{{ url_for('map.index') }}"><span>{{ _('Local authority region map') }}</span></a>
+                  <p>{{ _('Testing out showing boundary data on a map') }}.</p>
                 </div>
               </li>
               <li class="index-list__item">
                 <div class="index-list__title">
-                  <a href="{{ url_for('map.know_address') }}"><span>Provide a location journey</span></a>
-                  <p>Testing out a flow to help a user narrow down the area they will select a location in.</p>
+                  <a href="{{ url_for('map.know_address') }}"><span>{{ _('Provide a location journey') }}</span></a>
+                  <p>{{ _('Testing out a flow to help a user narrow down the area they will select a location in') }}.</p>
                 </div>
               </li>
               <li class="index-list__item">
                 <div class="index-list__title">
-                  <a href="{{ url_for('map.explorer') }}"><span>Explore land and property data</span></a>
-                  <p>This prototype tests displaying and interacting with multiple datasets on a map.</p>
+                  <a href="{{ url_for('map.explorer') }}"><span>{{ _('Explore land and property data') }}</span></a>
+                  <p>{{ _('This prototype tests displaying and interacting with multiple datasets on a map') }}.</p>
                 </div>
               </li>
               <li class="index-list__item">
                 <div class="index-list__title">
-                  <a href="{{ url_for('map.search') }}"><span>Draw to search</span></a>
-                  <p>A prototype to test using the bounding box API capability.</p>
+                  <a href="{{ url_for('map.search') }}"><span>{{ _('Draw to search') }}</span></a>
+                  <p>{{ _('A prototype to test using the bounding box API capability') }}.</p>
                 </div>
               </li>
               <li class="index-list__item">
                 <div class="index-list__title">
-                  <a href="{{ url_for('prototypes.pinpoint') }}"><span>Tell me about a location</span></a>
-                  <p>A prototype of a map-less service that tells a user information about a location.</p>
+                  <a href="{{ url_for('prototypes.pinpoint') }}"><span>{{ _('Tell me about a location') }}</span></a>
+                  <p>{{ _('A prototype of a map-less service that tells a user information about a location') }}.</p>
                 </div>
               </li>
             </ul>
