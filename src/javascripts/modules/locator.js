@@ -29,11 +29,11 @@ Locator.prototype.init = function (options) {
   this.$defaultLocationBtn.addEventListener('click', boundUseDefaultCoords)
 
   this.$input = this.$inputContainer.querySelector('[data-locator="locator-input"]')
+  this.$inputBtn = this.$inputContainer.querySelector('[data-locator="search-button"]')
   const boundInputHandler = this.inputHandler.bind(this)
-  this.$input.addEventListener('blur', boundInputHandler)
+  this.$inputBtn.addEventListener('click', boundInputHandler)
   this.$input.addEventListener('keydown', function (e) {
     if (e.key === 'Enter' || e.keyCode === 13) {
-      e.preventDefault()
       boundInputHandler(e)
     }
   })
@@ -102,9 +102,9 @@ Locator.prototype.getLatLng = function (s) {
 
 // Was written at speed so definitely needs rewriting!
 Locator.prototype.inputHandler = function (e) {
-  console.log('input blur event fired')
+  e.preventDefault()
   const that = this
-  const inputValue = e.target.value
+  const inputValue = this.$input.value
   // check for post codes first
   const postcodeMatches = inputValue.match(this.options.postcodeRegex)
   if (postcodeMatches.length) {

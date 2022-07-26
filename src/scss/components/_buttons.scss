@@ -1,7 +1,12 @@
 .app-button {
-  padding: 15px 20px;
+  padding: 11px 16px;
   border-style: none;
   font-size: 20px;
+  line-height: 1.25; // 20 * 1.25 = 25
+}
+
+.app-button--large {
+  padding: 15px 20px;
 }
 
 .app-button-black {
