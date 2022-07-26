@@ -1,6 +1,10 @@
 {% extends "layouts/layout.html" %}
 {% block page_title %}WRA Prototype Kit index{% endblock %}
 
+{% block headerTop -%}
+{% include 'partials/bilingualTopBar.html' %}
+{%- endblock headerTop %}
+
 {% from 'components/masthead.html' import appMasthead %}
 {% block masthead %}
   {% set langLinkSetting = "en" if pageLang == "cy" else "cy"  %}

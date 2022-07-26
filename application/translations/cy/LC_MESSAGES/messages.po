@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-26 14:59+0100\n"
+"POT-Creation-Date: 2022-07-26 15:43+0100\n"
 "PO-Revision-Date: 2022-07-18 14:24+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: cy\n"
@@ -26,10 +26,12 @@ msgstr "WRA Prototeipiau"
 #: application/templates/index.html:21
 msgid ""
 "The following links are to individual prototypes and page designs created"
-" by the Welsh Revenue Authority whilst exploring a land and property data platform."
+" by the Welsh Revenue Authority whilst exploring a land and property data"
+" platform."
 msgstr ""
-"Mae'r dolenni canlynol i brototeipiau unigol a chynlluniau tudalennau a"
-" grëwyd gan Awdurdod Cyllid Cymru wrth archwilio llwyfan data tir ac eiddo."
+"Mae'r dolenni canlynol i brototeipiau unigol a chynlluniau tudalennau a "
+"grëwyd gan Awdurdod Cyllid Cymru wrth archwilio llwyfan data tir ac "
+"eiddo."
 
 #: application/templates/index.html:29
 msgid "Services"
@@ -39,127 +41,130 @@ msgstr "Gwasanaethau"
 msgid "Prototypes and experiments to explore a land and property data platform."
 msgstr "Prototeipiau ac arbrofion i archwilio llwyfan data tir ac eiddo."
 
-#: application/templates/index.html:40
+#: application/templates/index.html:39
 msgid "Platform proof-of-concept"
 msgstr "Platfform prawf-o-cysyniad"
 
-#: application/templates/index.html:41
+#: application/templates/index.html:40
 msgid "A site for the proof-of-concept data platform."
 msgstr "Gwefan ar gyfer y llwyfan data prawf-cysyniad."
 
-#: application/templates/index.html:46
+#: application/templates/index.html:43
 msgid "Is it in Wales?"
 msgstr "Ydy e yng Nghymru?"
 
-#: application/templates/index.html:47
+#: application/templates/index.html:44
 msgid "A lightweight test service that could be built on top of a platform."
 msgstr "Gwasanaeth prawf ysgafn y gellid ei adeiladu ar ben platfform"
 
-#: application/templates/index.html:60
+#: application/templates/index.html:56
 msgid "Website"
 msgstr "Gwefan"
 
-#: application/templates/index.html:63
+#: application/templates/index.html:59
 msgid "Prototypes and experiments for working in the open."
 msgstr "Prototeipiau ac arbrofion ar gyfer gweithio yn yr awyr agored."
 
-#: application/templates/index.html:71
+#: application/templates/index.html:66
 msgid "Welsh Revenue Authority Land and property proof-of-concept team site"
 msgstr "Awdurdod Cyllid Cymru Safle tîm prawf o gysyniad tir ac eiddo"
 
-#: application/templates/index.html:77
+#: application/templates/index.html:70
 msgid "Team weeknotes"
 msgstr "Nodiadau wythnos tîm"
 
-#: application/templates/index.html:90
+#: application/templates/index.html:82
 #: application/templates/layouts/layout.html:20
 msgid "Prototypes"
 msgstr "Prototeipiau"
 
-#: application/templates/index.html:93
+#: application/templates/index.html:85
 msgid "Small, throw away experiments to try out a thing"
 msgstr "Arbrofion bach, taflu i ffwrdd i roi cynnig ar rywbeth"
 
-#: application/templates/index.html:101
+#: application/templates/index.html:92
 msgid "Local authority region map"
 msgstr "Map rhanbarth awdurdod lleol"
 
-#: application/templates/index.html:102
+#: application/templates/index.html:93
 msgid "Testing out showing boundary data on a map"
 msgstr "Profi dangos data ffiniau ar fap"
 
-#: application/templates/index.html:107
+#: application/templates/index.html:96
 msgid "Provide a location journey"
 msgstr "Darparu taith lleoliad"
 
-#: application/templates/index.html:108
+#: application/templates/index.html:97
 msgid ""
 "Testing out a flow to help a user narrow down the area they will select a"
 " location in"
 msgstr ""
-"Profi llif i helpu defnyddiwr i leihau'r ardal y bydd yn dewis lleoliad ynddi"
+"Profi llif i helpu defnyddiwr i leihau'r ardal y bydd yn dewis lleoliad "
+"ynddi"
 
-#: application/templates/index.html:113
+#: application/templates/index.html:100
 msgid "Explore land and property data"
 msgstr "Archwilio data tir ac eiddo"
 
-#: application/templates/index.html:114
+#: application/templates/index.html:101
 msgid ""
 "This prototype tests displaying and interacting with multiple datasets on"
 " a map"
 msgstr ""
-"Mae'r prototeip hwn yn profi arddangos a rhyngweithio â setiau data"
-" lluosog ar fapMae'r prototeip hwn yn profi arddangos a rhyngweithio â setiau data lluosog ar fap"
+"Mae'r prototeip hwn yn profi arddangos a rhyngweithio â setiau data "
+"lluosog ar fapMae'r prototeip hwn yn profi arddangos a rhyngweithio â "
+"setiau data lluosog ar fap"
 
-#: application/templates/index.html:119
+#: application/templates/index.html:104
 msgid "Draw to search"
 msgstr "Tynnu llun i chwilio"
 
-#: application/templates/index.html:120
+#: application/templates/index.html:105
 msgid "A prototype to test using the bounding box API capability"
 msgstr "Prototeip i'w brofi gan ddefnyddio gallu API y blwch ffiniol"
 
-#: application/templates/index.html:125
-#: application/templates/prototypes/pinpoint.html:45
+#: application/templates/index.html:108
+#: application/templates/prototypes/pinpoint.html:31
 msgid "Tell me about a location"
 msgstr "Dywedwch wrthyf am leoliad"
 
-#: application/templates/index.html:126
+#: application/templates/index.html:109
 msgid ""
 "A prototype of a map-less service that tells a user information about a "
 "location"
 msgstr ""
-"Prototeip o wasanaeth heb fap sy'n rhoi gwybodaeth i ddefnyddiwr am leoliad"
+"Prototeip o wasanaeth heb fap sy'n rhoi gwybodaeth i ddefnyddiwr am "
+"leoliad"
 
 #: application/templates/layouts/layout.html:23
 msgid "Contact us"
 msgstr "Cysylltwch â ni"
 
-#: application/templates/prototypes/pinpoint.html:16
+#: application/templates/partials/bilingualTopBar.html:6
 msgid "Proof of concept"
 msgstr "Prawf o gysyniad"
 
-#: application/templates/prototypes/pinpoint.html:20
+#: application/templates/partials/bilingualTopBar.html:10
 msgid "Give feedback"
 msgstr "Rhoi adborth"
 
-#: application/templates/prototypes/pinpoint.html:23
+#: application/templates/partials/bilingualTopBar.html:13
 msgid "minimise"
 msgstr "lleihau"
 
-#: application/templates/prototypes/pinpoint.html:42
+#: application/templates/prototypes/pinpoint.html:28
 msgid "Back to list of prototypes"
 msgstr "Yn ôl i'r rhestr o brototeipiau"
 
-#: application/templates/prototypes/pinpoint.html:44
+#: application/templates/prototypes/pinpoint.html:30
 msgid "Land and property platform"
 msgstr "Llwyfan tir ac eiddo"
 
-#: application/templates/prototypes/pinpoint.html:50
+#: application/templates/prototypes/pinpoint.html:36
 msgid "Search for a location"
 msgstr "Chwiliwch am leoliad"
 
-#: application/templates/prototypes/pinpoint.html:51
+#: application/templates/prototypes/pinpoint.html:37
 msgid ""
 "Enter a post code, for example, SA71 5AT. Or a lat and lng, for example, "
 "52.011,-3.458."
@@ -167,128 +172,128 @@ msgstr ""
 "Cofnodi god post, er enghraifft, SA71 5AT. Neu lledred a hydred, ar "
 "gyferenghraifft, 52.011,-3.458."
 
-#: application/templates/prototypes/pinpoint.html:58
-#: application/templates/prototypes/pinpoint.html:65
+#: application/templates/prototypes/pinpoint.html:44
+#: application/templates/prototypes/pinpoint.html:51
 msgid "or"
 msgstr "neu"
 
-#: application/templates/prototypes/pinpoint.html:61
+#: application/templates/prototypes/pinpoint.html:47
 msgid "Use current location"
 msgstr "Defnyddiwch y lleoliad presennol"
 
-#: application/templates/prototypes/pinpoint.html:62
+#: application/templates/prototypes/pinpoint.html:48
 msgid "Getting location..."
 msgstr "Cael lleoliad..."
 
-#: application/templates/prototypes/pinpoint.html:68
+#: application/templates/prototypes/pinpoint.html:54
 msgid "Use a default location in Wales"
 msgstr "Defnyddiwch leoliad diofyn yng Nghymru"
 
-#: application/templates/prototypes/pinpoint.html:75
+#: application/templates/prototypes/pinpoint.html:61
 msgid "Location"
 msgstr "Lleoliad"
 
-#: application/templates/prototypes/pinpoint.html:78
+#: application/templates/prototypes/pinpoint.html:64
 msgid "centre at"
 msgstr "ganolfan yn"
 
-#: application/templates/prototypes/pinpoint.html:88
+#: application/templates/prototypes/pinpoint.html:74
 msgid "Location is in the"
 msgstr "Mae lleoliad yn y"
 
-#: application/templates/prototypes/pinpoint.html:88
+#: application/templates/prototypes/pinpoint.html:74
 msgid "of"
 msgstr "o"
 
-#: application/templates/prototypes/pinpoint.html:88
+#: application/templates/prototypes/pinpoint.html:74
 msgid "Welsh name not in data record"
 msgstr "Enw Cymraeg ddim yn y cofnod data"
 
-#: application/templates/prototypes/pinpoint.html:98
+#: application/templates/prototypes/pinpoint.html:84
 msgid "Results from the Land and property platform"
 msgstr "Canlyniadau o'r Llwyfan tir ac eiddo"
 
-#: application/templates/prototypes/pinpoint.html:100
+#: application/templates/prototypes/pinpoint.html:86
 msgid "Location in Wales"
 msgstr "Lleoliad yng Nghymru"
 
-#: application/templates/prototypes/pinpoint.html:100
+#: application/templates/prototypes/pinpoint.html:86
 msgid "Location NOT in Wales"
 msgstr "Lleoliad NID yng Nghymru"
 
-#: application/templates/prototypes/pinpoint.html:101
+#: application/templates/prototypes/pinpoint.html:87
 msgid "local authority"
 msgstr "awdurdod lleol"
 
-#: application/templates/prototypes/pinpoint.html:102
+#: application/templates/prototypes/pinpoint.html:88
 msgid "ward"
 msgstr "etholaeth"
 
-#: application/templates/prototypes/pinpoint.html:103
+#: application/templates/prototypes/pinpoint.html:89
 msgid "national park"
 msgstr "Parc Cenedlaethol"
 
-#: application/templates/prototypes/pinpoint.html:104
+#: application/templates/prototypes/pinpoint.html:90
 msgid "conservation area"
 msgstr "ardal gadwraeth"
 
-#: application/templates/prototypes/pinpoint.html:108
+#: application/templates/prototypes/pinpoint.html:94
 msgid "Tax information"
 msgstr "Gwybodaeth dreth"
 
-#: application/templates/prototypes/pinpoint.html:111
+#: application/templates/prototypes/pinpoint.html:97
 msgid "Land transaction tax"
 msgstr "Treth Trafodiad Tir"
 
-#: application/templates/prototypes/pinpoint.html:114
+#: application/templates/prototypes/pinpoint.html:100
 msgid "From 1 July 2021"
 msgstr "O 1 Gorffennaf 2021"
 
-#: application/templates/prototypes/pinpoint.html:117
+#: application/templates/prototypes/pinpoint.html:103
 msgid "LTT band"
 msgstr "Band LTT"
 
-#: application/templates/prototypes/pinpoint.html:118
+#: application/templates/prototypes/pinpoint.html:104
 msgid "LTT rate range"
 msgstr "Ystod Cyfradd LTT"
 
-#: application/templates/prototypes/pinpoint.html:123
+#: application/templates/prototypes/pinpoint.html:109
 msgid "Main residential tax rates"
 msgstr "Prif gyfraddau treth preswyl"
 
-#: application/templates/prototypes/pinpoint.html:127
+#: application/templates/prototypes/pinpoint.html:113
 msgid "Higher residential tax rates"
 msgstr "Cyfraddau treth preswyl uwch"
 
-#: application/templates/prototypes/pinpoint.html:133
+#: application/templates/prototypes/pinpoint.html:119
 msgid "See a breakdown of the LTT rates"
 msgstr "Gweld dadansoddiad o'r cyfraddau LTT"
 
-#: application/templates/prototypes/pinpoint.html:138
+#: application/templates/prototypes/pinpoint.html:124
 msgid "per year"
 msgstr "y flwyddyn"
 
-#: application/templates/prototypes/pinpoint.html:139
+#: application/templates/prototypes/pinpoint.html:125
 msgid "Council tax"
 msgstr "Treth y Cyngor"
 
-#: application/templates/prototypes/pinpoint.html:142
+#: application/templates/prototypes/pinpoint.html:128
 msgid "These are the rates for "
 msgstr "Dyma'r cyfraddau ar gyfer "
 
-#: application/templates/prototypes/pinpoint.html:145
+#: application/templates/prototypes/pinpoint.html:131
 msgid "Council tax band"
 msgstr "Band Treth y Cyngor"
 
-#: application/templates/prototypes/pinpoint.html:146
+#: application/templates/prototypes/pinpoint.html:132
 msgid "Amount"
 msgstr "Swm"
 
-#: application/templates/prototypes/pinpoint.html:153
+#: application/templates/prototypes/pinpoint.html:139
 msgid "See source of council tax rates"
 msgstr "Gweler ffynhonnell cyfraddau treth y cyngor"
 
-#: application/templates/prototypes/pinpoint.html:156
+#: application/templates/prototypes/pinpoint.html:142
 msgid ""
 "This data has been created for this prototype and is not guaranteed to be"
 " accurate"
@@ -296,15 +301,15 @@ msgstr ""
 "Mae'r data hwn wedi'i greu ar gyfer y prototeip hwn ac nid yw'n sicr o "
 "fod gywir"
 
-#: application/templates/prototypes/pinpoint.html:164
+#: application/templates/prototypes/pinpoint.html:150
 msgid "Results from external services"
 msgstr "Canlyniadau gwasanaethau allanol"
 
-#: application/templates/prototypes/pinpoint.html:166
+#: application/templates/prototypes/pinpoint.html:152
 msgid "OSM address"
 msgstr "OSM cyfeiriad"
 
-#: application/templates/prototypes/pinpoint.html:169
+#: application/templates/prototypes/pinpoint.html:155
 msgid "What 3 Words"
 msgstr "What 3 Words"
 
