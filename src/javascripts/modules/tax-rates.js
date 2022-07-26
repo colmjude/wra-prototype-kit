@@ -1,4 +1,5 @@
 import utils from '../utils.js'
+import { postFetch } from '../utilities/postFetch.js'
 
 /* global fetch */
 
@@ -57,9 +58,9 @@ TaxRates.prototype.getCouncilTaxRates = function () {
     return false
   }
   const that = this
-  fetch(this.setEndpoint(this.localAuthorityFeature.properties.code))
-    .then(response => response.json())
-    .then(function (rates) {
+  postFetch(this.setEndpoint(this.localAuthorityFeature.properties.code))
+    .then(function (data) {
+      const rates = data.council_tax_rate
       if (rates.length > 0) {
         that.populateCouncilTaxTable(rates)
       }
@@ -84,8 +85,8 @@ TaxRates.prototype.populateCouncilTaxTable = function (rates) {
   // do we need to sort rates first ?
   rates.forEach(function (rate) {
     const row = utils.createElement('tr')
-    const band = rate['council-tax-band'].split(':')
-    row.appendChild(utils.createElement('td', band[1].toUpperCase()))
+    const band = rate.council_tax_band.toUpperCase()
+    row.appendChild(utils.createElement('td', band))
     row.appendChild(utils.createElement('td', `£${rate.amount} ${that.$councilTax.dataset.councilTaxPeriod}`))
     that.$councilTaxTableContent.appendChild(row)
   })
@@ -94,7 +95,7 @@ TaxRates.prototype.populateCouncilTaxTable = function (rates) {
 }
 
 TaxRates.prototype.setEndpoint = function (geography) {
-  return `/prototypes/council-tax?geography=${geography}`
+  return `https://landplatform-fastapi-dev.azurewebsites.net/council_tax_rate?geography_id=${geography}`
 }
 
 TaxRates.prototype.showSection = function () {
