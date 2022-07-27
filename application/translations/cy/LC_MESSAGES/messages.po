@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-26 15:46+0100\n"
+"POT-Creation-Date: 2022-07-27 16:40+0100\n"
 "PO-Revision-Date: 2022-07-18 14:24+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: cy\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Generated-By: Babel 2.10.3\n"
 
 #: application/templates/index.html:2
-msgid "Index page for Welseh Revenue Authority Prototype Kit"
+msgid "Index page for WRA Prototype Kit"
 msgstr "Tudalen fynegai ar gyfer Pecyn Prototeip Awdurdod Cyllid Cymru"
 
 #: application/templates/index.html:23
@@ -285,23 +285,31 @@ msgstr "y flwyddyn"
 msgid "Council tax"
 msgstr "Treth y Cyngor"
 
-#: application/templates/prototypes/pinpoint.html:128
+#: application/templates/prototypes/pinpoint.html:130
 msgid "These are the rates for "
 msgstr "Dyma'r cyfraddau ar gyfer "
 
 #: application/templates/prototypes/pinpoint.html:131
+msgid ""
+"The values shown are the per band average comprising the local authority "
+"charge, the police precept and community charge"
+msgstr ""
+"Y gwerthoedd a ddangosir yw'r cyfartaledd fesul band sy'n cynnwys"
+" y tâl awdurdod lleol, praesept yr heddlu a thâl cymunedol"
+
+#: application/templates/prototypes/pinpoint.html:135
 msgid "Council tax band"
 msgstr "Band Treth y Cyngor"
 
-#: application/templates/prototypes/pinpoint.html:132
+#: application/templates/prototypes/pinpoint.html:136
 msgid "Amount"
 msgstr "Swm"
 
-#: application/templates/prototypes/pinpoint.html:139
+#: application/templates/prototypes/pinpoint.html:143
 msgid "See source of council tax rates"
 msgstr "Gweler ffynhonnell cyfraddau treth y cyngor"
 
-#: application/templates/prototypes/pinpoint.html:142
+#: application/templates/prototypes/pinpoint.html:146
 msgid ""
 "This data has been created for this prototype and is not guaranteed to be"
 " accurate"
@@ -309,15 +317,15 @@ msgstr ""
 "Mae'r data hwn wedi'i greu ar gyfer y prototeip hwn ac nid yw'n sicr o "
 "fod gywir"
 
-#: application/templates/prototypes/pinpoint.html:150
+#: application/templates/prototypes/pinpoint.html:154
 msgid "Results from external services"
 msgstr "Canlyniadau gwasanaethau allanol"
 
-#: application/templates/prototypes/pinpoint.html:152
+#: application/templates/prototypes/pinpoint.html:156
 msgid "OSM address"
 msgstr "OSM cyfeiriad"
 
-#: application/templates/prototypes/pinpoint.html:155
+#: application/templates/prototypes/pinpoint.html:159
 msgid "What 3 Words"
 msgstr "What 3 Words"
 

@@ -124,25 +124,29 @@
           <li class="app-statement app-statement--tax" data-tax-info="council-tax" data-council-tax-period="{{ _('per year') }}">
             <h4>{{ _('Council tax') }}</h4>
             <div class="table">
-              <div class="table__wrap"><table class="Table">
-                <caption>{{ _('These are the rates for ') }}<span class="app-dynamic--council-tax-area"></span></caption>
-                <thead>
-                  <tr>
-                    <th scope="col">{{ _('Council tax band') }}</th>
-                    <th scope="col">{{ _('Amount') }}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                </tbody>
-              </table>
-              <p class="app-statement__extra-info">
-                <a class="app-dynamic--council-tax-doc" href="https://gov.wales/land-transaction-tax-rates-and-bands">{{ _('See source of council tax rates') }}</a>
-              </p>
-              <p class="app-statement__disclaimer">
-                * {{ _('This data has been created for this prototype and is not guaranteed to be accurate')}}.
-              </p>
+              <div class="table__wrap">
+                <table class="Table">
+                  <caption>
+                    <p>{{ _('These are the rates for ') }}<span class="app-dynamic--council-tax-area"></span></p>
+                    <p>{{ _('The values shown are the per band average comprising the local authority charge, the police precept and community charge')}}.</p>
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">{{ _('Council tax band') }}</th>
+                      <th scope="col">{{ _('Amount') }}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+                <p class="app-statement__extra-info">
+                  <a class="app-dynamic--council-tax-doc" href="https://gov.wales/land-transaction-tax-rates-and-bands">{{ _('See source of council tax rates') }}</a>
+                </p>
+                <p class="app-statement__disclaimer">
+                  * {{ _('This data has been created for this prototype and is not guaranteed to be accurate')}}.
+                </p>
+              </div>
             </div>
-          </div>
           </li>
         </ul>
       </div>
