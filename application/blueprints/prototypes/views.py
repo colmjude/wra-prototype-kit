@@ -51,3 +51,12 @@ def council_tax():
     ]
 
     return jsonify(rates)
+
+
+@prototypes.route("/<lang>/by-post-code")
+def by_post_code(lang):
+    if lang.lower() not in ["en", "cy"]:
+        abort(404)
+    g.lang_code = lang
+    refresh()
+    return render_template("prototypes/by_post_code.html", pageLang=lang.lower())

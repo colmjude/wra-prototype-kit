@@ -1,0 +1,39 @@
+{% extends "layouts/layout.html" %}
+{% from 'components/masthead.html' import appMasthead %}
+{% block page_title %}Index page for Welseh Revenue Authority Prototype Kit{% endblock %}
+
+{% block headEnd %}
+<script src="https://unpkg.com/maplibre-gl@1.14.0-rc.1/dist/maplibre-gl.js"></script>
+<link href="https://unpkg.com/maplibre-gl@1.14.0-rc.1/dist/maplibre-gl.css" rel="stylesheet" />
+{% endblock headEnd %}
+
+{% block headerTop -%}
+{% include 'partials/bilingualTopBar.html' %}
+{%- endblock headerTop %}
+
+{% block masthead %}
+  {% set langLinkSetting = "en" if pageLang == "cy" else "cy"  %}
+  {% set mastHeadHtml %}
+  <a class="btn btn--black btn--on-black" href="{{ url_for('prototypes.by_post_code', lang=langLinkSetting) }}">{{ "English" if pageLang == "cy" else "Cymraeg" }}</a>
+  {% endset %}
+  {{ appMasthead({
+    "options": { 
+      "html": mastHeadHtml
+    }
+  }) }}
+{% endblock masthead %}
+
+{% block content %}
+<main id="content" role="main">
+  <a class="app-back-link" href="{{ url_for('base.index') }}">{{ _("Back to list of prototypes") }}</a>
+
+  <span class="app-caption wra-!-margin-top-6">{{ _('Land and property platform') }}</span>
+  <h1 class="h1-sm-and-up">{{ _('Transactions by post code') }}</h1>
+
+</main>
+{% endblock %}
+
+{% block pageScripts %}
+<script src='https://unpkg.com/@turf/turf@6.3.0/turf.min.js'></script>
+<script src="/static/javascripts/pinpoint.js"></script>
+{% endblock pageScripts %}
