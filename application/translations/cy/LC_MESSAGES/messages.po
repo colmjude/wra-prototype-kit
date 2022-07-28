@@ -25,7 +25,7 @@ msgstr "Tudalen fynegai ar gyfer Pecyn Prototeip Awdurdod Cyllid Cymru"
 
 #: application/templates/index.html:23
 msgid "WRA Prototypes"
-msgstr "WRA Prototeipiau"
+msgstr "Prototeipiau ACC"
 
 #: application/templates/index.html:25
 msgid ""
@@ -33,8 +33,8 @@ msgid ""
 " by the Welsh Revenue Authority whilst exploring a land and property data"
 " platform."
 msgstr ""
-"Mae'r dolenni canlynol i brototeipiau unigol a chynlluniau tudalennau a "
-"grëwyd gan Awdurdod Cyllid Cymru wrth archwilio llwyfan data tir ac "
+"Mae'r dolenni canlynol i brototeipiau unigol a chynlluniau tudalennau wedi'u "
+"creu gan Awdurdod Cyllid Cymru wrth archwilio llwyfan data tir ac "
 "eiddo."
 
 #: application/templates/index.html:33
@@ -71,7 +71,7 @@ msgstr "Prototeipiau ac arbrofion ar gyfer gweithio yn yr awyr agored."
 
 #: application/templates/index.html:70
 msgid "Welsh Revenue Authority Land and property proof-of-concept team site"
-msgstr "Awdurdod Cyllid Cymru Safle tîm prawf o gysyniad tir ac eiddo"
+msgstr "Safle tîm prawf o gysyniad tir ac eiddo Awdurdod Cyllid Cymru"
 
 #: application/templates/index.html:74
 msgid "Team weeknotes"
@@ -84,7 +84,7 @@ msgstr "Prototeipiau"
 
 #: application/templates/index.html:89
 msgid "Small, throw away experiments to try out a thing"
-msgstr "Arbrofion bach, taflu i ffwrdd i roi cynnig ar rywbeth"
+msgstr "Arbrofion bach taflu i ffwrdd, i drio rywbeth"
 
 #: application/templates/index.html:96
 msgid "Local authority region map"
@@ -116,12 +116,11 @@ msgid ""
 " a map"
 msgstr ""
 "Mae'r prototeip hwn yn profi arddangos a rhyngweithio â setiau data "
-"lluosog ar fapMae'r prototeip hwn yn profi arddangos a rhyngweithio â "
-"setiau data lluosog ar fap"
+"lluosog ar fap"
 
 #: application/templates/index.html:108
 msgid "Draw to search"
-msgstr "Tynnu llun i chwilio"
+msgstr "Arlunio i chwilio"
 
 #: application/templates/index.html:109
 msgid "A prototype to test using the bounding box API capability"
