@@ -30,9 +30,26 @@
   <span class="app-caption wra-!-margin-top-6">{{ _('Land and property platform') }}</span>
   <h1 class="h1-sm-and-up">{{ _('Transactions by post code') }}</h1>
 
-  <h4 class="">Available postcodes</h4>
-  {% for postcode in postcodes  %}
-  <span>{{ postcode.postcode_area }}</span><br />
+  
+  <form action="{{ url_for('prototypes.by_post_code', lang=pageLang) }}" method="POST">
+    {{ form.csrf_token }}
+    <h1 class="h1-sm-and-up">{{ form.postcodes.label.text }}</h1>
+    <div class="app-form-group">
+      <label for="postcodes" class="app-form-label">Select postcode(s)</label>
+      {{ form.postcodes(required=False, class="select wra-!-width-two-thirds")}}
+    </div>
+
+    <!-- add can't find post code explainer here -->
+
+    <div class="form-group">
+      <button class="app-button app-button-black" type="submit">Confirm</button>
+    </div>
+  </form>
+
+
+  <h4 class="">Selected postcodes</h4>
+  {% for postcode in selected  %}
+  <span>{{ postcode }}</span><br />
   {% endfor %}
 
 </main>

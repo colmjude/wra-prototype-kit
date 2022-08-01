@@ -13,6 +13,8 @@ from flask import (
 )
 from flask_babel import refresh
 
+from .forms import PostCodeForm
+
 from application.lr_data import get_available_postcodes, get_postcode_stats
 from application.utils import readCSV
 
@@ -55,18 +57,43 @@ def council_tax():
     return jsonify(rates)
 
 
-@prototypes.route("/<lang>/by-post-code")
+@prototypes.route("/<lang>/by-post-code", methods=["GET", "POST"])
 def by_post_code(lang):
     if lang.lower() not in ["en", "cy"]:
         abort(404)
     g.lang_code = lang
     refresh()
 
+    selected = []
+    if request.args and request.args.get("selected_postcodes"):
+        selected = request.args.get("selected_postcodes").split(";")
+    print(selected)
+
+    form = PostCodeForm()
+
     # get all available postcodes
     postcodes = get_available_postcodes()
 
+    form.postcodes.choices = [
+        (postcode["postcode_area"], postcode["postcode_area"])
+        for postcode in postcodes["lr_transaction_postcode_coverage"]
+    ]
+
+    if form.validate_on_submit():
+        # add new selection to list
+        selected.append(form.postcodes.data)
+        return redirect(
+            url_for(
+                "prototypes.by_post_code",
+                lang=g.lang_code,
+                selected_postcodes=";".join(selected),
+            )
+        )
+
     return render_template(
         "prototypes/by_post_code.html",
+        form=form,
         pageLang=lang.lower(),
         postcodes=postcodes["lr_transaction_postcode_coverage"],
+        selected=selected,
     )
