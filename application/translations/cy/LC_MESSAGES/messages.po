@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-28 17:14+0100\n"
+"POT-Creation-Date: 2022-08-01 18:27+0100\n"
 "PO-Revision-Date: 2022-07-18 14:24+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: cy\n"
@@ -138,6 +138,14 @@ msgid ""
 msgstr ""
 "Prototeip o wasanaeth heb fap sy'n rhoi gwybodaeth i ddefnyddiwr am "
 "leoliad"
+
+#: application/templates/index.html:116
+msgid "LTT stat explorer"
+msgstr "Archwiliwr ystadegau LTT"
+
+#: application/templates/index.html:117
+msgid "A example of a policy explorer type tool"
+msgstr "Enghraifft o declyn archwiliwr polisi"
 
 #: application/templates/layouts/layout.html:23
 msgid "Contact us"
