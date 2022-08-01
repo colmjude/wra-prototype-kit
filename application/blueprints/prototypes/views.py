@@ -57,13 +57,14 @@ def council_tax():
     return jsonify(rates)
 
 
-@prototypes.route("/<lang>/by-post-code", methods=["GET", "POST"])
+@prototypes.route("/<lang>/by-post-code")
 def by_post_code(lang):
     if lang.lower() not in ["en", "cy"]:
         abort(404)
     g.lang_code = lang
     refresh()
 
+    # check for previous selections
     selected = []
     if request.args and request.args.get("selected_postcodes"):
         selected = request.args.get("selected_postcodes").split(";")
@@ -74,14 +75,17 @@ def by_post_code(lang):
     # get all available postcodes
     postcodes = get_available_postcodes()
 
-    form.postcodes.choices = [
+    form.new_postcode.choices = [
         (postcode["postcode_area"], postcode["postcode_area"])
         for postcode in postcodes["lr_transaction_postcode_coverage"]
     ]
 
-    if form.validate_on_submit():
-        # add new selection to list
-        selected.append(form.postcodes.data)
+    # check for new selections
+    if request.args and request.args.get("new_postcode"):
+        new_selection = request.args.get("new_postcode")
+        form.new_postcode.data = new_selection
+        # perform validation check?
+        selected.append(new_selection)
         return redirect(
             url_for(
                 "prototypes.by_post_code",

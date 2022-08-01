@@ -32,12 +32,12 @@
   <h1 class="h1-sm-and-up">{{ _('Transactions by post code') }}</h1>
 
   
-  <form action="{{ url_for('prototypes.by_post_code', lang=pageLang) }}" method="POST">
-    {{ form.csrf_token }}
+  <form action="{{ url_for('prototypes.by_post_code', lang=pageLang) }}">
     <div class="app-form-group">
-      <label for="postcodes" class="app-form-label">{{ form.postcodes.label.text }}</label>
-      {{ form.postcodes(required=False, class="select wra-!-width-two-thirds")}}
+      <label for="postcodes" class="app-form-label">{{ form.new_postcode.label.text }}</label>
+      {{ form.new_postcode(required=False, class="select wra-!-width-two-thirds")}}
     </div>
+    <input class="hidden" type="text" name="selected_postcodes" value="{{ selected|join(';') }}">
 
     <!-- add can't find post code explainer here -->
 
@@ -48,9 +48,15 @@
 
   {% if selected|length %}
   <h4 class="">Selected postcodes</h4>
-  {% for postcode in selected  %}
-  <span>{{ postcode }}</span><br />
-  {% endfor %}
+  <ul class="wra-list">
+    {% for postcode in selected  %}
+    <li>
+      <span>{{ postcode }}</span>
+      <a href="#">remove</a>
+    </li>
+    {% endfor %}
+  </ul>
+  
   {% endif %}
 
 </main>
@@ -60,7 +66,7 @@
 <script src='https://unpkg.com/@turf/turf@6.3.0/turf.min.js'></script>
 <script>
   accessibleAutocomplete.enhanceSelectElement({
-    selectElement: document.querySelector('#postcodes')
+    selectElement: document.querySelector('#new_postcode')
   })
 </script>
 {% endblock pageScripts %}

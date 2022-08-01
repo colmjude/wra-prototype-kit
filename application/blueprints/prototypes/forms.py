@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired
 
 
 class PostCodeForm(FlaskForm):
-    postcodes = SelectField(
+    new_postcode = SelectField(
         "Select a postcode",
         validators=[DataRequired(message="You need to select one or more postcodes")],
     )
