@@ -34,24 +34,24 @@
   
   <form action="{{ url_for('prototypes.by_post_code', lang=pageLang) }}" method="POST">
     {{ form.csrf_token }}
-    <h1 class="h1-sm-and-up">{{ form.postcodes.label.text }}</h1>
     <div class="app-form-group">
-      <label for="postcodes" class="app-form-label">Select postcode(s)</label>
+      <label for="postcodes" class="app-form-label">{{ form.postcodes.label.text }}</label>
       {{ form.postcodes(required=False, class="select wra-!-width-two-thirds")}}
     </div>
 
     <!-- add can't find post code explainer here -->
 
     <div class="form-group">
-      <button class="app-button app-button-black" type="submit">Confirm</button>
+      <button class="app-button app-button-black" type="submit">Save</button>
     </div>
   </form>
 
-
+  {% if selected|length %}
   <h4 class="">Selected postcodes</h4>
   {% for postcode in selected  %}
   <span>{{ postcode }}</span><br />
   {% endfor %}
+  {% endif %}
 
 </main>
 {% endblock %}
