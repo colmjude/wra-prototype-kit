@@ -30,6 +30,11 @@
   <span class="app-caption wra-!-margin-top-6">{{ _('Land and property platform') }}</span>
   <h1 class="h1-sm-and-up">{{ _('Transactions by post code') }}</h1>
 
+  <h4 class="">Available postcodes</h4>
+  {% for postcode in postcodes  %}
+  <span>{{ postcode.postcode_area }}</span><br />
+  {% endfor %}
+
 </main>
 {% endblock %}
 

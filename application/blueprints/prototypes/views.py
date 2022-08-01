@@ -13,7 +13,9 @@ from flask import (
 )
 from flask_babel import refresh
 
+from application.lr_data import get_available_postcodes, get_postcode_stats
 from application.utils import readCSV
+
 
 prototypes = Blueprint("prototypes", __name__, url_prefix="/prototypes")
 
@@ -59,4 +61,12 @@ def by_post_code(lang):
         abort(404)
     g.lang_code = lang
     refresh()
-    return render_template("prototypes/by_post_code.html", pageLang=lang.lower())
+
+    # get all available postcodes
+    postcodes = get_available_postcodes()
+
+    return render_template(
+        "prototypes/by_post_code.html",
+        pageLang=lang.lower(),
+        postcodes=postcodes["lr_transaction_postcode_coverage"],
+    )
