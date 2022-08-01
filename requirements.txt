@@ -4,5 +4,7 @@ flask
 Flask-Babel
 Flask-WTF
 gunicorn
+isort
+requests
 python-dotenv
 -e git+https://github.com/welsh-revenue-authority/wra-frontend.git#egg=wra-frontend
