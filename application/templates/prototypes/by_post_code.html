@@ -5,6 +5,7 @@
 {% block headEnd %}
 <script src="https://unpkg.com/maplibre-gl@1.14.0-rc.1/dist/maplibre-gl.js"></script>
 <link href="https://unpkg.com/maplibre-gl@1.14.0-rc.1/dist/maplibre-gl.css" rel="stylesheet" />
+<script src="{{ assetPath }}/javascripts/vendor/accessible-autocomplete.min.js"></script>
 {% endblock headEnd %}
 
 {% block headerTop -%}
@@ -57,5 +58,9 @@
 
 {% block pageScripts %}
 <script src='https://unpkg.com/@turf/turf@6.3.0/turf.min.js'></script>
-<script src="/static/javascripts/pinpoint.js"></script>
+<script>
+  accessibleAutocomplete.enhanceSelectElement({
+    selectElement: document.querySelector('#postcodes')
+  })
+</script>
 {% endblock pageScripts %}
