@@ -29,56 +29,61 @@
   <a class="app-back-link" href="{{ url_for('base.index') }}">{{ _("Back to list of prototypes") }}</a>
 
   <span class="app-caption wra-!-margin-top-6">{{ _('Land and property platform') }}</span>
-  <h1 class="h1-sm-and-up">{{ _('Transactions by post code') }}</h1>
+  <h1 class="h1-sm-and-up">{{ _('Transactions by postcode') }}</h1>
 
-  
-  <form action="{{ url_for('prototypes.by_post_code', lang=pageLang) }}">
-    <div class="app-form-group">
-      <label for="postcodes" class="app-form-label">{{ form.new_postcode.label.text }}</label>
-      {{ form.new_postcode(required=False, class="select wra-!-width-two-thirds")}}
-    </div>
-    <input class="hidden" type="text" name="selected_postcodes" value="{{ selected_postcodes.keys()|join(';') }}">
+  <div class="app-form__standout-container">
+    <form action="{{ url_for('prototypes.by_post_code', lang=pageLang) }}">
+      <div class="app-form-group app-form-group--width-50">
+        <label for="postcodes" class="app-form-label">{{ form.new_postcode.label.text }}</label>
+        {{ form.new_postcode(required=False, class="select wra-!-width-two-thirds")}}
+      </div>
+      <input class="hidden" type="text" name="selected_postcodes" value="{{ selected_postcodes.keys()|join(';') }}">
 
-    <!-- add can't find post code explainer here -->
+      <!-- add can't find post code explainer here -->
 
-    <div class="form-group">
-      <button class="app-button app-button-black" type="submit">Save</button>
-    </div>
-  </form>
+      <div class="form-group">
+        <button class="app-button app-button-black" type="submit">Add postcode</button>
+      </div>
+    </form>
+  </div>
 
   {% if selected_postcodes.keys()|length %}
-  <h4 class="">Selected postcodes</h4>
-  <ul class="wra-list">
-    {% for postcode in selected_postcodes.keys()  %}
-    <li>
-      <span>{{ postcode }}</span>
-      <a href="{{ url_for('prototypes.remove_selected_post_code', lang=pageLang, postcode=postcode, selected_postcodes=selected_postcodes.keys()|join(';')) }}">remove</a>
-    </li>
-    {% endfor %}
-  </ul>
+  <div class="app-postcode-selected">
+    <h4 class="">Selected postcodes</h4>
+    <ul class="wra-list">
+      {% for postcode in selected_postcodes.keys()  %}
+      <li class="app-selected-item">
+        <span class="app-selected-item__label">{{ postcode }}</span>
+        <a class="app-selected-item__remove" href="{{ url_for('prototypes.remove_selected_post_code', lang=pageLang, postcode=postcode, selected_postcodes=selected_postcodes.keys()|join(';')) }}"><span class="wra-visually-hidden-focusable">remove postcode</span></a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
 
-  <section class="row">
+  <section class="row app-postcode-results">
     {% for postcode in selected_postcodes.keys()  %}
     <div class="col-lg-4">
-      <h4>{{ selected_postcodes[postcode]['postcode_area'] }}</h4>
-      <dl>
-        <div class="app-dl-item">
-          <dt>Transactions</dt>
-          <dd>{{ selected_postcodes[postcode]['count']|commanum }}</dd>
-        </div>
-        <div class="app-dl-item">
-          <dt>Average price</dt>
-          <dd>£{{ selected_postcodes[postcode]['avg']|round(2)|commanum }}</dd>
-        </div>
-        <div class="app-dl-item">
-          <dt>Max price</dt>
-          <dd>£{{ selected_postcodes[postcode]['max']|round(2)|commanum }}</dd>
-        </div>
-        <div class="app-dl-item">
-          <dt>Min price</dt>
-          <dd>£{{ selected_postcodes[postcode]['min']|round(2)|commanum }}</dd>
-        </div>
-      </dl>
+      <div class="app-postcode-summary">
+        <h4>{{ selected_postcodes[postcode]['postcode_area'] }}</h4>
+        <dl>
+          <div class="app-dl-item">
+            <dt>Transactions</dt>
+            <dd>{{ selected_postcodes[postcode]['count']|commanum }}</dd>
+          </div>
+          <div class="app-dl-item">
+            <dt>Average price</dt>
+            <dd>£{{ selected_postcodes[postcode]['avg']|round(2)|commanum }}</dd>
+          </div>
+          <div class="app-dl-item">
+            <dt>Max price</dt>
+            <dd>£{{ selected_postcodes[postcode]['max']|round(2)|commanum }}</dd>
+          </div>
+          <div class="app-dl-item">
+            <dt>Min price</dt>
+            <dd>£{{ selected_postcodes[postcode]['min']|round(2)|commanum }}</dd>
+          </div>
+        </dl>
+      </div>
     </div>
     {% endfor %}
   </section>

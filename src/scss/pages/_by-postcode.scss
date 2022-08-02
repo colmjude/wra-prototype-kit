@@ -1,0 +1,35 @@
+.app-form__standout-container {
+  background: $wra-standout-box-colour;
+  padding: 40px;
+
+  .autocomplete__input {
+    background-color: #fff;
+  }
+}
+
+.app-postcode-results,
+.app-postcode-selected {
+  margin-top: $wra-gutter * 2;
+}
+
+.app-postcode-summary {
+  border-top: 4px solid $wra-organisation-colour;
+  border-bottom: 4px solid $wra-organisation-colour;
+
+  $container-spacing: 20px;
+  h4 {
+    margin-top: $container-spacing;
+  }
+
+  dl {
+    margin-bottom: $container-spacing;
+  }
+
+  .app-dl-item {
+    border-bottom: 0;
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
+}

@@ -14,8 +14,10 @@
 @import "components/map";
 @import "components/masthead";
 @import "components/radios";
+@import "components/selected-item";
 
 @import "pages/pinpoint";
+@import "pages/by-postcode";
 
 @import "vendor/accessible-autocomplete";
 
@@ -71,6 +73,12 @@
 .app-form-group {
   font-size: 20px;
   margin-bottom: 15px;
+
+  &--width-50 {
+    @include mq($from: desktop) {
+      width: 50%;
+    }
+  }
 }
 
 .app-form-label {

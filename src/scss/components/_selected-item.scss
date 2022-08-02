@@ -1,0 +1,38 @@
+.app-selected-item {
+  display: inline-flex;
+  border: 2px solid $wra-organisation-colour;
+  // should be using @include wra-responsive-margin(...)
+  margin-right: 10px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.app-selected-item__label,
+.app-selected-item__remove {
+  padding: 5px 10px;
+}
+
+.app-selected-item__remove {
+  display: flex;
+  align-items: center;
+  background: $wra-organisation-colour;
+  color: #fff;
+  
+  &::before {
+    display: block;
+    content: "x";
+    font-family: system-ui, sans-serif;
+    text-align: center;
+    margin-left: 1px;
+  }
+
+  &:hover {
+    &::before {
+      color: #fff;
+      text-decoration: underline;
+    }
+  }
+}
+
