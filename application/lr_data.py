@@ -1,7 +1,9 @@
 import requests
 
 COVERAGE_ENDPOINT = "https://landplatform-fastapi-dev.azurewebsites.net/lr_transaction_postcode_coverage"
-STATS_ENDPOINT = "https://landplatform-fastapi-dev.azurewebsites.net/lr_transaction_stats?postcode_area=CF1%3BCF2"
+STATS_ENDPOINT = (
+    "https://landplatform-fastapi-dev.azurewebsites.net/lr_transaction_stats"
+)
 
 
 def get_available_postcodes():
@@ -11,9 +13,17 @@ def get_available_postcodes():
 
 
 def get_postcode_stats(postcode):
-    data = {}
+    endpoint = STATS_ENDPOINT
     if postcode:
-        data = {"postcode_area": postcode}
-    r = requests.post(STATS_ENDPOINT, data=data)
+        endpoint = STATS_ENDPOINT + f"?postcode_area={postcode}"
+    r = requests.post(endpoint)
     if r.ok:
         return r.json()
+
+
+def map_post_codes_to_stats(postcodes):
+    data = {}
+    for postcode in postcodes:
+        stats = get_postcode_stats(postcode)
+        data.setdefault(postcode, stats["lr_transaction_stats"][0])
+    return data

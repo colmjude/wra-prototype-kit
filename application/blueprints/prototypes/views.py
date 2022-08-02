@@ -15,7 +15,7 @@ from flask_babel import refresh
 
 from .forms import PostCodeForm
 
-from application.lr_data import get_available_postcodes, get_postcode_stats
+from application.lr_data import get_available_postcodes, map_post_codes_to_stats
 from application.utils import readCSV, remove_duplicates
 
 
@@ -95,12 +95,17 @@ def by_post_code(lang):
             )
         )
 
+    # get stats for selected post codes
+    postcode_data = {}
+    if len(selected):
+        postcode_data = map_post_codes_to_stats(selected)
+
     return render_template(
         "prototypes/by_post_code.html",
         form=form,
         pageLang=lang.lower(),
         postcodes=postcodes["lr_transaction_postcode_coverage"],
-        selected=selected,
+        selected_postcodes=postcode_data,
     )
 
 
