@@ -1,0 +1,15 @@
+.prototype-panel {
+  background: lighten($govwales-blue, 57);
+  margin-top: 75px;
+  padding: ($wra-gutter*1.5) 0;
+
+  // this is bad
+  .col-lg-8 {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+}
+
+.prototype-panel + .footer {
+  margin-top: 0;
+}

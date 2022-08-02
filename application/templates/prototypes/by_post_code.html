@@ -31,6 +31,8 @@
   <span class="app-caption wra-!-margin-top-6">{{ _('Land and property platform') }}</span>
   <h1 class="h1-sm-and-up">{{ _('Transactions by postcode') }}</h1>
 
+  <p>Use this tool to explore the land transaction data on a postcode by postcode basis.</p>
+
   <div class="app-form__standout-container">
     <form action="{{ url_for('prototypes.by_post_code', lang=pageLang) }}">
       <div class="app-form-group app-form-group--width-50">
@@ -48,8 +50,9 @@
   </div>
 
   {% if selected_postcodes.keys()|length %}
+  <h2>Statistics per selected postcode</h2>
   <div class="app-postcode-selected">
-    <h4 class="">Selected postcodes</h4>
+    <h5 class="">Selected</h5>
     <ul class="wra-list">
       {% for postcode in selected_postcodes.keys()  %}
       <li class="app-selected-item">
@@ -91,6 +94,21 @@
 
 </main>
 {% endblock %}
+
+{% block footerStart %}
+<div class="prototype-panel">
+  <div class="container-fluid">
+    <h5>This is a prototype</h5>
+    <div class="row">
+      <div class="col-lg-8">
+        <p>The data used in this prototype has been collected from <a href="https://landregistry.data.gov.uk/app/qonsole">HM Land Registry price paid dataset</a>.</p>
+        <p>We have not included data from before 2018, when the Welsh Revenue Authority was formed. This means the number of records is comparable with the number of LTT transactions there have been in that time.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock footerStart %}
 
 {% block pageScripts %}
 <script src='https://unpkg.com/@turf/turf@6.3.0/turf.min.js'></script>
