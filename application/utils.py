@@ -25,3 +25,7 @@ def readCSV(filename, json_blobs=[], bool_fields=[]):
                     row[k] = str_to_bool(row[k])
             rows.append(row)
     return rows
+
+
+def remove_duplicates(l):
+    return list(set(l))

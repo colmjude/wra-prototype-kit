@@ -16,7 +16,7 @@ from flask_babel import refresh
 from .forms import PostCodeForm
 
 from application.lr_data import get_available_postcodes, get_postcode_stats
-from application.utils import readCSV
+from application.utils import readCSV, remove_duplicates
 
 
 prototypes = Blueprint("prototypes", __name__, url_prefix="/prototypes")
@@ -86,6 +86,7 @@ def by_post_code(lang):
         form.new_postcode.data = new_selection
         # perform validation check?
         selected.append(new_selection)
+        selected = remove_duplicates(selected)
         return redirect(
             url_for(
                 "prototypes.by_post_code",
