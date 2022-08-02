@@ -102,3 +102,20 @@ def by_post_code(lang):
         postcodes=postcodes["lr_transaction_postcode_coverage"],
         selected=selected,
     )
+
+
+@prototypes.route("<lang>/by-post-code/remove/<postcode>")
+def remove_selected_post_code(lang, postcode):
+    selected = []
+    if request.args and request.args.get("selected_postcodes"):
+        selected = request.args.get("selected_postcodes").split(";")
+
+    selected.remove(postcode)
+
+    return redirect(
+        url_for(
+            "prototypes.by_post_code",
+            lang=lang,
+            selected_postcodes=";".join(selected),
+        )
+    )

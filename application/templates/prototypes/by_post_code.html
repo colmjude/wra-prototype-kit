@@ -52,7 +52,7 @@
     {% for postcode in selected  %}
     <li>
       <span>{{ postcode }}</span>
-      <a href="#">remove</a>
+      <a href="{{ url_for('prototypes.remove_selected_post_code', lang=pageLang, postcode=postcode, selected_postcodes=selected|join(';')) }}">remove</a>
     </li>
     {% endfor %}
   </ul>
