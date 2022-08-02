@@ -2,6 +2,7 @@
 """
 Flask app factory class
 """
+import imp
 import os
 
 from flask import Flask, g, render_template, request, session
@@ -57,6 +58,10 @@ def register_context_processors(app):
 
 
 def register_filters(app):
+    from wra_frontend.filters import commanum_filter
+
+    app.add_template_filter(commanum_filter, name="commanum")
+
     from application.filters import hex_to_rgb_string_filter
 
     app.add_template_filter(hex_to_rgb_string_filter, name="hex_to_rgb")

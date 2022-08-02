@@ -64,19 +64,19 @@
       <dl>
         <div class="app-dl-item">
           <dt>Transactions</dt>
-          <dd>{{ selected_postcodes[postcode]['count'] }}</dd>
+          <dd>{{ selected_postcodes[postcode]['count']|commanum }}</dd>
         </div>
         <div class="app-dl-item">
           <dt>Average price</dt>
-          <dd>{{ selected_postcodes[postcode]['avg'] }}</dd>
+          <dd>£{{ selected_postcodes[postcode]['avg']|round(2)|commanum }}</dd>
         </div>
         <div class="app-dl-item">
           <dt>Max price</dt>
-          <dd>{{ selected_postcodes[postcode]['max'] }}</dd>
+          <dd>£{{ selected_postcodes[postcode]['max']|round(2)|commanum }}</dd>
         </div>
         <div class="app-dl-item">
           <dt>Min price</dt>
-          <dd>{{ selected_postcodes[postcode]['min'] }}</dd>
+          <dd>£{{ selected_postcodes[postcode]['min']|round(2)|commanum }}</dd>
         </div>
       </dl>
     </div>
