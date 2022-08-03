@@ -23,6 +23,13 @@ make init
 
 This will install the python dependencies and the npm requirements.
 
+You will need to set some environment variables. Create a `.env` file and include these params
+
+```
+ADMIN_PASSWORD=
+ADMIN_USERNAME=
+```
+These will allow any private pages to be behind a basic login.
 
 Finally to start the it run:
 
