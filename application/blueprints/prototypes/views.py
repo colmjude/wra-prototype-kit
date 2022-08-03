@@ -15,6 +15,7 @@ from flask_babel import refresh
 
 from .forms import PostCodeForm
 
+from application.auth import requires_auth
 from application.lr_data import get_available_postcodes, map_post_codes_to_stats
 from application.utils import readCSV, remove_duplicates
 
@@ -124,3 +125,9 @@ def remove_selected_post_code(lang, postcode):
             selected_postcodes=";".join(selected),
         )
     )
+
+
+@prototypes.route("secret-page")
+@requires_auth
+def secret_page():
+    return render_template("prototypes/secret.html")

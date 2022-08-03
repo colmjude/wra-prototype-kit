@@ -10,6 +10,8 @@ class Config(object):
     PROJECT_ROOT = os.path.abspath(os.path.join(APP_ROOT, os.pardir))
     SECRET_KEY = os.getenv("SECRET_KEY")
     LANGUAGES = {"en": "English", "cy": "Cymraeg"}
+    ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD")
+    ADMIN_USERNAME = os.getenv("ADMIN_USERNAME")
 
 
 class DevelopmentConfig(Config):
