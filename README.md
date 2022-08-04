@@ -37,6 +37,20 @@ Finally to start the it run:
 flask run
 ```
 
+### Put page behind basic auth
+
+Use the decorator `@requires_auth` on the routes you want to be behind basic auth.
+
+E.g.
+
+```
+@prototypes.route("secret-page")
+@requires_auth
+def secret_page():
+    return render_template("prototypes/secret.html")
+```
+
+
 ## Adding layers to the map
 
 You can add layers by adding a record to `application/data/datasets.csv` with the respective details.
