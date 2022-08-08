@@ -96,12 +96,10 @@ Map.prototype.bringToFront = function (layer) {
 }
 
 Map.prototype.createMap = function () {
-  let initialPosition = {
-    center: [-3.7, 52.4],
-    zoom: 6.89
-  }
+  let initialPosition = this.options.initialMapPosition
+
   if (this.options.permalink) {
-    initialPosition = Permalink.getMapLocation(6.89, [-3.7, 52.4])
+    initialPosition = Permalink.getMapLocation(initialPosition.zoom, initialPosition.center)
   }
 
   console.log(initialPosition)
@@ -111,6 +109,7 @@ Map.prototype.createMap = function () {
     center: initialPosition.center, // starting position [lng, lat]
     zoom: initialPosition.zoom// starting zoom
   })
+  console.log(this.map)
 
   if (this.options.permalink) {
     Permalink.setup(this.map)
@@ -225,7 +224,11 @@ Map.prototype.togglePolygonLayerVisibility = function (layerName, toEnable) {
 const mapDefaults = {
   fullscreen: true,
   onLoadCallback: undefined,
-  mapElementID: 'mapId'
+  mapElementID: 'mapId',
+  initialMapPosition: {
+    center: [-3.7, 52.4],
+    zoom: 6.89
+  }
 }
 
 export default Map
