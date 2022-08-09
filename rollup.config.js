@@ -33,5 +33,12 @@ module.exports = [
       file: 'application/static/javascripts/pinpoint.js',
       format: 'iife'
     }
+  },
+  {
+    input: 'src/javascripts/policy-explorer-controller.js',
+    output: {
+      file: 'application/static/javascripts/policy-explorer-controller.js',
+      format: 'iife'
+    }
   }
 ]

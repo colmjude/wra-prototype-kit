@@ -1,0 +1,126 @@
+{% extends "layouts/layout.html" %}
+{% from 'components/masthead.html' import appMasthead %}
+{% block page_title %}Index page for Welseh Revenue Authority Prototype Kit{% endblock %}
+
+{% block headEnd %}
+<script src="https://unpkg.com/maplibre-gl@1.14.0-rc.1/dist/maplibre-gl.js"></script>
+<link href="https://unpkg.com/maplibre-gl@1.14.0-rc.1/dist/maplibre-gl.css" rel="stylesheet" />
+<script src="{{ assetPath }}/javascripts/vendor/accessible-autocomplete.min.js"></script>
+{% endblock headEnd %}
+
+{% block headerTop -%}
+{% include 'partials/bilingualTopBar.html' %}
+{%- endblock headerTop %}
+
+{% block masthead %}
+  {% set langLinkSetting = "en" if pageLang == "cy" else "cy"  %}
+  {% set mastHeadHtml %}
+  <a class="btn btn--black btn--on-black" href="{{ url_for('prototypes.by_post_code', lang=langLinkSetting) }}">{{ "English" if pageLang == "cy" else "Cymraeg" }}</a>
+  {% endset %}
+  {{ appMasthead({
+    "options": { 
+      "html": mastHeadHtml
+    }
+  }) }}
+{% endblock masthead %}
+
+{% block content %}
+<main id="content" role="main">
+  <a class="app-back-link" href="{{ url_for('base.index') }}">{{ _("Back to list of prototypes") }}</a>
+
+  <span class="app-caption wra-!-margin-top-6">{{ _('Land and property platform') }}</span>
+  <h1 class="h1-sm-and-up">{{ _('Transactions by postcode') }}</h1>
+
+  <p>{{ _('Use this tool to explore the land transaction data on a postcode by postcode basis') }}.</p>
+
+  <div class="app-form__standout-container">
+    <form action="{{ url_for('prototypes.by_post_code_temp', lang=pageLang) }}">
+      <div class="app-form-group app-form-group--width-50">
+        <label for="postcodes" class="app-form-label">{{ form.new_postcode.label.text }}</label>
+        {{ form.new_postcode(required=False, class="select wra-!-width-two-thirds")}}
+      </div>
+      <input class="hidden" type="text" name="selected_postcodes" value="{{ selected_postcodes.keys()|join(';') }}">
+
+      <!-- add can't find post code explainer here -->
+
+      <div class="form-group">
+        <button class="app-button app-button-black" type="submit">{{ _('Add postcode') }}</button>
+      </div>
+    </form>
+
+    <div class="app-map__wrapper" style="min-height: 400px;">
+      <div class="app-loader"></div>
+      <div id="mapId" class="app-map"></div>
+    </div>
+  </div>
+
+  {% if selected_postcodes.keys()|length %}
+  <h2>{{ _('Statistics per selected postcode') }}</h2>
+  <div class="app-postcode-selected">
+    <h5 class="">{{ _('Selected') }}</h5>
+    <ul class="wra-list">
+      {% for postcode in selected_postcodes.keys()  %}
+      <li class="app-selected-item">
+        <span class="app-selected-item__label">{{ postcode }}</span>
+        <a class="app-selected-item__remove" href="#"><span class="wra-visually-hidden-focusable">{{ _('remove postcode') }}</span></a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <section class="row app-postcode-results">
+    {% for postcode in selected_postcodes.keys()  %}
+    <div class="col-lg-4">
+      <div class="app-postcode-summary">
+        <h4>{{ selected_postcodes[postcode]['postcode_area'] }}</h4>
+        <dl>
+          <div class="app-dl-item">
+            <dt>{{ _('Transactions') }}</dt>
+            <dd>{{ selected_postcodes[postcode]['count']|commanum }}</dd>
+          </div>
+          <div class="app-dl-item">
+            <dt>{{ _('Average price') }}</dt>
+            <dd>£{{ selected_postcodes[postcode]['avg']|round(2)|commanum }}</dd>
+          </div>
+          <div class="app-dl-item">
+            <dt>{{ _('Max price') }}</dt>
+            <dd>£{{ selected_postcodes[postcode]['max']|round(2)|commanum }}</dd>
+          </div>
+          <div class="app-dl-item">
+            <dt>{{ _('Min price') }}</dt>
+            <dd>£{{ selected_postcodes[postcode]['min']|round(2)|commanum }}</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+    {% endfor %}
+  </section>
+  {% endif %}
+
+</main>
+{% endblock %}
+
+{% block footerStart %}
+<div class="prototype-panel">
+  <div class="container-fluid">
+    <h5>{{ _('This is a prototype') }}</h5>
+    <div class="row">
+      <div class="col-lg-8">
+        <p>{{ _('The data used in this prototype has been collected from') }} <a href="https://landregistry.data.gov.uk/app/qonsole">{{ _('HM Land Registry price paid dataset') }}</a>.</p>
+        <p>{{ _('We have not included data from before 2018, when the Welsh Revenue Authority was formed. This means the number of records is comparable with the number of LTT transactions there have been in that time') }}.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock footerStart %}
+
+{% block pageScripts %}
+<script src='https://unpkg.com/@turf/turf@6.3.0/turf.min.js'></script>
+<script>
+  accessibleAutocomplete.enhanceSelectElement({
+    selectElement: document.querySelector('#new_postcode')
+  })
+</script>
+<script src='{{ assetPath }}/javascripts/policy-explorer-controller.js'></script>
+{% endblock pageScripts %}

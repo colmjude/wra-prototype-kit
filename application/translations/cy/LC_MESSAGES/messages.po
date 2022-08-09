@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-03 09:21+0100\n"
+"POT-Creation-Date: 2022-08-08 16:35+0100\n"
 "PO-Revision-Date: 2022-07-18 14:24+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: cy\n"
@@ -151,6 +151,14 @@ msgstr "Archwiliwr ystadegau LTT"
 msgid "A example of a policy explorer type tool"
 msgstr "Enghraifft o declyn archwiliwr polisi"
 
+#: application/templates/index.html:120
+msgid "Testing postcode area data"
+msgstr "Profi data ardal cod post"
+
+#: application/templates/index.html:121
+msgid "Testing derived postcode areas"
+msgstr "Profi ardaloedd cod post deilliedig"
+
 #: application/templates/layouts/layout.html:23
 msgid "Contact us"
 msgstr "Cysylltwch â ni"
@@ -167,79 +175,96 @@ msgstr "Rhoi adborth"
 msgid "minimise"
 msgstr "lleihau"
 
+#: application/templates/prototypes/by_post_code-temp.html:29
 #: application/templates/prototypes/by_post_code.html:29
 #: application/templates/prototypes/pinpoint.html:28
+#: application/templates/prototypes/secret.html:29
 msgid "Back to list of prototypes"
 msgstr "Yn ôl i'r rhestr o brototeipiau"
 
+#: application/templates/prototypes/by_post_code-temp.html:31
 #: application/templates/prototypes/by_post_code.html:31
 #: application/templates/prototypes/pinpoint.html:30
 msgid "Land and property platform"
 msgstr "Llwyfan tir ac eiddo"
 
+#: application/templates/prototypes/by_post_code-temp.html:32
 #: application/templates/prototypes/by_post_code.html:32
 msgid "Transactions by postcode"
 msgstr "Trafodion yn ôl cod post"
 
+#: application/templates/prototypes/by_post_code-temp.html:34
 #: application/templates/prototypes/by_post_code.html:34
 msgid ""
 "Use this tool to explore the land transaction data on a postcode by "
 "postcode basis"
 msgstr "Defnyddiwch yr offeryn hwn i archwilio data trafodion tir fesul cod post"
 
+#: application/templates/prototypes/by_post_code-temp.html:47
 #: application/templates/prototypes/by_post_code.html:47
 msgid "Add postcode"
 msgstr "Ychwanegu cod post"
 
-#: application/templates/prototypes/by_post_code.html:53
+#: application/templates/prototypes/by_post_code-temp.html:58
+#: application/templates/prototypes/by_post_code.html:58
 msgid "Statistics per selected postcode"
 msgstr "Ystadegau fesul cod post a ddewiswyd"
 
-#: application/templates/prototypes/by_post_code.html:55
+#: application/templates/prototypes/by_post_code-temp.html:60
+#: application/templates/prototypes/by_post_code.html:60
 msgid "Selected"
 msgstr "Dewiswyd"
 
-#: application/templates/prototypes/by_post_code.html:60
+#: application/templates/prototypes/by_post_code-temp.html:65
+#: application/templates/prototypes/by_post_code.html:65
 msgid "remove postcode"
 msgstr "dileu cod post"
 
-#: application/templates/prototypes/by_post_code.html:73
+#: application/templates/prototypes/by_post_code-temp.html:78
+#: application/templates/prototypes/by_post_code.html:78
 msgid "Transactions"
 msgstr "Trafodion"
 
-#: application/templates/prototypes/by_post_code.html:77
+#: application/templates/prototypes/by_post_code-temp.html:82
+#: application/templates/prototypes/by_post_code.html:82
 msgid "Average price"
 msgstr "Pris cyfartalog"
 
-#: application/templates/prototypes/by_post_code.html:81
+#: application/templates/prototypes/by_post_code-temp.html:86
+#: application/templates/prototypes/by_post_code.html:86
 msgid "Max price"
 msgstr "Uchafswm pris"
 
-#: application/templates/prototypes/by_post_code.html:85
+#: application/templates/prototypes/by_post_code-temp.html:90
+#: application/templates/prototypes/by_post_code.html:90
 msgid "Min price"
 msgstr "Isafswm pris"
 
-#: application/templates/prototypes/by_post_code.html:101
+#: application/templates/prototypes/by_post_code-temp.html:106
+#: application/templates/prototypes/by_post_code.html:106
 msgid "This is a prototype"
 msgstr "Prototeip yw hwn"
 
-#: application/templates/prototypes/by_post_code.html:104
+#: application/templates/prototypes/by_post_code-temp.html:109
+#: application/templates/prototypes/by_post_code.html:109
 msgid "The data used in this prototype has been collected from"
 msgstr "Mae'r data a ddefnyddir yn y prototeip hwn wedi'i gasglu o"
 
-#: application/templates/prototypes/by_post_code.html:104
+#: application/templates/prototypes/by_post_code-temp.html:109
+#: application/templates/prototypes/by_post_code.html:109
 msgid "HM Land Registry price paid dataset"
 msgstr "Set ddata pris a dalwyd Cofrestrfa Tir EM"
 
-#: application/templates/prototypes/by_post_code.html:105
+#: application/templates/prototypes/by_post_code-temp.html:110
+#: application/templates/prototypes/by_post_code.html:110
 msgid ""
 "We have not included data from before 2018, when the Welsh Revenue "
 "Authority was formed. This means the number of records is comparable with"
 " the number of LTT transactions there have been in that time"
 msgstr ""
-"Nid ydym wedi cynnwys data cyn 2018, pan ffurfiwyd Awdurdod Cyllid Cymru. "
-"Mae hyn yn golygu bod nifer y cofnodion yn debyg i nifer y "
-"trafodion LTT a gafwyd yn y cyfnod hwnnw"
+"Nid ydym wedi cynnwys data cyn 2018, pan ffurfiwyd Awdurdod Cyllid Cymru."
+" Mae hyn yn golygu bod nifer y cofnodion yn debyg i nifer y trafodion LTT"
+" a gafwyd yn y cyfnod hwnnw"
 
 #: application/templates/prototypes/pinpoint.html:36
 msgid "Search for a location"
