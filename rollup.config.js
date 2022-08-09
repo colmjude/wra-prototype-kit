@@ -40,5 +40,12 @@ module.exports = [
       file: 'application/static/javascripts/policy-explorer-controller.js',
       format: 'iife'
     }
+  },
+  {
+    input: 'src/javascripts/ltt-explorer.js',
+    output: {
+      file: 'application/static/javascripts/ltt-explorer.js',
+      format: 'iife'
+    }
   }
 ]
