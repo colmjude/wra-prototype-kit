@@ -75,15 +75,18 @@
           </div>
           <div class="app-dl-item">
             <dt>{{ _('Average price') }}</dt>
-            <dd>£{{ selected_postcodes[postcode]['avg']|round(2)|commanum }}</dd>
+            <dd>£{{ selected_postcodes[postcode]['avg']['value']|round(2)|commanum }}</dd>
+            <p class="app-small-text">{{ _('Basic LLT owed') }} £{{ selected_postcodes[postcode]['avg']['ltt_amount']|round(2)|commanum }}</p>
           </div>
           <div class="app-dl-item">
             <dt>{{ _('Max price') }}</dt>
-            <dd>£{{ selected_postcodes[postcode]['max']|round(2)|commanum }}</dd>
+            <dd>£{{ selected_postcodes[postcode]['max']['value']|round(2)|commanum }}</dd>
+            <p class="app-small-text">{{ _('Basic LLT owed') }} £{{ selected_postcodes[postcode]['max']['ltt_amount']|round(2)|commanum }}</p>
           </div>
           <div class="app-dl-item">
             <dt>{{ _('Min price') }}</dt>
-            <dd>£{{ selected_postcodes[postcode]['min']|round(2)|commanum }}</dd>
+            <dd>£{{ selected_postcodes[postcode]['min']['value']|round(2)|commanum }}</dd>
+            <p class="app-small-text">{{ _('Basic LLT owed') }} £{{ selected_postcodes[postcode]['min']['ltt_amount']|round(2)|commanum }}</p>
           </div>
         </dl>
       </div>

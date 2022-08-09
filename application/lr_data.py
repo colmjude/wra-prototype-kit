@@ -1,5 +1,7 @@
 import requests
 
+from application.ltt import calculate_basic_ltt
+
 COVERAGE_ENDPOINT = "https://landplatform-fastapi-dev.azurewebsites.net/lr_transaction_postcode_coverage"
 STATS_ENDPOINT = (
     "https://landplatform-fastapi-dev.azurewebsites.net/lr_transaction_stats"
@@ -26,4 +28,15 @@ def map_post_codes_to_stats(postcodes):
     for postcode in postcodes:
         stats = get_postcode_stats(postcode)
         data.setdefault(postcode, stats["lr_transaction_stats"][0])
+    return postcode_stat_add_ltt(data)
+
+
+def postcode_stat_add_ltt(data):
+    for postcode in data.keys():
+        for label in ["min", "max", "avg"]:
+            value = data[postcode][label]
+            data[postcode][label] = {
+                "value": value,
+                "ltt_amount": calculate_basic_ltt(value),
+            }
     return data
