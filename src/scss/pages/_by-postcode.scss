@@ -38,3 +38,12 @@
     }
   }
 }
+
+// used to hide parts of UI when no postcodes are selected
+.app-postcode-stat-results--none {
+  .app-postcode-stat-results__heading,
+  .app-postcode-selected,
+  .app-postcode-results {
+    display: none;
+  }
+}

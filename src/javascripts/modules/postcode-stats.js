@@ -16,6 +16,9 @@ function PostcodeStats ($form, $resultsContainer) {
 }
 
 PostcodeStats.prototype.init = function () {
+  this.selectedPostcodes = []
+
+  // grab elements from page
   this.$input = this.$form.querySelector('.postcode-select-input')
   this.$btn = this.$form.querySelector('[data-module="postcode-select-btn"]')
   this.$postcodeSummariesContainer = this.$resultsContainer.querySelector('.app-postcode-results')
@@ -24,6 +27,14 @@ PostcodeStats.prototype.init = function () {
   const boundSubmitHandler = this.submitHandler.bind(this)
   this.$form.addEventListener('submit', boundSubmitHandler)
   return this
+}
+
+PostcodeStats.prototype.checkSelection = function () {
+  if (this.selectedPostcodes.length > 0) {
+    this.showContainer()
+  } else {
+    this.hideContainer()
+  }
 }
 
 PostcodeStats.prototype.createResult = function (postcode, stats) {
@@ -58,13 +69,29 @@ PostcodeStats.prototype.fetchStats = function (postcode) {
   fetch(`/prototypes/postcode-stats/${postcode}`)
     .then(response => response.json())
     .then(function (data) {
+      that.selectedPostcodes.push(postcode)
       that.createResult(postcode, data[postcode])
+      that.checkSelection()
     })
+}
+
+PostcodeStats.prototype.hideContainer = function () {
+  this.$resultsContainer.classList.add('app-postcode-stat-results--none')
+}
+
+PostcodeStats.prototype.showContainer = function () {
+  this.$resultsContainer.classList.remove('app-postcode-stat-results--none')
 }
 
 PostcodeStats.prototype.submitHandler = function (e) {
   e.preventDefault()
-  this.fetchStats(this.$input.value)
+  const selection = this.$input.value
+  if (!this.selectedPostcodes.includes(selection)) {
+    this.fetchStats(selection)
+  } else {
+    // handle better
+    console.log(`${selection} already selected`)
+  }
 }
 
 export default PostcodeStats
