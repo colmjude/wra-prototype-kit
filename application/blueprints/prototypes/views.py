@@ -68,7 +68,7 @@ def by_post_code(lang):
     # check for previous selections
     selected = []
     if request.args and request.args.get("selected_postcodes"):
-        selected = request.args.get("selected_postcodes").split(";")
+        selected = request.args.getlist("selected_postcodes")
     print(selected)
 
     form = PostCodeForm()
@@ -92,7 +92,7 @@ def by_post_code(lang):
             url_for(
                 "prototypes.by_post_code",
                 lang=g.lang_code,
-                selected_postcodes=";".join(selected),
+                selected_postcodes=selected,
             )
         )
 

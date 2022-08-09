@@ -24,6 +24,13 @@ PostcodeStats.prototype.init = function () {
   this.$postcodeSummariesContainer = this.$resultsContainer.querySelector('.app-postcode-results')
   this.$resultTemplate = document.getElementById('result-template')
 
+  // check for already selected
+  const urlParams = (new URL(document.location)).searchParams
+  if (urlParams.has('selected_postcodes')) {
+    this.selectedPostcodes = urlParams.getAll('selected_postcodes')
+    console.log(this.selectedPostcodes)
+  }
+
   const boundSubmitHandler = this.submitHandler.bind(this)
   this.$form.addEventListener('submit', boundSubmitHandler)
   return this
@@ -72,6 +79,7 @@ PostcodeStats.prototype.fetchStats = function (postcode) {
       that.selectedPostcodes.push(postcode)
       that.createResult(postcode, data[postcode])
       that.checkSelection()
+      that.updateURL()
     })
 }
 
@@ -92,6 +100,16 @@ PostcodeStats.prototype.submitHandler = function (e) {
     // handle better
     console.log(`${selection} already selected`)
   }
+}
+
+PostcodeStats.prototype.updateURL = function () {
+  const urlParams = (new URL(document.location)).searchParams
+
+  urlParams.delete('selected_postcodes')
+  this.selectedPostcodes.forEach(postcode => urlParams.append('selected_postcodes', postcode))
+  const newURL = window.location.pathname + '?' + urlParams.toString() + window.location.hash
+  // add entry to history, does not fire event so need to call setControls
+  window.history.pushState({}, '', newURL)
 }
 
 export default PostcodeStats
