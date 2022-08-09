@@ -110,6 +110,11 @@ def by_post_code(lang):
     )
 
 
+@prototypes.route("/postcode-stats/<postcode>")
+def postcode_stats(postcode):
+    return jsonify(map_post_codes_to_stats([postcode]))
+
+
 @prototypes.route("<lang>/by-post-code/remove/<postcode>")
 def remove_selected_post_code(lang, postcode):
     selected = []
