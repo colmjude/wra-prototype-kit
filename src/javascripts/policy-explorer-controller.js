@@ -52,6 +52,13 @@ mapModule.map.on('click', function (e) {
   console.log(postcodeFeatures)
 })
 
+mapModule.map.on('mouseenter', 'postcodesLine', function (e) {
+  const features = mapModule.map.queryRenderedFeatures(e.point)
+  const postcodeFeatures = features.filter(feature => feature.layer.source === 'postcodeAreas')
+  console.log(e.point, postcodeFeatures)
+  console.log(e)
+})
+
 fetch(POSTCODE_AREAS_ENDPOINT)
   .then(response => response.json())
   .then(function (data) {

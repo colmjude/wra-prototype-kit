@@ -166,6 +166,58 @@ def by_post_code_temp(lang):
     )
 
 
+@prototypes.route("/<lang>/by-post-code-wip")
+def by_post_code_wip(lang):
+    if lang.lower() not in ["en", "cy"]:
+        abort(404)
+    g.lang_code = lang
+    refresh()
+
+    # check for previous selections
+    selected = []
+    if request.args and request.args.get("selected_postcodes"):
+        selected = request.args.getlist("selected_postcodes")
+    print(selected)
+
+    form = PostCodeForm()
+
+    # get all available postcodes
+    postcodes = get_available_postcodes()
+
+    form.new_postcode.choices = [("", "")] + [
+        (postcode["postcode_area"], postcode["postcode_area"])
+        for postcode in postcodes["lr_transaction_postcode_coverage"]
+    ]
+
+    # check for new selections
+    if request.args and request.args.get("new_postcode"):
+        new_selection = request.args.get("new_postcode")
+        form.new_postcode.data = new_selection
+        # perform validation check?
+        selected.append(new_selection)
+        selected = remove_duplicates(selected)
+        return redirect(
+            url_for(
+                "prototypes.by_post_code",
+                lang=g.lang_code,
+                selected_postcodes=selected,
+            )
+        )
+
+    # get stats for selected post codes
+    postcode_data = {}
+    if len(selected):
+        postcode_data = map_post_codes_to_stats(selected)
+
+    return render_template(
+        "prototypes/by_post_code_wip.html",
+        form=form,
+        pageLang=lang.lower(),
+        postcodes=postcodes["lr_transaction_postcode_coverage"],
+        selected_postcodes=postcode_data,
+    )
+
+
 @prototypes.route("secret-page")
 @requires_auth
 def secret_page():
