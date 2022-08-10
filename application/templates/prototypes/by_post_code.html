@@ -54,7 +54,7 @@
     <h2 class="app-postcode-stat-results__heading">{{ _('Statistics per selected postcode') }}</h2>
     <div class="app-postcode-selected">
       <h5>{{ _('Selected') }}</h5>
-      <ul class="wra-list">
+      <ul class="wra-list app-postcode-selected__list">
         {% if selected_postcodes.keys()|length %}
         {% for postcode in selected_postcodes.keys()  %}
         <li class="app-selected-item">
@@ -145,6 +145,13 @@
       </div>
     </dl>
   </div>
+</template>
+
+<template id="selected-template">
+  <li class="app-selected-item">
+    <span class="app-selected-item__label"></span>
+    <a class="app-selected-item__remove" href=""><span class="wra-visually-hidden-focusable">{{ _('remove postcode') }}</span></a>
+  </li>
 </template>
 
 <script src='https://unpkg.com/@turf/turf@6.3.0/turf.min.js'></script>

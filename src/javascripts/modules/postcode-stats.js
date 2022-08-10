@@ -24,6 +24,9 @@ PostcodeStats.prototype.init = function () {
   this.$postcodeSummariesContainer = this.$resultsContainer.querySelector('.app-postcode-results')
   this.$resultTemplate = document.getElementById('result-template')
 
+  this.$selectedList = this.$resultsContainer.querySelector('.app-postcode-selected__list')
+  this.$listItemTemplate = document.getElementById('selected-template')
+
   // check for already selected
   const urlParams = (new URL(document.location)).searchParams
   if (urlParams.has('selected_postcodes')) {
@@ -36,6 +39,18 @@ PostcodeStats.prototype.init = function () {
   return this
 }
 
+PostcodeStats.prototype.addSelectedItem = function (postcode) {
+  const $item = this.$listItemTemplate.content.cloneNode(true)
+
+  const $label = $item.querySelector('.app-selected-item__label')
+  $label.textContent = postcode
+  const $link = $item.querySelector('.app-selected-item__remove')
+  $link.href = this.makeRemoveURL(postcode)
+
+  this.$selectedList.appendChild($item)
+}
+
+// checks if there are any postcodes currently selected
 PostcodeStats.prototype.checkSelection = function () {
   if (this.selectedPostcodes.length > 0) {
     this.showContainer()
@@ -78,13 +93,26 @@ PostcodeStats.prototype.fetchStats = function (postcode) {
     .then(function (data) {
       that.selectedPostcodes.push(postcode)
       that.createResult(postcode, data[postcode])
+      that.addSelectedItem(postcode)
       that.checkSelection()
       that.updateURL()
+      console.log(that.makeRemoveURL(postcode))
     })
 }
 
 PostcodeStats.prototype.hideContainer = function () {
   this.$resultsContainer.classList.add('app-postcode-stat-results--none')
+}
+
+PostcodeStats.prototype.makeRemoveURL = function (postcode) {
+  let url = `/prototypes/en/by-post-code/remove/${postcode}?`
+  this.selectedPostcodes.forEach(function (selection, idx) {
+    if (idx > 0) {
+      url += '&'
+    }
+    url += `selected_postcodes=${selection}`
+  })
+  return url
 }
 
 PostcodeStats.prototype.showContainer = function () {
