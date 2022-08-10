@@ -54,48 +54,56 @@
     </div>
   </div>
 
-  {% if selected_postcodes.keys()|length %}
-  <h2>{{ _('Statistics per selected postcode') }}</h2>
-  <div class="app-postcode-selected">
-    <h5 class="">{{ _('Selected') }}</h5>
-    <ul class="wra-list">
-      {% for postcode in selected_postcodes.keys()  %}
-      <li class="app-selected-item">
-        <span class="app-selected-item__label">{{ postcode }}</span>
-        <a class="app-selected-item__remove" href="#"><span class="wra-visually-hidden-focusable">{{ _('remove postcode') }}</span></a>
-      </li>
-      {% endfor %}
-    </ul>
-  </div>
-
-  <section class="row app-postcode-results">
-    {% for postcode in selected_postcodes.keys()  %}
-    <div class="col-lg-4">
-      <div class="app-postcode-summary">
-        <h4>{{ selected_postcodes[postcode]['postcode_area'] }}</h4>
-        <dl>
-          <div class="app-dl-item">
-            <dt>{{ _('Transactions') }}</dt>
-            <dd>{{ selected_postcodes[postcode]['count']|commanum }}</dd>
-          </div>
-          <div class="app-dl-item">
-            <dt>{{ _('Average price') }}</dt>
-            <dd>£{{ selected_postcodes[postcode]['avg']|round(2)|commanum }}</dd>
-          </div>
-          <div class="app-dl-item">
-            <dt>{{ _('Max price') }}</dt>
-            <dd>£{{ selected_postcodes[postcode]['max']|round(2)|commanum }}</dd>
-          </div>
-          <div class="app-dl-item">
-            <dt>{{ _('Min price') }}</dt>
-            <dd>£{{ selected_postcodes[postcode]['min']|round(2)|commanum }}</dd>
-          </div>
-        </dl>
-      </div>
+  <div class="app-postcode-stat-results{{ '' if selected_postcodes.keys()|length else ' app-postcode-stat-results--none'}}">
+    
+    <h2 class="app-postcode-stat-results__heading">{{ _('Statistics per selected postcode') }}</h2>
+    <div class="app-postcode-selected">
+      <h5>{{ _('Selected') }}</h5>
+      <ul class="wra-list app-postcode-selected__list">
+        {% if selected_postcodes.keys()|length %}
+        {% for postcode in selected_postcodes.keys()  %}
+        <li class="app-selected-item">
+          <span class="app-selected-item__label">{{ postcode }}</span>
+          <a class="app-selected-item__remove" href="{{ url_for('prototypes.remove_selected_post_code', lang=pageLang, postcode=postcode, selected_postcodes=selected_postcodes.keys()|list) }}"><span class="wra-visually-hidden-focusable">{{ _('remove postcode') }}</span></a>
+        </li>
+        {% endfor %}
+        {% endif %}
+      </ul>
     </div>
-    {% endfor %}
-  </section>
-  {% endif %}
+
+    <section class="row app-postcode-results">
+      {% if selected_postcodes.keys()|length %}
+      {% for postcode in selected_postcodes.keys()  %}
+      <div class="col-lg-4">
+        <div class="app-postcode-summary">
+          <h4>{{ selected_postcodes[postcode]['postcode_area'] }}</h4>
+          <dl>
+            <div class="app-dl-item">
+              <dt>{{ _('Transactions') }}</dt>
+              <dd>{{ selected_postcodes[postcode]['count']|commanum }}</dd>
+            </div>
+            <div class="app-dl-item">
+              <dt>{{ _('Average price') }}</dt>
+              <dd>£{{ selected_postcodes[postcode]['avg']['value']|round(2)|commanum }}</dd>
+              <p class="app-small-text">{{ _('Basic LLT owed') }} £{{ selected_postcodes[postcode]['avg']['ltt_amount']|round(2)|commanum }}</p>
+            </div>
+            <div class="app-dl-item">
+              <dt>{{ _('Max price') }}</dt>
+              <dd>£{{ selected_postcodes[postcode]['max']['value']|round(2)|commanum }}</dd>
+              <p class="app-small-text">{{ _('Basic LLT owed') }} £{{ selected_postcodes[postcode]['max']['ltt_amount']|round(2)|commanum }}</p>
+            </div>
+            <div class="app-dl-item">
+              <dt>{{ _('Min price') }}</dt>
+              <dd>£{{ selected_postcodes[postcode]['min']['value']|round(2)|commanum }}</dd>
+              <p class="app-small-text">{{ _('Basic LLT owed') }} £{{ selected_postcodes[postcode]['min']['ltt_amount']|round(2)|commanum }}</p>
+            </div>
+          </dl>
+        </div>
+      </div>
+      {% endfor %}
+      {% endif %}
+    </section>
+  </div>
 
 </main>
 {% endblock %}
