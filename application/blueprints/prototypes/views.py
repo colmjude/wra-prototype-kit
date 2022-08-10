@@ -76,7 +76,7 @@ def by_post_code(lang):
     # get all available postcodes
     postcodes = get_available_postcodes()
 
-    form.new_postcode.choices = [
+    form.new_postcode.choices = [("", "")] + [
         (postcode["postcode_area"], postcode["postcode_area"])
         for postcode in postcodes["lr_transaction_postcode_coverage"]
     ]

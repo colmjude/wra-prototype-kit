@@ -3,7 +3,8 @@ import PostcodeStats from './modules/postcode-stats'
 
 // set up accessible autocomplete uesed for entering postcodes
 accessibleAutocomplete.enhanceSelectElement({
-  selectElement: document.querySelector('#new_postcode')
+  selectElement: document.querySelector('#new_postcode'),
+  defaultValue: ''
 })
 
 const $form = document.querySelector('.app-postcode-selector-form')
