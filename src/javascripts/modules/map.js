@@ -44,6 +44,19 @@ Map.prototype.addGeojsonSource = function (sourceName, endpoint) {
   })
 }
 
+Map.prototype.addFillLayer = function (layerName, sourceName, paintOptions) {
+  this.map.addLayer({
+    id: `${layerName}Fill`,
+    type: 'fill',
+    source: sourceName,
+    layout: {},
+    paint: {
+      'fill-color': paintOptions.fillColor,
+      'fill-opacity': paintOptions.fillOpacity
+    }
+  })
+}
+
 Map.prototype.addPolygonLayer = function (layerName, sourceName, paintOptions, defaultSmoothZoomingEnabled = true) {
   if (Object.prototype.hasOwnProperty.call(this.polygonLayers, sourceName)) {
     console.log(`already added layers for ${sourceName}`)
