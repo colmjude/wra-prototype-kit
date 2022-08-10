@@ -9,7 +9,13 @@ mapHelpers.createMarker = function (colour) {
 
 mapHelpers.generateBBox = function (features) {
   const collection = turf.featureCollection(features)
-  const bufferedCollection = turf.buffer(collection, 1)
+  let bufferedCollection = collection
+  // causing a problem in some cases
+  try {
+    bufferedCollection = turf.buffer(collection, 1)
+  } catch (error) {
+    console.error(error)
+  }
   const envelope = turf.envelope(bufferedCollection)
   return envelope.bbox
 }
