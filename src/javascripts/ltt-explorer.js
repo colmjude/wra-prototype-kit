@@ -8,5 +8,4 @@ accessibleAutocomplete.enhanceSelectElement({
 
 const $form = document.querySelector('.app-postcode-selector-form')
 const $results = document.querySelector('.app-postcode-stat-results')
-const statsModule = new PostcodeStats($form, $results).init()
-
+//const statsModule = new PostcodeStats($form, $results).init()

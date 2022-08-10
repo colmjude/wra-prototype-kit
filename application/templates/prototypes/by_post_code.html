@@ -59,7 +59,7 @@
         {% for postcode in selected_postcodes.keys()  %}
         <li class="app-selected-item">
           <span class="app-selected-item__label">{{ postcode }}</span>
-          <a class="app-selected-item__remove" href="{{ url_for('prototypes.remove_selected_post_code', lang=pageLang, postcode=postcode, selected_postcodes=selected_postcodes.keys()|join(';')) }}"><span class="wra-visually-hidden-focusable">{{ _('remove postcode') }}</span></a>
+          <a class="app-selected-item__remove" href="{{ url_for('prototypes.remove_selected_post_code', lang=pageLang, postcode=postcode, selected_postcodes=selected_postcodes.keys()|list) }}"><span class="wra-visually-hidden-focusable">{{ _('remove postcode') }}</span></a>
         </li>
         {% endfor %}
         {% endif %}

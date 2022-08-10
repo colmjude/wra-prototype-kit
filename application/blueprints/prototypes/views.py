@@ -119,7 +119,7 @@ def postcode_stats(postcode):
 def remove_selected_post_code(lang, postcode):
     selected = []
     if request.args and request.args.get("selected_postcodes"):
-        selected = request.args.get("selected_postcodes").split(";")
+        selected = request.args.getlist("selected_postcodes")
 
     selected.remove(postcode)
 
@@ -127,7 +127,7 @@ def remove_selected_post_code(lang, postcode):
         url_for(
             "prototypes.by_post_code",
             lang=lang,
-            selected_postcodes=";".join(selected),
+            selected_postcodes=selected,
         )
     )
 
