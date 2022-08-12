@@ -1,11 +1,13 @@
 .app-loader {
-  height: 4px;
+  display: none;
   width: 100%;
   position: absolute;
   overflow: hidden;
-  background-color: #dee0e2;
-  top: -4px;
+  background-color: rgba(#dee0e2, .5);
+  top: 0;
+  bottom: 0;
   left: 0;
+  z-index: 3;
 }
 
 .app-loader:before {
@@ -16,6 +18,7 @@
   width: 20%;
   height: 4px;
   background-color: #005ea5;
+  z-index: 5;
 }
 
 @keyframes loading {
@@ -34,7 +37,11 @@
 }
 
 // fetching-data is to class that is toggled
-.fetching-data .app-loader:before {
+.fetching-data .app-loader {
   display: block;
-  animation: loading 1s linear infinite;
+
+  &:before {
+    display: block;
+    animation: loading 1s linear infinite;
+  }
 }
