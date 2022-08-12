@@ -15,6 +15,8 @@ PostcodeMap.prototype.init = function (opts) {
   this.currentFilter = undefined
 
   this.mapModule = this.createMap()
+
+  this.setupListeners()
   return this
 }
 
@@ -72,9 +74,19 @@ PostcodeMap.prototype.loadPostcodeLayer = function (wraMap) {
   this.showSelected()
 }
 
+PostcodeMap.prototype.newSelectionListener = function (e) {
+  console.log('new selection', e.detail.postcode)
+  this.showSelected()
+}
+
 // might need to replace this function
 PostcodeMap.prototype.removeFilter = function () {
   this.mapModule.map.setFilter('postcodesFill', undefined)
+}
+
+PostcodeMap.prototype.setupListeners = function () {
+  const boundNewSelectionListener = this.newSelectionListener.bind(this)
+  this.$mapContainer.addEventListener('newSelection', boundNewSelectionListener)
 }
 
 PostcodeMap.prototype.showPostcodeAreas = function (postcodes) {

@@ -1,4 +1,4 @@
-/* global fetch */
+/* global fetch, CustomEvent */
 import utils from '../utils'
 
 function numberWithCommas (x) {
@@ -17,6 +17,7 @@ function PostcodeStats ($form, $resultsContainer) {
 
 PostcodeStats.prototype.init = function () {
   this.selectedPostcodes = []
+  this.observers = []
 
   // grab elements from page
   this.$input = this.$form.querySelector('.postcode-select-input')
@@ -37,6 +38,14 @@ PostcodeStats.prototype.init = function () {
   const boundSubmitHandler = this.submitHandler.bind(this)
   this.$form.addEventListener('submit', boundSubmitHandler)
   return this
+}
+
+PostcodeStats.prototype.addObserver = function ($el) {
+  this.observers.push($el)
+}
+
+PostcodeStats.prototype.removeObserver = function ($el) {
+  utils.removeItemOnce(this.observers, $el)
 }
 
 PostcodeStats.prototype.addSelectedItem = function (postcode) {
@@ -124,9 +133,20 @@ PostcodeStats.prototype.submitHandler = function (e) {
   const selection = this.$input.value
   if (!this.selectedPostcodes.includes(selection)) {
     this.fetchStats(selection)
+    // trigger event - to do change name to dispatch
+    this.triggerNewSelectionEvent(selection)
   } else {
     // handle better
     console.log(`${selection} already selected`)
+  }
+}
+
+PostcodeStats.prototype.triggerNewSelectionEvent = function (postcode) {
+  if (this.observers.length) {
+    const selectionEvent = new CustomEvent('newSelection', { detail: { postcode: postcode } })
+    this.observers.forEach(function ($el) {
+      $el.dispatchEvent(selectionEvent)
+    })
   }
 }
 
