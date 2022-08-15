@@ -48,3 +48,13 @@
     display: none;
   }
 }
+
+
+// -------
+// Map panels
+// ------------
+
+[data-module="postcode-viewer-panel"] {
+  position: absolute;
+  z-index: 100;
+}

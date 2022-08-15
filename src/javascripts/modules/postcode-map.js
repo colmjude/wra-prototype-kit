@@ -16,6 +16,8 @@ PostcodeMap.prototype.init = function (opts) {
 
   this.mapModule = this.createMap()
 
+  this.viewPanel = this.$mapContainer.querySelector('[data-module="postcode-viewer-panel"]')
+
   this.setupListeners()
   return this
 }
@@ -26,6 +28,11 @@ PostcodeMap.prototype.createMap = function () {
     initialMapPosition: this.options.initialMapPosition,
     onLoadCallback: boundLoadPostcodeLayer
   })
+}
+
+PostcodeMap.prototype.displayCurrentPostcode = function (features) {
+  const postcodes = features.map((feature) => feature.properties.postcode)
+  this.viewPanel.textContent = postcodes
 }
 
 PostcodeMap.prototype.displayFeatureDetails = function (features) {
@@ -118,15 +125,17 @@ PostcodeMap.prototype.setupListeners = function () {
 
   const map = this.mapModule.map
   const that = this
-  this.mapModule.map.on('mouseenter', 'postcodesVisibleFill', function (e) {
+  this.mapModule.map.on('mousemove', 'postcodesVisibleFill', function (e) {
     const underMouse = map.queryRenderedFeatures(e.point, { layers: ['postcodesVisibleFill'] })
     that.displayFeatureDetails(underMouse)
     that.highlightPostcodeArea(underMouse.map((feature) => feature.properties.postcode_area))
+    that.displayCurrentPostcode(underMouse)
   })
 
   this.mapModule.map.on('click', function (e) {
     const underMouse = map.queryRenderedFeatures(e.point, { layers: ['postcodesVisibleFill', 'postcodesHoverFill'] })
     console.log(underMouse)
+    console.log(underMouse.forEach((feature) => console.log(feature.properties.postcode_area)))
   })
 }
 
