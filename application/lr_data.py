@@ -1,6 +1,6 @@
 import requests
 
-from application.ltt import calculate_basic_ltt
+from application.ltt import calculate_basic_ltt, calculate_higher_ltt
 
 COVERAGE_ENDPOINT = "https://landplatform-fastapi-dev.azurewebsites.net/lr_transaction_postcode_coverage"
 STATS_ENDPOINT = (
@@ -37,6 +37,9 @@ def postcode_stat_add_ltt(data):
             value = data[postcode][label]
             data[postcode][label] = {
                 "value": value,
-                "ltt_amount": calculate_basic_ltt(value),
+                "ltt_amount": {
+                    "basic": calculate_basic_ltt(value),
+                    "higher": calculate_higher_ltt(value),
+                },
             }
     return data

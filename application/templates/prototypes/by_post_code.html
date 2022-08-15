@@ -80,17 +80,20 @@
             <div class="app-dl-item">
               <dt>{{ _('Average price') }}</dt>
               <dd>£{{ selected_postcodes[postcode]['avg']['value']|round(2)|commanum }}</dd>
-              <p class="app-small-text">{{ _('Basic LLT owed') }} £{{ selected_postcodes[postcode]['avg']['ltt_amount']|round(2)|commanum }}</p>
+              <p class="app-small-text">{{ _('Basic LLT owed') }} £{{ selected_postcodes[postcode]['avg']['ltt_amount']['basic']|round(2)|commanum }}</p>
+              <p class="app-small-text">{{ _('Higher LLT owed') }} £{{ selected_postcodes[postcode]['avg']['ltt_amount']['higher']|round(2)|commanum }}</p>
             </div>
             <div class="app-dl-item">
               <dt>{{ _('Max price') }}</dt>
               <dd>£{{ selected_postcodes[postcode]['max']['value']|round(2)|commanum }}</dd>
-              <p class="app-small-text">{{ _('Basic LLT owed') }} £{{ selected_postcodes[postcode]['max']['ltt_amount']|round(2)|commanum }}</p>
+              <p class="app-small-text">{{ _('Basic LLT owed') }} £{{ selected_postcodes[postcode]['max']['ltt_amount']['basic']|round(2)|commanum }}</p>
+              <p class="app-small-text">{{ _('Higher LLT owed') }} £{{ selected_postcodes[postcode]['max']['ltt_amount']['higher']|round(2)|commanum }}</p>
             </div>
             <div class="app-dl-item">
               <dt>{{ _('Min price') }}</dt>
               <dd>£{{ selected_postcodes[postcode]['min']['value']|round(2)|commanum }}</dd>
-              <p class="app-small-text">{{ _('Basic LLT owed') }} £{{ selected_postcodes[postcode]['min']['ltt_amount']|round(2)|commanum }}</p>
+              <p class="app-small-text">{{ _('Basic LLT owed') }} £{{ selected_postcodes[postcode]['min']['ltt_amount']['basic']|round(2)|commanum }}</p>
+              <p class="app-small-text">{{ _('Higher LLT owed') }} £{{ selected_postcodes[postcode]['min']['ltt_amount']['higher']|round(2)|commanum }}</p>
             </div>
           </dl>
         </div>
@@ -131,17 +134,20 @@
       <div class="app-dl-item">
         <dt>{{ _('Average price') }}</dt>
         <dd>£<span data-stats="avg-value"></span></dd>
-        <p class="app-small-text">{{ _('Basic LLT owed') }} £<span data-stats="avg-ltt"></span></p>
+        <p class="app-small-text">{{ _('Basic LLT owed') }} £<span data-stats="avg-ltt-basic"></span></p>
+        <p class="app-small-text">{{ _('Higher rate LLT owed') }} £<span data-stats="avg-ltt-higher"></span></p>
       </div>
       <div class="app-dl-item">
         <dt>{{ _('Max price') }}</dt>
         <dd>£<span data-stats="max-value"></span></dd>
-        <p class="app-small-text">{{ _('Basic LLT owed') }} £<span data-stats="max-ltt"></span></p>
+        <p class="app-small-text">{{ _('Basic LLT owed') }} £<span data-stats="max-ltt-basic"></span></p>
+        <p class="app-small-text">{{ _('Higher rate LLT owed') }} £<span data-stats="max-ltt-higher"></span></p>
       </div>
       <div class="app-dl-item">
         <dt>{{ _('Min price') }}</dt>
         <dd>£<span data-stats="min-value"></span></dd>
-        <p class="app-small-text">{{ _('Basic LLT owed') }} £<span data-stats="min-ltt"></span></p>
+        <p class="app-small-text">{{ _('Basic LLT owed') }} £<span data-stats="min-ltt-basic"></span></p>
+        <p class="app-small-text">{{ _('Higher rate LLT owed') }} £<span data-stats="min-ltt-higher"></span></p>
       </div>
     </dl>
   </div>
