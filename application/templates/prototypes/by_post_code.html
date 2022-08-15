@@ -83,7 +83,7 @@
       <ul class="wra-list app-postcode-selected__list">
         {% if selected_postcodes.keys()|length %}
         {% for postcode in selected_postcodes.keys()  %}
-        <li class="app-selected-item">
+        <li class="app-selected-item" data-postcode="{{ postcode }}">
           <span class="app-selected-item__label">{{ postcode }}</span>
           <a class="app-selected-item__remove" href="{{ url_for('prototypes.remove_selected_post_code', lang=pageLang, postcode=postcode, selected_postcodes=selected_postcodes.keys()|list) }}"><span class="wra-visually-hidden-focusable">{{ _('remove postcode') }}</span></a>
         </li>
@@ -150,7 +150,7 @@
 {% block pageScripts %}
 <!-- need to check for browser support for template element -->
 <template id="result-template">
-  <div class="app-postcode-summary">
+  <div class="app-postcode-summary" data-postcode-summary="">
     <h4 data-stats="postcode_area"></h4>
     <dl>
       <div class="app-dl-item">
@@ -180,7 +180,7 @@
 </template>
 
 <template id="selected-template">
-  <li class="app-selected-item">
+  <li class="app-selected-item" data-postcode="x">
     <span class="app-selected-item__label"></span>
     <a class="app-selected-item__remove" href=""><span class="wra-visually-hidden-focusable">{{ _('remove postcode') }}</span></a>
   </li>

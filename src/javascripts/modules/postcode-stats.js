@@ -38,8 +38,14 @@ PostcodeStats.prototype.init = function () {
     console.log(this.selectedPostcodes)
   }
 
+  // listen for new selections
   const boundSubmitHandler = this.submitHandler.bind(this)
   this.$form.addEventListener('submit', boundSubmitHandler)
+
+  // listen for removing selections
+  const boundRemoveHandler = this.removeHandler.bind(this)
+  this.$selectedList.addEventListener('click', boundRemoveHandler)
+
   return this
 }
 
@@ -52,14 +58,16 @@ PostcodeStats.prototype.removeObserver = function ($el) {
 }
 
 PostcodeStats.prototype.addSelectedItem = function (postcode) {
-  const $item = this.$listItemTemplate.content.cloneNode(true)
+  const $itemFragment = this.$listItemTemplate.content.cloneNode(true)
 
-  const $label = $item.querySelector('.app-selected-item__label')
+  $itemFragment.querySelector('.app-selected-item').dataset.postcode = postcode
+
+  const $label = $itemFragment.querySelector('.app-selected-item__label')
   $label.textContent = postcode
-  const $link = $item.querySelector('.app-selected-item__remove')
+  const $link = $itemFragment.querySelector('.app-selected-item__remove')
   $link.href = this.makeRemoveURL(postcode)
 
-  this.$selectedList.appendChild($item)
+  this.$selectedList.appendChild($itemFragment)
 }
 
 // checks if there are any postcodes currently selected
@@ -73,6 +81,8 @@ PostcodeStats.prototype.checkSelection = function () {
 
 PostcodeStats.prototype.createResult = function (postcode, stats) {
   const $result = this.$resultTemplate.content.cloneNode(true)
+
+  $result.querySelector('.app-postcode-summary').dataset.postcodeSummary = postcode
 
   // get all elements to add stats
   const $postcode = $result.querySelector('[data-stats="postcode_area"]')
@@ -122,12 +132,17 @@ PostcodeStats.prototype.displayLatestAggregateStats = function (stats) {
 
 PostcodeStats.prototype.fetchAggregateStats = function () {
   const that = this
-  const args = this.selectedPostcodes.map((postcode) => `postcode=${postcode}`).join('&')
-  fetch(`/prototypes/postcode-stats/?${args}`)
-    .then(response => response.json())
-    .then(function (data) {
-      that.displayLatestAggregateStats(data)
-    })
+  if (this.selectedPostcodes.length > 0) {
+    this.$aggregateSummaryContainer.classList.remove('js-hidden')
+    const args = this.selectedPostcodes.map((postcode) => `postcode=${postcode}`).join('&')
+    fetch(`/prototypes/postcode-stats/?${args}`)
+      .then(response => response.json())
+      .then(function (data) {
+        that.displayLatestAggregateStats(data)
+      })
+  } else {
+    this.$aggregateSummaryContainer.classList.add('js-hidden')
+  }
 }
 
 PostcodeStats.prototype.fetchStats = function (postcode) {
@@ -157,6 +172,28 @@ PostcodeStats.prototype.makeRemoveURL = function (postcode) {
     url += `selected_postcodes=${selection}`
   })
   return url
+}
+
+PostcodeStats.prototype.removeHandler = function (e) {
+  // check anchor clicked on
+  if (e.target.tagName.toLowerCase() === 'a' && e.target.classList.contains('app-selected-item__remove')) {
+    e.preventDefault()
+    const $anchor = e.target.closest('.app-selected-item')
+    const $item = $anchor.closest('.app-selected-item')
+    const postcode = $anchor.dataset.postcode
+    console.log(e, postcode)
+    // remove postcode from selected list
+    utils.removeItemOnce(this.selectedPostcodes, postcode)
+    // remove item from list
+    $item.remove()
+    // remove summary card
+    this.$resultsContainer.querySelector(`[data-postcode-summary="${postcode}"]`).remove()
+    // update url
+    this.updateURL()
+    // re do aggregate stats
+    this.fetchAggregateStats()
+    // To do: trigger event for observers
+  }
 }
 
 PostcodeStats.prototype.showContainer = function () {
