@@ -16,7 +16,11 @@ from flask_babel import refresh
 from .forms import PostCodeForm
 
 from application.auth import requires_auth
-from application.lr_data import get_available_postcodes, map_post_codes_to_stats
+from application.lr_data import (
+    calculate_potential_impact,
+    get_available_postcodes,
+    map_post_codes_to_stats,
+)
 from application.utils import readCSV, remove_duplicates
 
 
@@ -101,18 +105,34 @@ def by_post_code(lang):
     if len(selected):
         postcode_data = map_post_codes_to_stats(selected)
 
+    aggregate_summary = calculate_potential_impact(postcode_data)
+
     return render_template(
         "prototypes/by_post_code.html",
         form=form,
         pageLang=lang.lower(),
         postcodes=postcodes["lr_transaction_postcode_coverage"],
         selected_postcodes=postcode_data,
+        aggregate_summary=aggregate_summary,
     )
 
 
 @prototypes.route("/postcode-stats/<postcode>")
 def postcode_stats(postcode):
     return jsonify(map_post_codes_to_stats([postcode]))
+
+
+@prototypes.route("/postcode-stats/")
+def aggregate_postcode_stats():
+    selected = []
+    if request.args and request.args.get("postcode"):
+        selected = request.args.getlist("postcode")
+
+    if len(selected) == 0:
+        return jsonify({})
+
+    aggregate_summary = calculate_potential_impact(map_post_codes_to_stats(selected))
+    return jsonify(aggregate_summary)
 
 
 @prototypes.route("<lang>/by-post-code/remove/<postcode>")

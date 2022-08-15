@@ -43,3 +43,25 @@ def postcode_stat_add_ltt(data):
                 },
             }
     return data
+
+
+def calculate_potential_impact(postcode_data):
+    total_transactions = 0
+    summed_avg_price = 0
+
+    if len(postcode_data.keys()) == 0:
+        return None
+
+    for postcode in postcode_data.keys():
+        total_transactions = total_transactions + postcode_data[postcode]["count"]
+        summed_avg_price = summed_avg_price + (
+            postcode_data[postcode]["count"] * postcode_data[postcode]["avg"]["value"]
+        )
+
+    aggregate_avg_price = summed_avg_price / total_transactions
+
+    return {
+        "total": total_transactions,
+        "average_price": aggregate_avg_price,
+        "potential_ltt_revenue": total_transactions * aggregate_avg_price,
+    }

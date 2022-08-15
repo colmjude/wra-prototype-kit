@@ -28,6 +28,9 @@ PostcodeStats.prototype.init = function () {
   this.$selectedList = this.$resultsContainer.querySelector('.app-postcode-selected__list')
   this.$listItemTemplate = document.getElementById('selected-template')
 
+  this.$aggregateSummaryContainer = document.querySelector('.app-aggregate-summary')
+  this.$aggregateSummaryTemplate = document.getElementById('aggregate-template')
+
   // check for already selected
   const urlParams = (new URL(document.location)).searchParams
   if (urlParams.has('selected_postcodes')) {
@@ -101,6 +104,32 @@ PostcodeStats.prototype.createResult = function (postcode, stats) {
   this.$postcodeSummariesContainer.appendChild($wrapper)
 }
 
+PostcodeStats.prototype.displayLatestAggregateStats = function (stats) {
+  const $aggStats = this.$aggregateSummaryTemplate.content.cloneNode(true)
+
+  // update values in aggregate panel
+  const $total = $aggStats.querySelector('[data-aggregate="total-transactions"]')
+  $total.textContent = readableNumber(stats.total)
+  const $avgPrice = $aggStats.querySelector('[data-aggregate="avg-price"]')
+  $avgPrice.textContent = readableNumber(stats.average_price)
+  const $potentialLTT = $aggStats.querySelector('[data-aggregate="potential-ltt"]')
+  $potentialLTT.textContent = readableNumber(stats.potential_ltt_revenue)
+
+  // empty container
+  this.$aggregateSummaryContainer.textContent = ''
+  this.$aggregateSummaryContainer.appendChild($aggStats)
+}
+
+PostcodeStats.prototype.fetchAggregateStats = function () {
+  const that = this
+  const args = this.selectedPostcodes.map((postcode) => `postcode=${postcode}`).join('&')
+  fetch(`/prototypes/postcode-stats/?${args}`)
+    .then(response => response.json())
+    .then(function (data) {
+      that.displayLatestAggregateStats(data)
+    })
+}
+
 PostcodeStats.prototype.fetchStats = function (postcode) {
   const that = this
   fetch(`/prototypes/postcode-stats/${postcode}`)
@@ -111,7 +140,7 @@ PostcodeStats.prototype.fetchStats = function (postcode) {
       that.addSelectedItem(postcode)
       that.checkSelection()
       that.updateURL()
-      console.log(that.makeRemoveURL(postcode))
+      that.fetchAggregateStats()
     })
 }
 

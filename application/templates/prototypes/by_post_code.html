@@ -34,19 +34,45 @@
   <p>{{ _('Use this tool to explore the land transaction data on a postcode by postcode basis') }}.</p>
 
   <div class="app-form__standout-container">
-    <form class="app-postcode-selector-form" action="{{ url_for('prototypes.by_post_code', lang=pageLang) }}">
-      <div class="app-form-group app-form-group--width-50">
-        <label for="postcodes" class="app-form-label">{{ form.new_postcode.label.text }}</label>
-        {{ form.new_postcode(required=False, class="select wra-!-width-two-thirds postcode-select-input")}}
-      </div>
-      <input class="hidden" type="text" name="selected_postcodes" value="{{ selected_postcodes.keys()|join(';') }}">
+    <div class="row">
+      <div class="col-lg-6">
+        <form class="app-postcode-selector-form" action="{{ url_for('prototypes.by_post_code', lang=pageLang) }}">
+          <div class="app-form-group">
+            <label for="postcodes" class="app-form-label">{{ form.new_postcode.label.text }}</label>
+            {{ form.new_postcode(required=False, class="select wra-!-width-two-thirds postcode-select-input")}}
+          </div>
+          <input class="hidden" type="text" name="selected_postcodes" value="{{ selected_postcodes.keys()|join(';') }}">
 
-      <!-- add can't find post code explainer here -->
+          <!-- add can't find post code explainer here -->
 
-      <div class="form-group">
-        <button class="app-button app-button-black" type="submit" data-module="postcode-select-btn">{{ _('Add postcode') }}</button>
+          <div class="form-group">
+            <button class="app-button app-button-black" type="submit" data-module="postcode-select-btn">{{ _('Add postcode') }}</button>
+          </div>
+        </form>
       </div>
-    </form>
+      <div class="col-lg-6">
+        <div class="app-aggregate-summary">
+          {% if selected_postcodes.keys()|length %}
+          <h3>Potential impact</h3>
+          <dl>
+            <div class="app-dl-item">
+              <dt>{{ _('Total transactions') }}</dt>
+              <dd>{{ aggregate_summary['total']|commanum }}</dd>
+            </div>
+            <div class="app-dl-item">
+              <dt>{{ _('Avg transaction price') }}</dt>
+              <dd>£{{ aggregate_summary['average_price']|round(2)|commanum }}</dd>
+            </div>
+            <div class="app-dl-item">
+              <dt>{{ _('Potential LTT revenue') }}</dt>
+              <dd>£{{ aggregate_summary['potential_ltt_revenue']|round(2)|commanum }}</dd>
+            </div>
+          </dl>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    
   </div>
 
   <div class="app-postcode-stat-results{{ '' if selected_postcodes.keys()|length else ' app-postcode-stat-results--none'}}">
@@ -158,6 +184,24 @@
     <span class="app-selected-item__label"></span>
     <a class="app-selected-item__remove" href=""><span class="wra-visually-hidden-focusable">{{ _('remove postcode') }}</span></a>
   </li>
+</template>
+
+<template id="aggregate-template">
+  <h3>{{ _('Potential impact') }}</h3>
+  <dl>
+    <div class="app-dl-item">
+      <dt>{{ _('Total transactions') }}</dt>
+      <dd data-aggregate="total-transactions"></dd>
+    </div>
+    <div class="app-dl-item">
+      <dt>{{ _('Avg transaction price') }}</dt>
+      <dd>£<span data-aggregate="avg-price"></span></dd>
+    </div>
+    <div class="app-dl-item">
+      <dt>{{ _('Potential LTT revenue') }}</dt>
+      <dd>£<span data-aggregate="potential-ltt"></span></dd>
+    </div>
+  </dl>
 </template>
 
 <script src='https://unpkg.com/@turf/turf@6.3.0/turf.min.js'></script>
