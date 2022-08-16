@@ -1,0 +1,43 @@
+// styles used for tables on the postcode summary cards
+
+.app-table-lite {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: $wra-gutter;
+}
+
+$table-border-width: 1px;
+.app-table-lite__cell {
+  box-sizing: border-box;
+  width: 50%;
+  margin-top: -($table-border-width);
+  margin-left: -($table-border-width);
+  margin-right: 0;
+  margin-bottom: 0;
+  padding: .5em .8em;
+  border: solid $table-border-width $wra-standout-box-colour;
+  font-size: 14px;
+  overflow: hidden;
+}
+
+.app-table-lite__cell--highlight {
+  background: $wra-standout-box-colour;
+  font-size: 16px;
+}
+
+@function wra-px-to-rem($value) {
+  @if unitless($value) {
+    $value: $value * 1px;
+  }
+
+  @return $value / $wra-root-font-size * 1rem;
+}
+
+
+.app-table-lite__heading {
+  margin-top: 0;
+  margin-bottom: wra-px-to-rem(10px);
+  padding-left: 2px;
+  font-size: 18px;
+  line-height: 1;
+}
