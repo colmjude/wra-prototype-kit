@@ -58,3 +58,15 @@
   position: absolute;
   z-index: 100;
 }
+
+// aggregatge summary section
+
+.app-aggregate-summary {
+  .app-data-stat {
+    margin-bottom: $wra-gutter;
+  }
+
+  p:last-child {
+    margin-bottom: 5px;
+  }
+}

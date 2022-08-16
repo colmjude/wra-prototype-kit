@@ -54,20 +54,22 @@
         <div class="app-aggregate-summary">
           {% if selected_postcodes.keys()|length %}
           <h3>Potential impact</h3>
-          <dl>
-            <div class="app-dl-item">
-              <dt>{{ _('Total transactions') }}</dt>
-              <dd>{{ aggregate_summary['total']|commanum|strip_zero_decimals }}</dd>
-            </div>
-            <div class="app-dl-item">
-              <dt>{{ _('Avg transaction price') }}</dt>
-              <dd>£{{ aggregate_summary['average_price']|round(2)|commanum|strip_zero_decimals }}</dd>
-            </div>
-            <div class="app-dl-item">
-              <dt>{{ _('Potential LTT revenue') }}</dt>
-              <dd>£{{ aggregate_summary['potential_ltt_revenue']|round(2)|commanum|strip_zero_decimals }}</dd>
-            </div>
-          </dl>
+          <div class="app-data-stat">
+            <span class="app-data-stat__value">{{ aggregate_summary['total']|commanum|strip_zero_decimals }}</span>
+            <p class="app-data-stat__label">{{ _('Total transactions') }}</p>
+          </div>
+
+          <div class="app-data-stat">
+            <span class="app-data-stat__value">£{{ aggregate_summary['average_price']|round(2)|commanum|strip_zero_decimals }}</span>
+            <p class="app-data-stat__label">{{ _('Avg transaction price') }}</p>
+          </div>
+
+          <div class="app-data-stat">
+            <span class="app-data-stat__value">£{{ aggregate_summary['potential_ltt_revenue']|round(2)|commanum|strip_zero_decimals }}</span>
+            <p class="app-data-stat__label">{{ _('Potential LTT revenue') }}</p>
+          </div>
+
+          <p class="app-small-text"><a href="#result-breakdown">See breakdown by postcode area</a></p>
           {% endif %}
         </div>
       </div>
@@ -77,66 +79,75 @@
 
   <div class="app-postcode-stat-results{{ '' if selected_postcodes.keys()|length else ' app-postcode-stat-results--none'}}">
     
-    <h2 class="app-postcode-stat-results__heading">{{ _('Statistics per selected postcode') }}</h2>
-    <div class="app-postcode-selected">
-      <h5>{{ _('Selected') }}</h5>
-      <ul class="wra-list app-postcode-selected__list">
-        {% if selected_postcodes.keys()|length %}
-        {% for postcode in selected_postcodes.keys()  %}
-        <li class="app-selected-item" data-postcode="{{ postcode }}">
-          <span class="app-selected-item__label">{{ postcode }}</span>
-          <a class="app-selected-item__remove" href="{{ url_for('prototypes.remove_selected_post_code', lang=pageLang, postcode=postcode, selected_postcodes=selected_postcodes.keys()|list) }}"><span class="wra-visually-hidden-focusable">{{ _('remove postcode') }}</span></a>
-        </li>
-        {% endfor %}
-        {% endif %}
-      </ul>
-    </div>
-
-    <section class="row app-postcode-results">
-      {% if selected_postcodes.keys()|length %}
-      {% for postcode in selected_postcodes.keys()  %}
-      <div class="col-lg-4">
-        <div class="app-postcode-summary" data-postcode-summary="{{ selected_postcodes[postcode]['postcode_area'] }}">
-          <h4>{{ selected_postcodes[postcode]['postcode_area'] }}</h4>
-          <dl class="app-dl-item">
-            <dt>{{ _('Transactions') }}</dt>
-            <dd>{{ selected_postcodes[postcode]['count']|commanum|strip_zero_decimals }}</dd>
-          </dl>
-
-          <h5 class="app-table-lite__heading">{{ _('Average') }}</h5>
-          <div class="app-table-lite">
-            <div class="app-table-lite__cell app-table-lite__cell--highlight">{{ _('Price') }}</div>
-            <div class="app-table-lite__cell app-table-lite__cell--highlight">£<span data-stats="avg-value">{{ selected_postcodes[postcode]['avg']['value']|round(2)|commanum|strip_zero_decimals }}</span></div>
-            <div class="app-table-lite__cell">{{ _('Basic LTT') }}</div>
-            <div class="app-table-lite__cell">£<span data-stats="avg-ltt-basic">{{ selected_postcodes[postcode]['avg']['ltt_amount']['basic']|round(2)|commanum|strip_zero_decimals }}</span></div>
-            <div class="app-table-lite__cell">{{ _('Higher LTT') }}</div>
-            <div class="app-table-lite__cell">£<span data-stats="avg-ltt-higher">{{ selected_postcodes[postcode]['avg']['ltt_amount']['higher']|round(2)|commanum|strip_zero_decimals }}</span></div>
-          </div>
-
-          <h5 class="app-table-lite__heading">{{ _('Max') }}</h5>
-          <div class="app-table-lite">
-            <div class="app-table-lite__cell app-table-lite__cell--highlight">{{ _('Price') }}</div>
-            <div class="app-table-lite__cell app-table-lite__cell--highlight">£<span data-stats="max-value">{{ selected_postcodes[postcode]['max']['value']|round(2)|commanum|strip_zero_decimals }}</span></div>
-            <div class="app-table-lite__cell">{{ _('Basic LTT') }}</div>
-            <div class="app-table-lite__cell">£<span data-stats="max-ltt-basic">{{ selected_postcodes[postcode]['max']['ltt_amount']['basic']|round(2)|commanum|strip_zero_decimals }}</span></div>
-            <div class="app-table-lite__cell">{{ _('Higher LTT') }}</div>
-            <div class="app-table-lite__cell">£<span data-stats="max-ltt-higher">{{ selected_postcodes[postcode]['max']['ltt_amount']['higher']|round(2)|commanum|strip_zero_decimals }}</span></div>
-          </div>
-
-          <h5 class="app-table-lite__heading">{{ _('Min') }}</h5>
-          <div class="app-table-lite">
-            <div class="app-table-lite__cell app-table-lite__cell--highlight">{{ _('Price') }}</div>
-            <div class="app-table-lite__cell app-table-lite__cell--highlight">£<span data-stats="min-value">{{ selected_postcodes[postcode]['min']['value']|round(2)|commanum|strip_zero_decimals }}</span></div>
-            <div class="app-table-lite__cell">{{ _('Basic LTT') }}</div>
-            <div class="app-table-lite__cell">£<span data-stats="min-ltt-basic">{{ selected_postcodes[postcode]['min']['ltt_amount']['basic']|round(2)|commanum|strip_zero_decimals }}</span></div>
-            <div class="app-table-lite__cell">{{ _('Higher LTT') }}</div>
-            <div class="app-table-lite__cell">£<span data-stats="min-ltt-higher">{{ selected_postcodes[postcode]['min']['ltt_amount']['higher']|round(2)|commanum|strip_zero_decimals }}</span></div>
-          </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="app-postcode-selected">
+          <h5>{{ _('Selected') }}</h5>
+          <ul class="wra-list app-postcode-selected__list">
+            {% if selected_postcodes.keys()|length %}
+            {% for postcode in selected_postcodes.keys()  %}
+            <li class="app-selected-item" data-postcode="{{ postcode }}">
+              <span class="app-selected-item__label">{{ postcode }}</span>
+              <a class="app-selected-item__remove" href="{{ url_for('prototypes.remove_selected_post_code', lang=pageLang, postcode=postcode, selected_postcodes=selected_postcodes.keys()|list) }}"><span class="wra-visually-hidden-focusable">{{ _('remove postcode') }}</span></a>
+            </li>
+            {% endfor %}
+            {% endif %}
+          </ul>
         </div>
       </div>
-      {% endfor %}
-      {% endif %}
-    </section>
+      
+    </div>
+    
+
+    <div id="result-breakdown">
+      <h2 class="app-postcode-stat-results__heading">{{ _('Statistics per selected postcode') }}</h2>
+
+      <section class="row app-postcode-results">
+        {% if selected_postcodes.keys()|length %}
+        {% for postcode in selected_postcodes.keys()  %}
+        <div class="col-lg-4">
+          <div class="app-postcode-summary" data-postcode-summary="{{ selected_postcodes[postcode]['postcode_area'] }}">
+            <h4>{{ selected_postcodes[postcode]['postcode_area'] }}</h4>
+            <dl class="app-dl-item">
+              <dt>{{ _('Transactions') }}</dt>
+              <dd>{{ selected_postcodes[postcode]['count']|commanum|strip_zero_decimals }}</dd>
+            </dl>
+
+            <h5 class="app-table-lite__heading">{{ _('Average') }}</h5>
+            <div class="app-table-lite">
+              <div class="app-table-lite__cell app-table-lite__cell--highlight">{{ _('Price') }}</div>
+              <div class="app-table-lite__cell app-table-lite__cell--highlight">£<span data-stats="avg-value">{{ selected_postcodes[postcode]['avg']['value']|round(2)|commanum|strip_zero_decimals }}</span></div>
+              <div class="app-table-lite__cell">{{ _('Basic LTT') }}</div>
+              <div class="app-table-lite__cell">£<span data-stats="avg-ltt-basic">{{ selected_postcodes[postcode]['avg']['ltt_amount']['basic']|round(2)|commanum|strip_zero_decimals }}</span></div>
+              <div class="app-table-lite__cell">{{ _('Higher LTT') }}</div>
+              <div class="app-table-lite__cell">£<span data-stats="avg-ltt-higher">{{ selected_postcodes[postcode]['avg']['ltt_amount']['higher']|round(2)|commanum|strip_zero_decimals }}</span></div>
+            </div>
+
+            <h5 class="app-table-lite__heading">{{ _('Max') }}</h5>
+            <div class="app-table-lite">
+              <div class="app-table-lite__cell app-table-lite__cell--highlight">{{ _('Price') }}</div>
+              <div class="app-table-lite__cell app-table-lite__cell--highlight">£<span data-stats="max-value">{{ selected_postcodes[postcode]['max']['value']|round(2)|commanum|strip_zero_decimals }}</span></div>
+              <div class="app-table-lite__cell">{{ _('Basic LTT') }}</div>
+              <div class="app-table-lite__cell">£<span data-stats="max-ltt-basic">{{ selected_postcodes[postcode]['max']['ltt_amount']['basic']|round(2)|commanum|strip_zero_decimals }}</span></div>
+              <div class="app-table-lite__cell">{{ _('Higher LTT') }}</div>
+              <div class="app-table-lite__cell">£<span data-stats="max-ltt-higher">{{ selected_postcodes[postcode]['max']['ltt_amount']['higher']|round(2)|commanum|strip_zero_decimals }}</span></div>
+            </div>
+
+            <h5 class="app-table-lite__heading">{{ _('Min') }}</h5>
+            <div class="app-table-lite">
+              <div class="app-table-lite__cell app-table-lite__cell--highlight">{{ _('Price') }}</div>
+              <div class="app-table-lite__cell app-table-lite__cell--highlight">£<span data-stats="min-value">{{ selected_postcodes[postcode]['min']['value']|round(2)|commanum|strip_zero_decimals }}</span></div>
+              <div class="app-table-lite__cell">{{ _('Basic LTT') }}</div>
+              <div class="app-table-lite__cell">£<span data-stats="min-ltt-basic">{{ selected_postcodes[postcode]['min']['ltt_amount']['basic']|round(2)|commanum|strip_zero_decimals }}</span></div>
+              <div class="app-table-lite__cell">{{ _('Higher LTT') }}</div>
+              <div class="app-table-lite__cell">£<span data-stats="min-ltt-higher">{{ selected_postcodes[postcode]['min']['ltt_amount']['higher']|round(2)|commanum|strip_zero_decimals }}</span></div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+      </section>
+    </div>
   </div>
 
 </main>
@@ -207,20 +218,22 @@
 
 <template id="aggregate-template">
   <h3>{{ _('Potential impact') }}</h3>
-  <dl>
-    <div class="app-dl-item">
-      <dt>{{ _('Total transactions') }}</dt>
-      <dd data-aggregate="total-transactions"></dd>
-    </div>
-    <div class="app-dl-item">
-      <dt>{{ _('Avg transaction price') }}</dt>
-      <dd>£<span data-aggregate="avg-price"></span></dd>
-    </div>
-    <div class="app-dl-item">
-      <dt>{{ _('Potential LTT revenue') }}</dt>
-      <dd>£<span data-aggregate="potential-ltt"></span></dd>
-    </div>
-  </dl>
+  <div class="app-data-stat">
+    <span class="app-data-stat__value" data-aggregate="total-transactions">{{ aggregate_summary['total']|commanum|strip_zero_decimals }}</span>
+    <p class="app-data-stat__label">{{ _('Total transactions') }}</p>
+  </div>
+
+  <div class="app-data-stat">
+    <span class="app-data-stat__value">£<span data-aggregate="avg-price">{{ aggregate_summary['average_price']|round(2)|commanum|strip_zero_decimals }}</span></span>
+    <p class="app-data-stat__label">{{ _('Avg transaction price') }}</p>
+  </div>
+
+  <div class="app-data-stat">
+    <span class="app-data-stat__value">£<span data-aggregate="potential-ltt">{{ aggregate_summary['potential_ltt_revenue']|round(2)|commanum|strip_zero_decimals }}</span></span>
+    <p class="app-data-stat__label">{{ _('Potential LTT revenue') }}</p>
+  </div>
+
+  <p class="app-small-text"><a href="#result-breakdown">{{ _('See breakdown by postcode area') }}</a></p>
 </template>
 
 <script src='https://unpkg.com/@turf/turf@6.3.0/turf.min.js'></script>

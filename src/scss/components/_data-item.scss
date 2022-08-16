@@ -6,3 +6,34 @@
     text-decoration: underline;
   }
 }
+
+.app-data-stat {
+  &__label,
+  &__value {
+    display: block;
+  }
+
+  &__label {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  &__value {
+    font-size: 48px;
+    font-weight: lighter;
+    line-height: 1;
+  }
+}
+
+.app-data-stat--small {
+  &__label {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  &__value {
+    font-size: 36px;
+    font-weight: lighter;
+    line-height: 1;
+  }
+}
