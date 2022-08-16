@@ -98,30 +98,40 @@
       <div class="col-lg-4">
         <div class="app-postcode-summary" data-postcode-summary="{{ selected_postcodes[postcode]['postcode_area'] }}">
           <h4>{{ selected_postcodes[postcode]['postcode_area'] }}</h4>
-          <dl>
-            <div class="app-dl-item">
-              <dt>{{ _('Transactions') }}</dt>
-              <dd>{{ selected_postcodes[postcode]['count']|commanum|strip_zero_decimals }}</dd>
-            </div>
-            <div class="app-dl-item">
-              <dt>{{ _('Average price') }}</dt>
-              <dd>£{{ selected_postcodes[postcode]['avg']['value']|round(2)|commanum|strip_zero_decimals }}</dd>
-              <p class="app-small-text">{{ _('Basic LLT owed') }} £{{ selected_postcodes[postcode]['avg']['ltt_amount']['basic']|round(2)|commanum|strip_zero_decimals }}</p>
-              <p class="app-small-text">{{ _('Higher LLT owed') }} £{{ selected_postcodes[postcode]['avg']['ltt_amount']['higher']|round(2)|commanum|strip_zero_decimals }}</p>
-            </div>
-            <div class="app-dl-item">
-              <dt>{{ _('Max price') }}</dt>
-              <dd>£{{ selected_postcodes[postcode]['max']['value']|round(2)|commanum|strip_zero_decimals }}</dd>
-              <p class="app-small-text">{{ _('Basic LLT owed') }} £{{ selected_postcodes[postcode]['max']['ltt_amount']['basic']|round(2)|commanum|strip_zero_decimals }}</p>
-              <p class="app-small-text">{{ _('Higher LLT owed') }} £{{ selected_postcodes[postcode]['max']['ltt_amount']['higher']|round(2)|commanum|strip_zero_decimals }}</p>
-            </div>
-            <div class="app-dl-item">
-              <dt>{{ _('Min price') }}</dt>
-              <dd>£{{ selected_postcodes[postcode]['min']['value']|round(2)|commanum|strip_zero_decimals }}</dd>
-              <p class="app-small-text">{{ _('Basic LLT owed') }} £{{ selected_postcodes[postcode]['min']['ltt_amount']['basic']|round(2)|commanum|strip_zero_decimals }}</p>
-              <p class="app-small-text">{{ _('Higher LLT owed') }} £{{ selected_postcodes[postcode]['min']['ltt_amount']['higher']|round(2)|commanum|strip_zero_decimals }}</p>
-            </div>
+          <dl class="app-dl-item">
+            <dt>{{ _('Transactions') }}</dt>
+            <dd>{{ selected_postcodes[postcode]['count']|commanum|strip_zero_decimals }}</dd>
           </dl>
+
+          <h5 class="app-table-lite__heading">{{ _('Average') }}</h5>
+          <div class="app-table-lite">
+            <div class="app-table-lite__cell app-table-lite__cell--highlight">{{ _('Price') }}</div>
+            <div class="app-table-lite__cell app-table-lite__cell--highlight">£<span data-stats="avg-value">{{ selected_postcodes[postcode]['avg']['value']|round(2)|commanum|strip_zero_decimals }}</span></div>
+            <div class="app-table-lite__cell">{{ _('Basic LTT') }}</div>
+            <div class="app-table-lite__cell">£<span data-stats="avg-ltt-basic">{{ selected_postcodes[postcode]['avg']['ltt_amount']['basic']|round(2)|commanum|strip_zero_decimals }}</span></div>
+            <div class="app-table-lite__cell">{{ _('Higher LTT') }}</div>
+            <div class="app-table-lite__cell">£<span data-stats="avg-ltt-higher">{{ selected_postcodes[postcode]['avg']['ltt_amount']['higher']|round(2)|commanum|strip_zero_decimals }}</span></div>
+          </div>
+
+          <h5 class="app-table-lite__heading">{{ _('Max') }}</h5>
+          <div class="app-table-lite">
+            <div class="app-table-lite__cell app-table-lite__cell--highlight">{{ _('Price') }}</div>
+            <div class="app-table-lite__cell app-table-lite__cell--highlight">£<span data-stats="max-value">{{ selected_postcodes[postcode]['max']['value']|round(2)|commanum|strip_zero_decimals }}</span></div>
+            <div class="app-table-lite__cell">{{ _('Basic LTT') }}</div>
+            <div class="app-table-lite__cell">£<span data-stats="max-ltt-basic">{{ selected_postcodes[postcode]['max']['ltt_amount']['basic']|round(2)|commanum|strip_zero_decimals }}</span></div>
+            <div class="app-table-lite__cell">{{ _('Higher LTT') }}</div>
+            <div class="app-table-lite__cell">£<span data-stats="max-ltt-higher">{{ selected_postcodes[postcode]['max']['ltt_amount']['higher']|round(2)|commanum|strip_zero_decimals }}</span></div>
+          </div>
+
+          <h5 class="app-table-lite__heading">{{ _('Min') }}</h5>
+          <div class="app-table-lite">
+            <div class="app-table-lite__cell app-table-lite__cell--highlight">{{ _('Price') }}</div>
+            <div class="app-table-lite__cell app-table-lite__cell--highlight">£<span data-stats="min-value">{{ selected_postcodes[postcode]['min']['value']|round(2)|commanum|strip_zero_decimals }}</span></div>
+            <div class="app-table-lite__cell">{{ _('Basic LTT') }}</div>
+            <div class="app-table-lite__cell">£<span data-stats="min-ltt-basic">{{ selected_postcodes[postcode]['min']['ltt_amount']['basic']|round(2)|commanum|strip_zero_decimals }}</span></div>
+            <div class="app-table-lite__cell">{{ _('Higher LTT') }}</div>
+            <div class="app-table-lite__cell">£<span data-stats="min-ltt-higher">{{ selected_postcodes[postcode]['min']['ltt_amount']['higher']|round(2)|commanum|strip_zero_decimals }}</span></div>
+          </div>
         </div>
       </div>
       {% endfor %}
@@ -152,30 +162,39 @@
 <template id="result-template">
   <div class="app-postcode-summary" data-postcode-summary="">
     <h4 data-stats="postcode_area"></h4>
-    <dl>
-      <div class="app-dl-item">
-        <dt>{{ _('Transactions') }}</dt>
-        <dd data-stats="count"></dd>
-      </div>
-      <div class="app-dl-item">
-        <dt>{{ _('Average price') }}</dt>
-        <dd>£<span data-stats="avg-value"></span></dd>
-        <p class="app-small-text">{{ _('Basic LTT owed') }} £<span data-stats="avg-ltt-basic"></span></p>
-        <p class="app-small-text">{{ _('Higher rate LTT owed') }} £<span data-stats="avg-ltt-higher"></span></p>
-      </div>
-      <div class="app-dl-item">
-        <dt>{{ _('Max price') }}</dt>
-        <dd>£<span data-stats="max-value"></span></dd>
-        <p class="app-small-text">{{ _('Basic LTT owed') }} £<span data-stats="max-ltt-basic"></span></p>
-        <p class="app-small-text">{{ _('Higher rate LTT owed') }} £<span data-stats="max-ltt-higher"></span></p>
-      </div>
-      <div class="app-dl-item">
-        <dt>{{ _('Min price') }}</dt>
-        <dd>£<span data-stats="min-value"></span></dd>
-        <p class="app-small-text">{{ _('Basic LTT owed') }} £<span data-stats="min-ltt-basic"></span></p>
-        <p class="app-small-text">{{ _('Higher rate LTT owed') }} £<span data-stats="min-ltt-higher"></span></p>
-      </div>
+    <dl class="app-dl-item">
+      <dt>{{ _('Transactions') }}</dt>
+      <dd data-stats="count"></dd>
     </dl>
+    <h5 class="app-table-lite__heading">{{ _('Average') }}</h5>
+    <div class="app-table-lite">
+      <div class="app-table-lite__cell app-table-lite__cell--highlight">{{ _('Price') }}</div>
+      <div class="app-table-lite__cell app-table-lite__cell--highlight">£<span data-stats="avg-value"></span></div>
+      <div class="app-table-lite__cell">{{ _('Basic LTT') }}</div>
+      <div class="app-table-lite__cell">£<span data-stats="avg-ltt-basic"></span></div>
+      <div class="app-table-lite__cell">{{ _('Higher LTT') }}</div>
+      <div class="app-table-lite__cell">£<span data-stats="avg-ltt-higher"></span></div>
+    </div>
+
+    <h5 class="app-table-lite__heading">{{ _('Max') }}</h5>
+    <div class="app-table-lite">
+      <div class="app-table-lite__cell app-table-lite__cell--highlight">{{ _('Price') }}</div>
+      <div class="app-table-lite__cell app-table-lite__cell--highlight">£<span data-stats="max-value"></span></div>
+      <div class="app-table-lite__cell">{{ _('Basic LTT') }}</div>
+      <div class="app-table-lite__cell">£<span data-stats="max-ltt-basic"></span></div>
+      <div class="app-table-lite__cell">{{ _('Higher LTT') }}</div>
+      <div class="app-table-lite__cell">£<span data-stats="max-ltt-higher"></span></div>
+    </div>
+
+    <h5 class="app-table-lite__heading">{{ _('Min') }}</h5>
+    <div class="app-table-lite">
+      <div class="app-table-lite__cell app-table-lite__cell--highlight">{{ _('Price') }}</div>
+      <div class="app-table-lite__cell app-table-lite__cell--highlight">£<span data-stats="min-value"></span></div>
+      <div class="app-table-lite__cell">{{ _('Basic LTT') }}</div>
+      <div class="app-table-lite__cell">£<span data-stats="min-ltt-basic"></span></div>
+      <div class="app-table-lite__cell">{{ _('Higher LTT') }}</div>
+      <div class="app-table-lite__cell">£<span data-stats="min-ltt-higher"></span></div>
+    </div>
   </div>
 </template>
 
