@@ -30,7 +30,8 @@ PostcodeStats.prototype.init = function () {
   this.$postcodeSummariesContainer = this.$resultsContainer.querySelector('.app-postcode-results')
   this.$resultTemplate = document.getElementById('result-template')
 
-  this.$selectedList = this.$resultsContainer.querySelector('.app-postcode-selected__list')
+  this.$selectedList = document.querySelector('.app-postcode-selected__list')
+  this.$selectedListContainer = this.$selectedList.closest('.app-postcode-selected')
   this.$listItemTemplate = document.getElementById('selected-template')
 
   this.$aggregateSummaryContainer = document.querySelector('.app-aggregate-summary')
@@ -78,9 +79,9 @@ PostcodeStats.prototype.addSelectedItem = function (postcode) {
 // checks if there are any postcodes currently selected
 PostcodeStats.prototype.checkSelection = function () {
   if (this.selectedPostcodes.length > 0) {
-    this.showContainer()
+    this.showContainers()
   } else {
-    this.hideContainer()
+    this.hideContainers()
   }
 }
 
@@ -164,8 +165,9 @@ PostcodeStats.prototype.fetchStats = function (postcode) {
     })
 }
 
-PostcodeStats.prototype.hideContainer = function () {
+PostcodeStats.prototype.hideContainers = function () {
   this.$resultsContainer.classList.add('app-postcode-stat-results--none')
+  this.$selectedListContainer.classList.add('empty-hidden')
 }
 
 PostcodeStats.prototype.makeRemoveURL = function (postcode) {
@@ -200,12 +202,15 @@ PostcodeStats.prototype.removeHandler = function (e) {
     this.updateURL()
     // re do aggregate stats
     this.fetchAggregateStats()
+    // check if anything still selected
+    this.checkSelection()
     // To do: trigger event for observers
   }
 }
 
-PostcodeStats.prototype.showContainer = function () {
+PostcodeStats.prototype.showContainers = function () {
   this.$resultsContainer.classList.remove('app-postcode-stat-results--none')
+  this.$selectedListContainer.classList.remove('empty-hidden')
 }
 
 PostcodeStats.prototype.submitHandler = function (e) {

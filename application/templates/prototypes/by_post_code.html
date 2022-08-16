@@ -33,67 +33,67 @@
 
   <p>{{ _('Use this tool to explore the land transaction data on a postcode by postcode basis') }}.</p>
 
-  <div class="app-form__standout-container">
-    <div class="row">
-      <div class="col-lg-6">
-        <form class="app-postcode-selector-form" action="{{ url_for('prototypes.by_post_code', lang=pageLang) }}">
-          <div class="app-form-group">
-            <label for="postcodes" class="app-form-label">{{ form.new_postcode.label.text }}</label>
-            {{ form.new_postcode(required=False, class="select wra-!-width-two-thirds postcode-select-input")}}
-          </div>
-          <input class="hidden" type="text" name="selected_postcodes" value="{{ selected_postcodes.keys()|join(';') }}">
+  <div class="app-selection-section">
 
-          <!-- add can't find post code explainer here -->
-
-          <div class="form-group">
-            <button class="app-button app-button-black" type="submit" data-module="postcode-select-btn">{{ _('Add postcode') }}</button>
-          </div>
-        </form>
-      </div>
-      <div class="col-lg-6">
-        <div class="app-aggregate-summary">
-          {% if selected_postcodes.keys()|length %}
-          <h3>Potential impact</h3>
-          <div class="app-data-stat">
-            <span class="app-data-stat__value">{{ aggregate_summary['total']|commanum|strip_zero_decimals }}</span>
-            <p class="app-data-stat__label">{{ _('Total transactions') }}</p>
-          </div>
-
-          <div class="app-data-stat">
-            <span class="app-data-stat__value">£{{ aggregate_summary['average_price']|round(2)|commanum|strip_zero_decimals }}</span>
-            <p class="app-data-stat__label">{{ _('Avg transaction price') }}</p>
-          </div>
-
-          <div class="app-data-stat">
-            <span class="app-data-stat__value">£{{ aggregate_summary['potential_ltt_revenue']|round(2)|commanum|strip_zero_decimals }}</span>
-            <p class="app-data-stat__label">{{ _('Potential LTT revenue') }}</p>
-          </div>
-
-          <p class="app-small-text"><a href="#result-breakdown">See breakdown by postcode area</a></p>
-          {% endif %}
+    <div class="app-selection__state">
+      <h3 class="app-selection-section__heading">{{ ('Create area') }}</h3>
+      <form class="app-postcode-selector-form" action="{{ url_for('prototypes.by_post_code', lang=pageLang) }}">
+        <div class="app-form-group">
+          <label for="postcodes" class="app-form-label">{{ form.new_postcode.label.text }}</label>
+          {{ form.new_postcode(required=False, class="select wra-!-width-two-thirds postcode-select-input")}}
         </div>
+        <input class="hidden" type="text" name="selected_postcodes" value="{{ selected_postcodes.keys()|join(';') }}">
+
+        <!-- add can't find post code explainer here -->
+
+        <div class="form-group">
+          <button class="app-button app-button-black" type="submit" data-module="postcode-select-btn">{{ _('Add') }}</button>
+        </div>
+      </form>
+
+      <div class="app-postcode-selected{{ ' empty-hidden' if selected_postcodes.keys()|length == 0 }}">
+        <h5 class="app-heading--light">{{ _('Current selection') }}</h5>
+        <ul class="wra-list app-postcode-selected__list">
+          {% if selected_postcodes.keys()|length %}
+          {% for postcode in selected_postcodes.keys()  %}
+          <li class="app-selected-item" data-postcode="{{ postcode }}">
+            <span class="app-selected-item__label">{{ postcode }}</span>
+            <a class="app-selected-item__remove" href="{{ url_for('prototypes.remove_selected_post_code', lang=pageLang, postcode=postcode, selected_postcodes=selected_postcodes.keys()|list) }}"><span class="wra-visually-hidden-focusable">{{ _('remove postcode') }}</span></a>
+          </li>
+          {% endfor %}
+          {% endif %}
+        </ul>
       </div>
     </div>
-    
+
+    <div class="app-aggregate-summary{{ ' js-hidden' if selected_postcodes.keys()|length == 0 }}">
+      {% if selected_postcodes.keys()|length %}
+      <h3 class="app-selection-section__heading">{{ _('Potential impact') }}</h3>
+      <div class="app-data-stat">
+        <span class="app-data-stat__value">{{ aggregate_summary['total']|commanum|strip_zero_decimals }}</span>
+        <p class="app-data-stat__label">{{ _('Total transactions') }}</p>
+      </div>
+
+      <div class="app-data-stat">
+        <span class="app-data-stat__value">£{{ aggregate_summary['average_price']|round(2)|commanum|strip_zero_decimals }}</span>
+        <p class="app-data-stat__label">{{ _('Avg transaction price') }}</p>
+      </div>
+
+      <div class="app-data-stat">
+        <span class="app-data-stat__value">£{{ aggregate_summary['potential_ltt_revenue']|round(2)|commanum|strip_zero_decimals }}</span>
+        <p class="app-data-stat__label">{{ _('Potential LTT revenue') }}</p>
+      </div>
+
+      <p class="app-small-text"><a href="#result-breakdown">{{ ('See breakdown by postcode area') }}</a></p>
+      {% endif %}
+    </div>
   </div>
 
   <div class="app-postcode-stat-results{{ '' if selected_postcodes.keys()|length else ' app-postcode-stat-results--none'}}">
     
     <div class="row">
       <div class="col-lg-6">
-        <div class="app-postcode-selected">
-          <h5>{{ _('Selected') }}</h5>
-          <ul class="wra-list app-postcode-selected__list">
-            {% if selected_postcodes.keys()|length %}
-            {% for postcode in selected_postcodes.keys()  %}
-            <li class="app-selected-item" data-postcode="{{ postcode }}">
-              <span class="app-selected-item__label">{{ postcode }}</span>
-              <a class="app-selected-item__remove" href="{{ url_for('prototypes.remove_selected_post_code', lang=pageLang, postcode=postcode, selected_postcodes=selected_postcodes.keys()|list) }}"><span class="wra-visually-hidden-focusable">{{ _('remove postcode') }}</span></a>
-            </li>
-            {% endfor %}
-            {% endif %}
-          </ul>
-        </div>
+        
       </div>
       
     </div>
@@ -217,19 +217,19 @@
 </template>
 
 <template id="aggregate-template">
-  <h3>{{ _('Potential impact') }}</h3>
+  <h3 class="app-selection-section__heading">{{ _('Potential impact') }}</h3>
   <div class="app-data-stat">
-    <span class="app-data-stat__value" data-aggregate="total-transactions">{{ aggregate_summary['total']|commanum|strip_zero_decimals }}</span>
+    <span class="app-data-stat__value" data-aggregate="total-transactions"></span>
     <p class="app-data-stat__label">{{ _('Total transactions') }}</p>
   </div>
 
   <div class="app-data-stat">
-    <span class="app-data-stat__value">£<span data-aggregate="avg-price">{{ aggregate_summary['average_price']|round(2)|commanum|strip_zero_decimals }}</span></span>
+    <span class="app-data-stat__value">£<span data-aggregate="avg-price"></span></span>
     <p class="app-data-stat__label">{{ _('Avg transaction price') }}</p>
   </div>
 
   <div class="app-data-stat">
-    <span class="app-data-stat__value">£<span data-aggregate="potential-ltt">{{ aggregate_summary['potential_ltt_revenue']|round(2)|commanum|strip_zero_decimals }}</span></span>
+    <span class="app-data-stat__value">£<span data-aggregate="potential-ltt"></span></span>
     <p class="app-data-stat__label">{{ _('Potential LTT revenue') }}</p>
   </div>
 

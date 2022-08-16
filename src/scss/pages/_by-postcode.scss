@@ -15,12 +15,13 @@
 
 .app-postcode-summary {
   margin-bottom: $wra-gutter;
-  border-top: 4px solid $wra-organisation-colour;
+  // border-top: 4px solid $wra-organisation-colour;
   border-bottom: 4px solid $wra-organisation-colour;
 
   $container-spacing: 20px;
   h4 {
     margin-top: $container-spacing;
+    font-size: 27px;
   }
 
   dl {
@@ -59,9 +60,48 @@
   z-index: 100;
 }
 
-// aggregatge summary section
+// selection section
+
+.app-selection-section {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: $wra-gutter;
+  margin-bottom: $wra-gutter * 3;
+  border: 1px solid $wra-border-colour;
+
+  .app-selection__state,
+  .app-aggregate-summary {
+    @include mq($from: tablet) {
+      width: 50%;
+    }
+  }
+}
+
+.app-selection-section__heading {
+  margin-top: 0;
+}
+
+.app-selection__state,
+.app-aggregate-summary {
+  padding: $wra-gutter;
+}
+
+.app-selection__state {
+  @include mq($from: tablet) {
+    padding-right: $wra-gutter * 1.5;
+  }
+}
 
 .app-aggregate-summary {
+  background: $wra-standout-box-colour;
+  @include mq($from: tablet) {
+    padding-left: $wra-gutter * 1.5;
+  }
+
+  .app-selection-section__heading {
+    margin-bottom: 20px;
+  }
+
   .app-data-stat {
     margin-bottom: $wra-gutter;
   }
