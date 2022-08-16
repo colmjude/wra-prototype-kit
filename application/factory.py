@@ -62,9 +62,10 @@ def register_filters(app):
 
     app.add_template_filter(commanum_filter, name="commanum")
 
-    from application.filters import hex_to_rgb_string_filter
+    from application.filters import hex_to_rgb_string_filter, strip_zero_decimals_filter
 
     app.add_template_filter(hex_to_rgb_string_filter, name="hex_to_rgb")
+    app.add_template_filter(strip_zero_decimals_filter, name="strip_zero_decimals")
 
 
 def register_extensions(app):

@@ -7,7 +7,13 @@ function numberWithCommas (x) {
 
 function readableNumber (v) {
   const n = parseFloat(v)
-  return numberWithCommas(n.toFixed(2))
+  const d2 = n.toFixed(2)
+  // use modulus to strip trailing 0s if whole number
+  if (n % 1 === 0) {
+    console.log(v, 'whole number')
+    return numberWithCommas(parseInt(d2))
+  }
+  return numberWithCommas(d2)
 }
 
 function PostcodeStats ($form, $resultsContainer) {

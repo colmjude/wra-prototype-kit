@@ -57,15 +57,15 @@
           <dl>
             <div class="app-dl-item">
               <dt>{{ _('Total transactions') }}</dt>
-              <dd>{{ aggregate_summary['total']|commanum }}</dd>
+              <dd>{{ aggregate_summary['total']|commanum|strip_zero_decimals }}</dd>
             </div>
             <div class="app-dl-item">
               <dt>{{ _('Avg transaction price') }}</dt>
-              <dd>£{{ aggregate_summary['average_price']|round(2)|commanum }}</dd>
+              <dd>£{{ aggregate_summary['average_price']|round(2)|commanum|strip_zero_decimals }}</dd>
             </div>
             <div class="app-dl-item">
               <dt>{{ _('Potential LTT revenue') }}</dt>
-              <dd>£{{ aggregate_summary['potential_ltt_revenue']|round(2)|commanum }}</dd>
+              <dd>£{{ aggregate_summary['potential_ltt_revenue']|round(2)|commanum|strip_zero_decimals }}</dd>
             </div>
           </dl>
           {% endif %}
@@ -96,30 +96,30 @@
       {% if selected_postcodes.keys()|length %}
       {% for postcode in selected_postcodes.keys()  %}
       <div class="col-lg-4">
-        <div class="app-postcode-summary">
+        <div class="app-postcode-summary" data-postcode-summary="{{ selected_postcodes[postcode]['postcode_area'] }}">
           <h4>{{ selected_postcodes[postcode]['postcode_area'] }}</h4>
           <dl>
             <div class="app-dl-item">
               <dt>{{ _('Transactions') }}</dt>
-              <dd>{{ selected_postcodes[postcode]['count']|commanum }}</dd>
+              <dd>{{ selected_postcodes[postcode]['count']|commanum|strip_zero_decimals }}</dd>
             </div>
             <div class="app-dl-item">
               <dt>{{ _('Average price') }}</dt>
-              <dd>£{{ selected_postcodes[postcode]['avg']['value']|round(2)|commanum }}</dd>
-              <p class="app-small-text">{{ _('Basic LLT owed') }} £{{ selected_postcodes[postcode]['avg']['ltt_amount']['basic']|round(2)|commanum }}</p>
-              <p class="app-small-text">{{ _('Higher LLT owed') }} £{{ selected_postcodes[postcode]['avg']['ltt_amount']['higher']|round(2)|commanum }}</p>
+              <dd>£{{ selected_postcodes[postcode]['avg']['value']|round(2)|commanum|strip_zero_decimals }}</dd>
+              <p class="app-small-text">{{ _('Basic LLT owed') }} £{{ selected_postcodes[postcode]['avg']['ltt_amount']['basic']|round(2)|commanum|strip_zero_decimals }}</p>
+              <p class="app-small-text">{{ _('Higher LLT owed') }} £{{ selected_postcodes[postcode]['avg']['ltt_amount']['higher']|round(2)|commanum|strip_zero_decimals }}</p>
             </div>
             <div class="app-dl-item">
               <dt>{{ _('Max price') }}</dt>
-              <dd>£{{ selected_postcodes[postcode]['max']['value']|round(2)|commanum }}</dd>
-              <p class="app-small-text">{{ _('Basic LLT owed') }} £{{ selected_postcodes[postcode]['max']['ltt_amount']['basic']|round(2)|commanum }}</p>
-              <p class="app-small-text">{{ _('Higher LLT owed') }} £{{ selected_postcodes[postcode]['max']['ltt_amount']['higher']|round(2)|commanum }}</p>
+              <dd>£{{ selected_postcodes[postcode]['max']['value']|round(2)|commanum|strip_zero_decimals }}</dd>
+              <p class="app-small-text">{{ _('Basic LLT owed') }} £{{ selected_postcodes[postcode]['max']['ltt_amount']['basic']|round(2)|commanum|strip_zero_decimals }}</p>
+              <p class="app-small-text">{{ _('Higher LLT owed') }} £{{ selected_postcodes[postcode]['max']['ltt_amount']['higher']|round(2)|commanum|strip_zero_decimals }}</p>
             </div>
             <div class="app-dl-item">
               <dt>{{ _('Min price') }}</dt>
-              <dd>£{{ selected_postcodes[postcode]['min']['value']|round(2)|commanum }}</dd>
-              <p class="app-small-text">{{ _('Basic LLT owed') }} £{{ selected_postcodes[postcode]['min']['ltt_amount']['basic']|round(2)|commanum }}</p>
-              <p class="app-small-text">{{ _('Higher LLT owed') }} £{{ selected_postcodes[postcode]['min']['ltt_amount']['higher']|round(2)|commanum }}</p>
+              <dd>£{{ selected_postcodes[postcode]['min']['value']|round(2)|commanum|strip_zero_decimals }}</dd>
+              <p class="app-small-text">{{ _('Basic LLT owed') }} £{{ selected_postcodes[postcode]['min']['ltt_amount']['basic']|round(2)|commanum|strip_zero_decimals }}</p>
+              <p class="app-small-text">{{ _('Higher LLT owed') }} £{{ selected_postcodes[postcode]['min']['ltt_amount']['higher']|round(2)|commanum|strip_zero_decimals }}</p>
             </div>
           </dl>
         </div>
