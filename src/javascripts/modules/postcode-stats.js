@@ -10,7 +10,6 @@ function readableNumber (v) {
   const d2 = n.toFixed(2)
   // use modulus to strip trailing 0s if whole number
   if (n % 1 === 0) {
-    console.log(v, 'whole number')
     return numberWithCommas(parseInt(d2))
   }
   return numberWithCommas(d2)
@@ -192,8 +191,11 @@ PostcodeStats.prototype.removeHandler = function (e) {
     utils.removeItemOnce(this.selectedPostcodes, postcode)
     // remove item from list
     $item.remove()
-    // remove summary card
-    this.$resultsContainer.querySelector(`[data-postcode-summary="${postcode}"]`).remove()
+    // remove summary card (need to remove container element)
+    this.$resultsContainer
+      .querySelector(`[data-postcode-summary="${postcode}"]`)
+      .closest('.col-lg-4')
+      .remove()
     // update url
     this.updateURL()
     // re do aggregate stats
