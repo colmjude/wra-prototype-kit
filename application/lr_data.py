@@ -1,4 +1,5 @@
 import requests
+from flask import current_app
 
 from application.ltt import calculate_basic_ltt, calculate_higher_ltt
 
@@ -24,19 +25,26 @@ def get_available_postcodes(date_format="%Y%m", valid_from=None):
         return r.json()
 
 
-def get_postcode_stats(postcode):
-    endpoint = STATS_ENDPOINT
+def get_postcode_stats(postcode, start_date=None):
     if postcode:
         endpoint = STATS_ENDPOINT + f"?postcode_area={postcode}"
+
+    sdate = "2018-04-01"
+    if start_date is not None:
+        sdate = start_date.strftime(current_app.config["API_DATE_FORMAT"])
+
+    endpoint = endpoint + f"&start_date={sdate}"
+    print(endpoint)
+
     r = requests.post(endpoint)
     if r.ok:
         return r.json()
 
 
-def map_post_codes_to_stats(postcodes):
+def map_post_codes_to_stats(postcodes, **kwargs):
     data = {}
     for postcode in postcodes:
-        stats = get_postcode_stats(postcode)
+        stats = get_postcode_stats(postcode, **kwargs)
         data.setdefault(postcode, stats["lr_transaction_stats"][0])
     return postcode_stat_add_ltt(data)
 

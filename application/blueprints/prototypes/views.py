@@ -1,5 +1,4 @@
 from datetime import datetime
-from dateutil.relativedelta import relativedelta
 
 from flask import (
     Blueprint,
@@ -22,7 +21,7 @@ from application.lr_data import (
     get_available_postcodes,
     map_post_codes_to_stats,
 )
-from application.utils import readCSV, remove_duplicates
+from application.utils import readCSV, remove_duplicates, one_year_ago
 
 
 prototypes = Blueprint("prototypes", __name__, url_prefix="/prototypes")
@@ -79,7 +78,6 @@ def by_post_code(lang):
     form = PostCodeForm()
 
     # get all available postcodes
-    one_tr_ago = datetime.today() - relativedelta(months=12)
     postcodes = get_available_postcodes()
 
     form.new_postcode.choices = [("", "")] + [
@@ -105,7 +103,7 @@ def by_post_code(lang):
     # get stats for selected post codes
     postcode_data = {}
     if len(selected):
-        postcode_data = map_post_codes_to_stats(selected)
+        postcode_data = map_post_codes_to_stats(selected, start_date=one_year_ago())
 
     aggregate_summary = calculate_potential_impact(postcode_data)
 
@@ -116,12 +114,13 @@ def by_post_code(lang):
         postcodes=postcodes["lr_transaction_postcode_coverage"],
         selected_postcodes=postcode_data,
         aggregate_summary=aggregate_summary,
+        a_yr_ago=one_year_ago().strftime("%Y-%m-%d"),
     )
 
 
 @prototypes.route("/postcode-stats/<postcode>")
 def postcode_stats(postcode):
-    return jsonify(map_post_codes_to_stats([postcode]))
+    return jsonify(map_post_codes_to_stats([postcode], start_date=one_year_ago()))
 
 
 @prototypes.route("/postcode-stats/")
@@ -133,7 +132,9 @@ def aggregate_postcode_stats():
     if len(selected) == 0:
         return jsonify({})
 
-    aggregate_summary = calculate_potential_impact(map_post_codes_to_stats(selected))
+    aggregate_summary = calculate_potential_impact(
+        map_post_codes_to_stats(selected, start_date=one_year_ago())
+    )
     return jsonify(aggregate_summary)
 
 

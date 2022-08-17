@@ -12,6 +12,7 @@ class Config(object):
     LANGUAGES = {"en": "English", "cy": "Cymraeg"}
     ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD")
     ADMIN_USERNAME = os.getenv("ADMIN_USERNAME")
+    API_DATE_FORMAT = "%Y-%m-%d"
 
 
 class DevelopmentConfig(Config):

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-16 16:27+0100\n"
+"POT-Creation-Date: 2022-08-17 16:47+0100\n"
 "PO-Revision-Date: 2022-07-18 14:24+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: cy\n"
@@ -218,7 +218,7 @@ msgid "Add postcode"
 msgstr "Ychwanegu cod post"
 
 #: application/templates/prototypes/by_post_code-temp.html:59
-#: application/templates/prototypes/by_post_code.html:103
+#: application/templates/prototypes/by_post_code.html:104
 #: application/templates/prototypes/by_post_code_wip.html:60
 msgid "Statistics per selected postcode"
 msgstr "Ystadegau fesul cod post a ddewiswyd"
@@ -230,15 +230,15 @@ msgstr "Dewiswyd"
 
 #: application/templates/prototypes/by_post_code-temp.html:67
 #: application/templates/prototypes/by_post_code.html:61
-#: application/templates/prototypes/by_post_code.html:215
+#: application/templates/prototypes/by_post_code.html:217
 #: application/templates/prototypes/by_post_code_wip.html:68
 #: application/templates/prototypes/by_post_code_wip.html:159
 msgid "remove postcode"
 msgstr "dileu cod post"
 
 #: application/templates/prototypes/by_post_code-temp.html:82
-#: application/templates/prototypes/by_post_code.html:112
-#: application/templates/prototypes/by_post_code.html:177
+#: application/templates/prototypes/by_post_code.html:114
+#: application/templates/prototypes/by_post_code.html:179
 #: application/templates/prototypes/by_post_code_wip.html:83
 #: application/templates/prototypes/by_post_code_wip.html:134
 msgid "Transactions"
@@ -275,25 +275,25 @@ msgid "Min price"
 msgstr "Isafswm pris"
 
 #: application/templates/prototypes/by_post_code-temp.html:114
-#: application/templates/prototypes/by_post_code.html:159
+#: application/templates/prototypes/by_post_code.html:161
 #: application/templates/prototypes/by_post_code_wip.html:115
 msgid "This is a prototype"
 msgstr "Prototeip yw hwn"
 
 #: application/templates/prototypes/by_post_code-temp.html:117
-#: application/templates/prototypes/by_post_code.html:162
+#: application/templates/prototypes/by_post_code.html:164
 #: application/templates/prototypes/by_post_code_wip.html:118
 msgid "The data used in this prototype has been collected from"
 msgstr "Mae'r data a ddefnyddir yn y prototeip hwn wedi'i gasglu o"
 
 #: application/templates/prototypes/by_post_code-temp.html:117
-#: application/templates/prototypes/by_post_code.html:162
+#: application/templates/prototypes/by_post_code.html:164
 #: application/templates/prototypes/by_post_code_wip.html:118
 msgid "HM Land Registry price paid dataset"
 msgstr "Set ddata pris a dalwyd Cofrestrfa Tir EM"
 
 #: application/templates/prototypes/by_post_code-temp.html:118
-#: application/templates/prototypes/by_post_code.html:163
+#: application/templates/prototypes/by_post_code.html:165
 #: application/templates/prototypes/by_post_code_wip.html:119
 msgid ""
 "We have not included data from before 2018, when the Welsh Revenue "
@@ -313,39 +313,41 @@ msgid "Current selection"
 msgstr "Detholiad cyfredol"
 
 #: application/templates/prototypes/by_post_code.html:71
-#: application/templates/prototypes/by_post_code.html:220
+#: application/templates/prototypes/by_post_code.html:222
 msgid "Potential impact"
 msgstr "Effaith bosibl"
 
 #: application/templates/prototypes/by_post_code.html:74
-#: application/templates/prototypes/by_post_code.html:223
+#: application/templates/prototypes/by_post_code.html:225
 msgid "Total transactions"
 msgstr "Cyfanswm y trafodion"
 
 #: application/templates/prototypes/by_post_code.html:79
-#: application/templates/prototypes/by_post_code.html:228
+#: application/templates/prototypes/by_post_code.html:230
 msgid "Avg transaction price"
 msgstr "Pris trafodiad cyfartalog"
 
 #: application/templates/prototypes/by_post_code.html:84
-#: application/templates/prototypes/by_post_code.html:233
+#: application/templates/prototypes/by_post_code.html:235
 msgid "Potential LTT revenue"
 msgstr "Refeniw LTT posibl"
 
-#: application/templates/prototypes/by_post_code.html:116
-#: application/templates/prototypes/by_post_code.html:180
-#, fuzzy
-msgid "Average"
-msgstr "Cyfartaledd"
+#: application/templates/prototypes/by_post_code.html:87
+msgid "These figures are estimates for a 12 month period"
+msgstr "Amcangyfrifon ar gyfer cyfnod o 12 mis yw'r ffigurau hyn"
+
+#: application/templates/prototypes/by_post_code.html:105
+msgid "The statistics for each postcode area cover a 1 year period, from"
+msgstr "Mae'r ystadegau ar gyfer pob ardal cod post yn cwmpasu cyfnod o 1 flwyddyn, o"
+
+#: application/templates/prototypes/by_post_code.html:105
+msgid "until today"
+msgstr "hyd heddiw"
 
 #: application/templates/prototypes/by_post_code.html:118
-#: application/templates/prototypes/by_post_code.html:128
-#: application/templates/prototypes/by_post_code.html:138
 #: application/templates/prototypes/by_post_code.html:182
-#: application/templates/prototypes/by_post_code.html:192
-#: application/templates/prototypes/by_post_code.html:202
-msgid "Price"
-msgstr "Pris"
+msgid "Average"
+msgstr "Cyfartaledd"
 
 #: application/templates/prototypes/by_post_code.html:120
 #: application/templates/prototypes/by_post_code.html:130
@@ -353,8 +355,8 @@ msgstr "Pris"
 #: application/templates/prototypes/by_post_code.html:184
 #: application/templates/prototypes/by_post_code.html:194
 #: application/templates/prototypes/by_post_code.html:204
-msgid "Basic LTT"
-msgstr "LTT sylfaenol"
+msgid "Price"
+msgstr "Pris"
 
 #: application/templates/prototypes/by_post_code.html:122
 #: application/templates/prototypes/by_post_code.html:132
@@ -362,20 +364,29 @@ msgstr "LTT sylfaenol"
 #: application/templates/prototypes/by_post_code.html:186
 #: application/templates/prototypes/by_post_code.html:196
 #: application/templates/prototypes/by_post_code.html:206
+msgid "Basic LTT"
+msgstr "LTT sylfaenol"
+
+#: application/templates/prototypes/by_post_code.html:124
+#: application/templates/prototypes/by_post_code.html:134
+#: application/templates/prototypes/by_post_code.html:144
+#: application/templates/prototypes/by_post_code.html:188
+#: application/templates/prototypes/by_post_code.html:198
+#: application/templates/prototypes/by_post_code.html:208
 msgid "Higher LTT"
 msgstr "LTT uwch"
 
-#: application/templates/prototypes/by_post_code.html:126
-#: application/templates/prototypes/by_post_code.html:190
+#: application/templates/prototypes/by_post_code.html:128
+#: application/templates/prototypes/by_post_code.html:192
 msgid "Max"
 msgstr "Uchafswm"
 
-#: application/templates/prototypes/by_post_code.html:136
-#: application/templates/prototypes/by_post_code.html:200
+#: application/templates/prototypes/by_post_code.html:138
+#: application/templates/prototypes/by_post_code.html:202
 msgid "Min"
 msgstr "lleiafswm"
 
-#: application/templates/prototypes/by_post_code.html:236
+#: application/templates/prototypes/by_post_code.html:238
 msgid "See breakdown by postcode area"
 msgstr "Gweler y dadansoddiad fesul ardal cod post"
 

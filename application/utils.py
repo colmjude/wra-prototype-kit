@@ -1,6 +1,9 @@
 import csv
 import json
 
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
+
 
 def create_dict(keys_list, values_list):
     zip_iterator = zip(keys_list, values_list)
@@ -29,3 +32,7 @@ def readCSV(filename, json_blobs=[], bool_fields=[]):
 
 def remove_duplicates(l):
     return list(set(l))
+
+
+def one_year_ago():
+    return datetime.today() - relativedelta(months=12)
