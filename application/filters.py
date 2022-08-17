@@ -12,7 +12,6 @@ def hex_to_rgb_string_filter(hex):
 
 
 def strip_zero_decimals_filter(v):
-    print(type(v))
     if v.endswith((".0", ".00")):
         parts = v.split(".")
         return parts[0]
