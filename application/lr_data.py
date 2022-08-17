@@ -59,9 +59,10 @@ def calculate_potential_impact(postcode_data):
         )
 
     aggregate_avg_price = summed_avg_price / total_transactions
+    average_ltt_amount = calculate_basic_ltt(aggregate_avg_price)
 
     return {
         "total": total_transactions,
         "average_price": aggregate_avg_price,
-        "potential_ltt_revenue": total_transactions * aggregate_avg_price,
+        "potential_ltt_revenue": total_transactions * average_ltt_amount,
     }
