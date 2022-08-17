@@ -1,4 +1,5 @@
 from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
 from flask import (
     Blueprint,
@@ -78,6 +79,7 @@ def by_post_code(lang):
     form = PostCodeForm()
 
     # get all available postcodes
+    one_tr_ago = datetime.today() - relativedelta(months=12)
     postcodes = get_available_postcodes()
 
     form.new_postcode.choices = [("", "")] + [

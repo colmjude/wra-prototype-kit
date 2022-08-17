@@ -8,8 +8,18 @@ STATS_ENDPOINT = (
 )
 
 
-def get_available_postcodes():
-    r = requests.post(COVERAGE_ENDPOINT)
+def generate_coverage_endpoint(date_format, valid_from=None):
+    if valid_from is None:
+        return COVERAGE_ENDPOINT
+    return (
+        COVERAGE_ENDPOINT
+        + f"?postcode_valid_from_date={valid_from.strftime(date_format)}"
+    )
+
+
+def get_available_postcodes(date_format="%Y%m", valid_from=None):
+    # why can't I use **kwargs
+    r = requests.post(generate_coverage_endpoint(date_format, valid_from))
     if r.ok:
         return r.json()
 
