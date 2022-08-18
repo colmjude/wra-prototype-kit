@@ -92,15 +92,11 @@ PostcodeMap.prototype.loadPostcodeLayer = function (wraMap) {
   // add always visible layer
   this.mapModule.addFillLayer('postcodesVisible', 'postcodeAreas', {
     fillColor: '#000',
-    fillOpacity: 0.1
+    fillOpacity: 0.01
   }, false)
   this._layers.push('postcodesVisibleFill')
 
-  this.mapModule.addFillLayer('postcodesHover', 'postcodeAreas', {
-    fillColor: '#955',
-    fillOpacity: 0.4
-  }, false)
-  this._layers.push('postcodesHoverFill')
+  this.setupHoverLayer('postcodesVisibleFill')
 
   this.showSelected()
 }
@@ -115,6 +111,38 @@ PostcodeMap.prototype.removeFilter = function () {
   this.mapModule.map.setFilter('postcodesFill', undefined)
 }
 
+PostcodeMap.prototype.setupHoverLayer = function (layerToHoverOn) {
+  const that = this
+  const map = this.mapModule.map
+
+  this.mapModule.addFillLayer('postcodesHover', 'postcodeAreas', {
+    fillColor: '#955',
+    fillOpacity: 0.4
+  }, false)
+  this._layers.push('postcodesHoverFill')
+  this.mapModule.hideLayer('postcodesHoverFill')
+
+  // show layer when hovering over Wales
+  map.on('mouseover', layerToHoverOn, function (e) {
+    console.log(e, 'mouse entered the Wales area')
+    that.mapModule.showLayer('postcodesHoverFill')
+  })
+
+  // hide layer when not over Wales
+  map.on('mouseleave', layerToHoverOn, function (e) {
+    console.log(e, 'mouse leaving the Wales area')
+    that.mapModule.hideLayer('postcodesHoverFill')
+  })
+
+  // track which postcode_area mouse is over
+  this.mapModule.map.on('mousemove', layerToHoverOn, function (e) {
+    const underMouse = map.queryRenderedFeatures(e.point, { layers: [layerToHoverOn] })
+    that.displayFeatureDetails(underMouse)
+    that.highlightPostcodeArea(underMouse.map((feature) => feature.properties.postcode_area))
+    that.displayCurrentPostcode(underMouse)
+  })
+}
+
 PostcodeMap.prototype.setupListeners = function () {
   const boundNewSelectionListener = this.newSelectionListener.bind(this)
   this.$mapContainer.addEventListener('newSelection', boundNewSelectionListener)
@@ -124,13 +152,6 @@ PostcodeMap.prototype.setupListeners = function () {
   })
 
   const map = this.mapModule.map
-  const that = this
-  this.mapModule.map.on('mousemove', 'postcodesVisibleFill', function (e) {
-    const underMouse = map.queryRenderedFeatures(e.point, { layers: ['postcodesVisibleFill'] })
-    that.displayFeatureDetails(underMouse)
-    that.highlightPostcodeArea(underMouse.map((feature) => feature.properties.postcode_area))
-    that.displayCurrentPostcode(underMouse)
-  })
 
   this.mapModule.map.on('click', function (e) {
     const underMouse = map.queryRenderedFeatures(e.point, { layers: ['postcodesVisibleFill', 'postcodesHoverFill'] })
