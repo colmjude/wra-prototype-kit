@@ -78,7 +78,7 @@ def by_post_code(lang):
     form = PostCodeForm()
 
     # get all available postcodes
-    postcodes = get_available_postcodes()
+    postcodes = get_available_postcodes(valid_from=datetime.today())
 
     form.new_postcode.choices = [("", "")] + [
         (postcode["postcode_area"], postcode["postcode_area"])
