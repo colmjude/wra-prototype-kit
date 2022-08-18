@@ -166,6 +166,10 @@ Map.prototype.getMap = function () {
   return this.map
 }
 
+Map.prototype.hideLayer = function (layerId) {
+  this._setLayerVisibility(layerId, 'none')
+}
+
 Map.prototype.onMapLoad = function (e) {
   this.initialMapLoaded = true
 
@@ -220,7 +224,11 @@ Map.prototype.setSourceData = function (sourceName, data) {
   this.map.getSource(sourceName).setData(data)
 }
 
-Map.prototype._toggleLayer = function (layerId, visibility) {
+Map.prototype.showLayer = function (layerId) {
+  this._setLayerVisibility(layerId, 'visible')
+}
+
+Map.prototype._setLayerVisibility = function (layerId, visibility) {
   this.map.setLayoutProperty(
     layerId,
     'visibility',
@@ -231,7 +239,7 @@ Map.prototype._toggleLayer = function (layerId, visibility) {
 Map.prototype.togglePolygonLayerVisibility = function (layerName, toEnable) {
   const visibility = (toEnable) ? 'visible' : 'none'
   const layers = this.polygonLayers[layerName]
-  layers.forEach(layerId => this._toggleLayer(layerId, visibility))
+  layers.forEach(layerId => this._setLayerVisibility(layerId, visibility))
 }
 
 const mapDefaults = {
