@@ -2,6 +2,8 @@ import utils from '../utils.js'
 import Map from './map'
 import mapHelpers from '../map-helpers'
 
+/* global CustomEvent */
+
 const getBBox = mapHelpers.generateBBox
 
 function PostcodeMap ($mapContainer) {
@@ -12,6 +14,7 @@ PostcodeMap.prototype.init = function (opts) {
   this.setOptions(opts)
   this._sourceLoaded = false
   this._layers = []
+  this.observers = []
   this.currentFilter = undefined
 
   this.mapModule = this.createMap()
@@ -22,6 +25,10 @@ PostcodeMap.prototype.init = function (opts) {
   return this
 }
 
+PostcodeMap.prototype.addObserver = function ($el) {
+  this.observers.push($el)
+}
+
 PostcodeMap.prototype.createMap = function () {
   const boundLoadPostcodeLayer = this.loadPostcodeLayer.bind(this)
   return new Map(this.$mapContainer).init({
@@ -30,9 +37,21 @@ PostcodeMap.prototype.createMap = function () {
   })
 }
 
+PostcodeMap.prototype.dispatchSelectionEvent = function (evtName, postcode) {
+  if (this.observers.length) {
+    const selectionEvent = new CustomEvent(evtName, { detail: { postcode: postcode } })
+    this.observers.forEach(function ($el) {
+      $el.dispatchEvent(selectionEvent)
+    })
+  }
+}
+
 PostcodeMap.prototype.displayCurrentPostcode = function (features) {
   const postcodes = features.map((feature) => feature.properties.postcode)
   this.viewPanel.textContent = postcodes
+  features.forEach(function (feature) {
+    console.log('currently over postcodes in ares:', feature.properties.postcode_area)
+  })
 }
 
 PostcodeMap.prototype.displayFeatureDetails = function (features) {
@@ -53,6 +72,16 @@ PostcodeMap.prototype.flyToSelected = function () {
 PostcodeMap.prototype.flyToWales = function () {
   const walesBox = [-2.503962800922352, 51.86049502258254, -4.2089010906294675, 51.379339994252945]
   this.mapModule.map.fitBounds([[walesBox[0], walesBox[1]], [walesBox[2], walesBox[3]]])
+}
+
+PostcodeMap.prototype.getCurrentlySelectedPostcodes = function () {
+  // check which postcodes have been selected
+  const urlParams = (new URL(document.location)).searchParams
+  return urlParams.getAll('selected_postcodes')
+}
+
+PostcodeMap.prototype.getFeaturesByPoint = function (pt) {
+  return this.mapModule.map.queryRenderedFeatures(pt, { layers: ['postcodesVisibleFill'] })
 }
 
 PostcodeMap.prototype.havePostcodesLoaded = function () {
@@ -111,6 +140,10 @@ PostcodeMap.prototype.removeFilter = function () {
   this.mapModule.map.setFilter('postcodesFill', undefined)
 }
 
+PostcodeMap.prototype.removeSelectionListener = function (e) {
+  console.log('remove selection heard', e)
+}
+
 PostcodeMap.prototype.setupHoverLayer = function (layerToHoverOn) {
   const that = this
   const map = this.mapModule.map
@@ -136,27 +169,42 @@ PostcodeMap.prototype.setupHoverLayer = function (layerToHoverOn) {
 
   // track which postcode_area mouse is over
   this.mapModule.map.on('mousemove', layerToHoverOn, function (e) {
-    const underMouse = map.queryRenderedFeatures(e.point, { layers: [layerToHoverOn] })
-    that.displayFeatureDetails(underMouse)
-    that.highlightPostcodeArea(underMouse.map((feature) => feature.properties.postcode_area))
-    that.displayCurrentPostcode(underMouse)
+    const features = that.getFeaturesByPoint(e.point)
+    // const underMouse = map.queryRenderedFeatures(e.point, { layers: [layerToHoverOn] })
+    // that.displayFeatureDetails(features)
+    that.highlightPostcodeArea(features.map((feature) => feature.properties.postcode_area))
+    that.displayCurrentPostcode(features)
   })
 }
 
 PostcodeMap.prototype.setupListeners = function () {
+  // listen for new selections
   const boundNewSelectionListener = this.newSelectionListener.bind(this)
   this.$mapContainer.addEventListener('newSelection', boundNewSelectionListener)
 
-  this.mapModule.map.on('mouseover', function (e) {
-    console.log('mouseover', e)
-  })
+  // listen for new selections
+  const boundRemoveSelectionListener = this.removeSelectionListener.bind(this)
+  this.$mapContainer.addEventListener('removeSelection', boundRemoveSelectionListener)
 
-  const map = this.mapModule.map
+  const that = this
 
   this.mapModule.map.on('click', function (e) {
-    const underMouse = map.queryRenderedFeatures(e.point, { layers: ['postcodesVisibleFill', 'postcodesHoverFill'] })
-    console.log(underMouse)
-    console.log(underMouse.forEach((feature) => console.log(feature.properties.postcode_area)))
+    const features = that.getFeaturesByPoint(e.point)
+    //const underMouse = map.queryRenderedFeatures(e.point, { layers: ['postcodesVisibleFill', 'postcodesHoverFill'] })
+    console.log(features)
+    const postcodes = features.map((feature) => feature.properties.postcode_area)
+    if (postcodes.length > 1) {
+      console.log('there is more than one postcode in this selection', postcodes)
+    }
+    const currentlySelected = that.getCurrentlySelectedPostcodes()
+    if (!currentlySelected.includes(postcodes[0])) {
+      // new selection so trigger that
+      console.log('new selection', postcodes[0])
+      that.dispatchSelectionEvent('newSelection', postcodes[0])
+    } else {
+      console.log('remove selection', postcodes[0])
+      that.dispatchSelectionEvent('removeSelection', postcodes[0])
+    }
   })
 }
 
@@ -175,8 +223,7 @@ PostcodeMap.prototype.showPostcodeAreas = function (postcodes) {
 
 PostcodeMap.prototype.showSelected = function () {
   // check which postcodes have been selected
-  const urlParams = (new URL(document.location)).searchParams
-  const currentlySelected = urlParams.getAll('selected_postcodes')
+  const currentlySelected = this.getCurrentlySelectedPostcodes()
   this.removeFilter()
   if (currentlySelected.length > 0) {
     this.showPostcodeAreas(currentlySelected)
