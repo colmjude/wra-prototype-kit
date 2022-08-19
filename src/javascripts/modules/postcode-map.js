@@ -141,7 +141,8 @@ PostcodeMap.prototype.removeFilter = function () {
 }
 
 PostcodeMap.prototype.removeSelectionListener = function (e) {
-  console.log('remove selection heard', e)
+  console.log('remove selection', e.detail.postcode)
+  this.showSelected()
 }
 
 PostcodeMap.prototype.setupHoverLayer = function (layerToHoverOn) {
@@ -190,8 +191,7 @@ PostcodeMap.prototype.setupListeners = function () {
 
   this.mapModule.map.on('click', function (e) {
     const features = that.getFeaturesByPoint(e.point)
-    //const underMouse = map.queryRenderedFeatures(e.point, { layers: ['postcodesVisibleFill', 'postcodesHoverFill'] })
-    console.log(features)
+
     const postcodes = features.map((feature) => feature.properties.postcode_area)
     if (postcodes.length > 1) {
       console.log('there is more than one postcode in this selection', postcodes)
@@ -213,7 +213,6 @@ PostcodeMap.prototype.showPostcodeAreas = function (postcodes) {
     // do we need to make 'postcode_area' configurable?
     const filter = ['match', ['get', 'postcode_area'], postcodes, true, false]
     console.log(filter)
-    console.log(this.mapModule)
     this.mapModule.map.setFilter('postcodesFill', filter)
     this.currentFilter = filter
   } else {

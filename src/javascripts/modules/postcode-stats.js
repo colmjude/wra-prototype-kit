@@ -138,16 +138,18 @@ PostcodeStats.prototype.displayLatestAggregateStats = function (stats) {
 
 PostcodeStats.prototype.fetchAggregateStats = function () {
   const that = this
-  if (this.selectedPostcodes.length > 0) {
-    this.$aggregateSummaryContainer.classList.remove('js-hidden')
-    const args = this.selectedPostcodes.map((postcode) => `postcode=${postcode}`).join('&')
-    fetch(`/prototypes/postcode-stats/?${args}`)
-      .then(response => response.json())
-      .then(function (data) {
-        that.displayLatestAggregateStats(data)
-      })
-  } else {
-    this.$aggregateSummaryContainer.classList.add('js-hidden')
+  if (this.$aggregateSummaryContainer) {
+    if (this.selectedPostcodes.length > 0) {
+      this.$aggregateSummaryContainer.classList.remove('js-hidden')
+      const args = this.selectedPostcodes.map((postcode) => `postcode=${postcode}`).join('&')
+      fetch(`/prototypes/postcode-stats/?${args}`)
+        .then(response => response.json())
+        .then(function (data) {
+          that.displayLatestAggregateStats(data)
+        })
+    } else {
+      this.$aggregateSummaryContainer.classList.add('js-hidden')
+    }
   }
 }
 
@@ -156,13 +158,10 @@ PostcodeStats.prototype.fetchStats = function (postcode) {
   fetch(`/prototypes/postcode-stats/${postcode}`)
     .then(response => response.json())
     .then(function (data) {
-      that.selectedPostcodes.push(postcode)
       that.createResult(postcode, data[postcode])
-      that.addSelectedItem(postcode)
-      that.checkSelection()
-      that.updateURL()
       that.fetchAggregateStats()
     })
+    // consider adding error handling incase the fetch fails
 }
 
 PostcodeStats.prototype.hideContainers = function () {
@@ -194,6 +193,7 @@ PostcodeStats.prototype.removeHandler = function (e) {
     // remove item from list
     $item.remove()
     // remove summary card (need to remove container element)
+    console.log('container', this.$resultsContainer, 'postcode', postcode)
     this.$resultsContainer
       .querySelector(`[data-postcode-summary="${postcode}"]`)
       .closest('.col-lg-4')
@@ -218,6 +218,12 @@ PostcodeStats.prototype.submitHandler = function (e) {
   e.preventDefault()
   const selection = this.$input.value
   if (!this.selectedPostcodes.includes(selection)) {
+    // update UI with selected postcode
+    this.selectedPostcodes.push(selection)
+    this.addSelectedItem(selection)
+    this.checkSelection()
+    this.updateURL()
+    // fetch stats for selection
     this.fetchStats(selection)
     // trigger event - to do change name to dispatch
     this.triggerNewSelectionEvent(selection)
