@@ -47,6 +47,12 @@ PostcodeStats.prototype.init = function () {
   // listen for new selections
   const boundSubmitHandler = this.submitHandler.bind(this)
   this.$form.addEventListener('submit', boundSubmitHandler)
+  // listen for new selections via other sources (e.g. map)
+  this.$form.addEventListener('newSelection', function (e) {
+    const newPostcode = e.detail.postcode
+    console.log('new selection made via the map', newPostcode)
+    this.newSelection(newPostcode)
+  }.bind(this))
 
   // listen for removing selections
   const boundRemoveHandler = this.removeHandler.bind(this)
@@ -180,6 +186,23 @@ PostcodeStats.prototype.makeRemoveURL = function (postcode) {
   return url
 }
 
+PostcodeStats.prototype.newSelection = function (postcode) {
+  if (!this.selectedPostcodes.includes(postcode)) {
+    // update UI with selected postcode
+    this.selectedPostcodes.push(postcode)
+    this.addSelectedItem(postcode)
+    this.checkSelection()
+    this.updateURL()
+    // fetch stats for selection
+    this.fetchStats(postcode)
+    // trigger event - to do change name to dispatch
+    this.triggerNewSelectionEvent(postcode)
+  } else {
+    // handle better
+    console.log(`${postcode} already selected`)
+  }
+}
+
 PostcodeStats.prototype.removeHandler = function (e) {
   // check anchor clicked on
   if (e.target.tagName.toLowerCase() === 'a' && e.target.classList.contains('app-selected-item__remove')) {
@@ -217,20 +240,7 @@ PostcodeStats.prototype.showContainers = function () {
 PostcodeStats.prototype.submitHandler = function (e) {
   e.preventDefault()
   const selection = this.$input.value
-  if (!this.selectedPostcodes.includes(selection)) {
-    // update UI with selected postcode
-    this.selectedPostcodes.push(selection)
-    this.addSelectedItem(selection)
-    this.checkSelection()
-    this.updateURL()
-    // fetch stats for selection
-    this.fetchStats(selection)
-    // trigger event - to do change name to dispatch
-    this.triggerNewSelectionEvent(selection)
-  } else {
-    // handle better
-    console.log(`${selection} already selected`)
-  }
+  this.newSelection(selection)
 }
 
 PostcodeStats.prototype.triggerNewSelectionEvent = function (postcode) {

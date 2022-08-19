@@ -16,5 +16,6 @@ const $mapContainer = document.querySelector('.app-map__wrapper')
 if ($mapContainer) {
   const mapModule = new PostcodeMap($mapContainer).init({})
   statsModule.addObserver($mapContainer)
+  mapModule.addObserver($form)
   window.mapModule = mapModule
 }
