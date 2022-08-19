@@ -205,6 +205,7 @@ PostcodeStats.prototype.removeHandler = function (e) {
     // check if anything still selected
     this.checkSelection()
     // To do: trigger event for observers
+    this.triggerRemoveSelectionEvent(postcode)
   }
 }
 
@@ -231,6 +232,16 @@ PostcodeStats.prototype.triggerNewSelectionEvent = function (postcode) {
     const selectionEvent = new CustomEvent('newSelection', { detail: { postcode: postcode } })
     this.observers.forEach(function ($el) {
       $el.dispatchEvent(selectionEvent)
+    })
+  }
+}
+
+PostcodeStats.prototype.triggerRemoveSelectionEvent = function (postcode) {
+  console.log('dispatch event')
+  if (this.observers.length) {
+    const removeSelectionEvent = new CustomEvent('removeSelection', { detail: { postcode: postcode } })
+    this.observers.forEach(function ($el) {
+      $el.dispatchEvent(removeSelectionEvent)
     })
   }
 }
