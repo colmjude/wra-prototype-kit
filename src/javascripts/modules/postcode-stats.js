@@ -57,7 +57,11 @@ PostcodeStats.prototype.init = function () {
   // listen for removing selections
   const boundRemoveHandler = this.removeHandler.bind(this)
   this.$selectedList.addEventListener('click', boundRemoveHandler)
-
+  // listen for removals via other sources (e.g. map)
+  this.$form.addEventListener('removeSelection', function (e) {
+    console.log('remove selection made via the map', e.detail.postcode)
+    this.removeSelection(e.detail.postcode)
+  }.bind(this))
   return this
 }
 
@@ -208,15 +212,21 @@ PostcodeStats.prototype.removeHandler = function (e) {
   if (e.target.tagName.toLowerCase() === 'a' && e.target.classList.contains('app-selected-item__remove')) {
     e.preventDefault()
     const $anchor = e.target.closest('.app-selected-item')
-    const $item = $anchor.closest('.app-selected-item')
     const postcode = $anchor.dataset.postcode
     console.log(e, postcode)
+    this.removeSelection(postcode)
+  }
+}
+
+PostcodeStats.prototype.removeSelection = function (postcode) {
+  if (this.selectedPostcodes.includes(postcode)) {
+    const $anchor = this.$selectedList.querySelector(`[data-postcode='${postcode}']`)
+    const $item = $anchor.closest('.app-selected-item')
     // remove postcode from selected list
     utils.removeItemOnce(this.selectedPostcodes, postcode)
     // remove item from list
     $item.remove()
     // remove summary card (need to remove container element)
-    console.log('container', this.$resultsContainer, 'postcode', postcode)
     this.$resultsContainer
       .querySelector(`[data-postcode-summary="${postcode}"]`)
       .closest('.col-lg-4')
@@ -229,6 +239,8 @@ PostcodeStats.prototype.removeHandler = function (e) {
     this.checkSelection()
     // To do: trigger event for observers
     this.triggerRemoveSelectionEvent(postcode)
+  } else {
+    console.log(`${postcode} not selected`)
   }
 }
 
