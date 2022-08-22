@@ -57,7 +57,27 @@
 
 [data-module="postcode-viewer-panel"] {
   position: absolute;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  margin: $wra-gutter;
+  padding: 10px $wra-gutter-half;
+  box-shadow: 0 0 3px 0 rgba($wra-dark-grey, .75);
   z-index: 100;
+
+  svg {
+    width: 25px;
+    height: 25px;
+  }
+
+  .postcode-viewer__label {
+    padding-left: $wra-gutter-half;
+    line-height: 1;
+  }
+
+  .postcode-viewer__label__area {
+    font-weight: 700;
+  }
 }
 
 // selection section

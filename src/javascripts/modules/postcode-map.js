@@ -48,7 +48,12 @@ PostcodeMap.prototype.dispatchSelectionEvent = function (evtName, postcode) {
 
 PostcodeMap.prototype.displayCurrentPostcode = function (features) {
   const postcodes = features.map((feature) => feature.properties.postcode)
-  this.viewPanel.textContent = postcodes
+  const $label = this.viewPanel.querySelector('.postcode-viewer__label')
+  const $area = $label.querySelector('.postcode-viewer__label__area')
+  const $subarea = $label.querySelector('.postcode-viewer__label__subarea')
+  const parts = postcodes[0].split(' ')
+  $area.textContent = parts[0]
+  $subarea.textContent = parts[1]
   features.forEach(function (feature) {
     console.log('currently over postcodes in ares:', feature.properties.postcode_area)
   })

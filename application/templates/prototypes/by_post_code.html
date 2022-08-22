@@ -93,7 +93,13 @@
     <div class="app-map__wrapper" style="min-height: 400px;">
       <div class="app-loader"></div>
       <div id="mapId" class="app-map"></div>
-      <div data-module="postcode-viewer-panel"></div>
+      <div data-module="postcode-viewer-panel">
+        {% include 'icons/crosshairs.svg' %}
+        <span class="postcode-viewer__label">
+          <span class="postcode-viewer__label__area"></span>
+          <span class="postcode-viewer__label__subarea"></span>
+        </span>
+      </div>
     </div><!-- /.app-map__wrapper -->
 
   </div><!-- /.app-selection-section -->
