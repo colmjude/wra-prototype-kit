@@ -230,6 +230,8 @@ PostcodeMap.prototype.showPostcodeAreas = function (postcodes) {
 PostcodeMap.prototype.showSelected = function () {
   // check which postcodes have been selected
   const currentlySelected = this.getCurrentlySelectedPostcodes()
+  // size of list of selected postcodes might change so resize map to match it
+  this.mapModule.map.resize()
   this.removeFilter()
   if (currentlySelected.length > 0) {
     this.showPostcodeAreas(currentlySelected)

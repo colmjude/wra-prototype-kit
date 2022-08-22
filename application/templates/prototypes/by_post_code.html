@@ -24,6 +24,8 @@
   }) }}
 {% endblock masthead %}
 
+{% set main_bodyClasses = "wra-width-container--extra" %}
+
 {% block content %}
 <main id="content" role="main">
   <a class="app-back-link" href="{{ url_for('base.index') }}">{{ _("Back to list of prototypes") }}</a>
@@ -70,19 +72,22 @@
     <div class="app-aggregate-summary{{ ' js-hidden' if selected_postcodes.keys()|length == 0 }}">
       {% if selected_postcodes.keys()|length %}
       <h3 class="app-selection-section__heading">{{ _('Potential impact') }}</h3>
-      <div class="app-data-stat">
-        <span class="app-data-stat__value">{{ aggregate_summary['total']|commanum|strip_zero_decimals }}</span>
-        <p class="app-data-stat__label">{{ _('Total transactions') }}</p>
-      </div>
 
-      <div class="app-data-stat">
-        <span class="app-data-stat__value">£{{ aggregate_summary['average_price']|round(2)|commanum|strip_zero_decimals }}</span>
-        <p class="app-data-stat__label">{{ _('Avg transaction price') }}</p>
-      </div>
+      <div class="app__data-stats">
+        <div class="app-data-stat">
+          <span class="app-data-stat__value">{{ aggregate_summary['total']|commanum|strip_zero_decimals }}</span>
+          <p class="app-data-stat__label">{{ _('Total transactions') }}</p>
+        </div>
 
-      <div class="app-data-stat">
-        <span class="app-data-stat__value">£{{ aggregate_summary['potential_ltt_revenue']|round(2)|commanum|strip_zero_decimals }}</span>
-        <p class="app-data-stat__label">{{ _('Potential LTT revenue') }}</p>
+        <div class="app-data-stat">
+          <span class="app-data-stat__value">£{{ aggregate_summary['average_price']|round(2)|commanum|strip_zero_decimals }}</span>
+          <p class="app-data-stat__label">{{ _('Avg transaction price') }}</p>
+        </div>
+
+        <div class="app-data-stat">
+          <span class="app-data-stat__value">£{{ aggregate_summary['potential_ltt_revenue']|round(2)|commanum|strip_zero_decimals }}</span>
+          <p class="app-data-stat__label">{{ _('Potential LTT revenue') }}</p>
+        </div>
       </div>
 
       <p class="app-small-text">{{ _('These figures are estimates for a 12 month period') }}.</p>
@@ -234,21 +239,22 @@
 
 <template id="aggregate-template">
   <h3 class="app-selection-section__heading">{{ _('Potential impact') }}</h3>
-  <div class="app-data-stat">
-    <span class="app-data-stat__value" data-aggregate="total-transactions"></span>
-    <p class="app-data-stat__label">{{ _('Total transactions') }}</p>
-  </div>
+  <div class="app__data-stats">
+    <div class="app-data-stat">
+      <span class="app-data-stat__value" data-aggregate="total-transactions"></span>
+      <p class="app-data-stat__label">{{ _('Total transactions') }}</p>
+    </div>
 
-  <div class="app-data-stat">
-    <span class="app-data-stat__value">£<span data-aggregate="avg-price"></span></span>
-    <p class="app-data-stat__label">{{ _('Avg transaction price') }}</p>
-  </div>
+    <div class="app-data-stat">
+      <span class="app-data-stat__value">£<span data-aggregate="avg-price"></span></span>
+      <p class="app-data-stat__label">{{ _('Avg transaction price') }}</p>
+    </div>
 
-  <div class="app-data-stat">
-    <span class="app-data-stat__value">£<span data-aggregate="potential-ltt"></span></span>
-    <p class="app-data-stat__label">{{ _('Potential LTT revenue') }}</p>
+    <div class="app-data-stat">
+      <span class="app-data-stat__value">£<span data-aggregate="potential-ltt"></span></span>
+      <p class="app-data-stat__label">{{ _('Potential LTT revenue') }}</p>
+    </div>
   </div>
-
   <p class="app-small-text">{{ _('These figures are estimates for a 12 month period') }}.</p>
   <p class="app-small-text"><a href="#result-breakdown">{{ _('See breakdown by postcode area') }}</a></p>
 </template>

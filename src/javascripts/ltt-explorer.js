@@ -5,7 +5,8 @@ import PostcodeMap from './modules/postcode-map'
 // set up accessible autocomplete uesed for entering postcodes
 accessibleAutocomplete.enhanceSelectElement({
   selectElement: document.querySelector('#new_postcode'),
-  defaultValue: ''
+  defaultValue: '',
+  displayMenu: 'overlay'
 })
 
 const $form = document.querySelector('.app-postcode-selector-form')

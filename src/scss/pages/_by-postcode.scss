@@ -93,15 +93,21 @@
   margin-bottom: $wra-gutter * 3;
   border: 1px solid $wra-border-colour;
 
-  .app-selection__state,
-  .app-aggregate-summary {
+  .app-selection__state {
     @include mq($from: tablet) {
-      width: 50%;
+      width: 25%;
+      order: 1;
     }
   }
 
   .app-map__wrapper {
+    width: 75%;
+    order: 2;
+  }
+
+  .app-aggregate-summary {
     width: 100%;
+    order: 3;
   }
 }
 
@@ -130,8 +136,17 @@
     margin-bottom: 20px;
   }
 
+  .app__data-stats {
+    display: flex;
+    justify-content: space-between;
+  }
+
   .app-data-stat {
     margin-bottom: $wra-gutter;
+
+    &:last-child {
+      padding-right: $wra-gutter;
+    }
   }
 
   p:last-child {
