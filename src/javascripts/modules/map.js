@@ -20,6 +20,10 @@ Map.prototype.init = function (opts) {
   return this
 }
 
+Map.prototype.addClass = function (class_) {
+  this.$module.classList.add(class_)
+}
+
 Map.prototype.addEventHandler = function (event, callback) {
   const that = this
   this.map.on(event, function (evt) {
@@ -177,6 +181,10 @@ Map.prototype.onMapLoad = function (e) {
   if (this.options.onLoadCallback) {
     this.options.onLoadCallback(that)
   }
+}
+
+Map.prototype.removeClass = function (class_) {
+  this.$module.classList.remove(class_)
 }
 
 // problematic function when there is no consistency between attributes used by datasets

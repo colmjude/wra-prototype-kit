@@ -164,12 +164,14 @@ PostcodeMap.prototype.setupHoverLayer = function (layerToHoverOn) {
   // show layer when hovering over Wales
   map.on('mouseover', layerToHoverOn, function (e) {
     console.log(e, 'mouse entered the Wales area')
+    that.mapModule.addClass('active-mode')
     that.mapModule.showLayer('postcodesHoverFill')
   })
 
   // hide layer when not over Wales
   map.on('mouseleave', layerToHoverOn, function (e) {
     console.log(e, 'mouse leaving the Wales area')
+    that.mapModule.removeClass('active-mode')
     that.mapModule.hideLayer('postcodesHoverFill')
   })
 

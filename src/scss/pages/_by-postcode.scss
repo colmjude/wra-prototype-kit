@@ -57,13 +57,17 @@
 
 [data-module="postcode-viewer-panel"] {
   position: absolute;
-  display: flex;
+  display: none;
   align-items: center;
   background: #fff;
   margin: $wra-gutter;
   padding: 10px $wra-gutter-half;
   box-shadow: 0 0 3px 0 rgba($wra-dark-grey, .75);
   z-index: 100;
+
+  .active-mode & {
+    display: flex;
+  }
 
   svg {
     width: 25px;
