@@ -64,7 +64,8 @@
           {% endif %}
         </ul>
       </div>
-    </div>
+
+    </div><!-- /.app-selection__state -->
 
     <div class="app-aggregate-summary{{ ' js-hidden' if selected_postcodes.keys()|length == 0 }}">
       {% if selected_postcodes.keys()|length %}
@@ -87,8 +88,15 @@
       <p class="app-small-text">{{ _('These figures are estimates for a 12 month period') }}.</p>
       <p class="app-small-text"><a href="#result-breakdown">{{ ('See breakdown by postcode area') }}</a></p>
       {% endif %}
-    </div>
-  </div>
+    </div><!-- /.app-aggregate-summary -->
+
+    <div class="app-map__wrapper" style="min-height: 400px;">
+      <div class="app-loader"></div>
+      <div id="mapId" class="app-map"></div>
+      <div data-module="postcode-viewer-panel"></div>
+    </div><!-- /.app-map__wrapper -->
+
+  </div><!-- /.app-selection-section -->
 
   <div class="app-postcode-stat-results{{ '' if selected_postcodes.keys()|length else ' app-postcode-stat-results--none'}}">
     
