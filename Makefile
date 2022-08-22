@@ -3,6 +3,10 @@ init:
 	pip install -r requirements.txt
 	npm install
 
+update-packages:
+	pip install -r requirements.txt
+	npm update
+
 run:
 	flask run
 
