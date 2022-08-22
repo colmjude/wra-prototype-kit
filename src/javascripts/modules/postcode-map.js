@@ -111,9 +111,9 @@ PostcodeMap.prototype.loadPostcodeLayer = function (wraMap) {
 
   this.mapModule.addGeojsonSource('postcodeAreas', endpoint)
   this.mapModule.addFillLayer('postcodes', 'postcodeAreas', {
-    fillColor: '#088',
+    fillColor: this.options.selectedColour,
     fillOpacity: 0.4,
-    lineColor: '#088',
+    lineColor: this.options.selectedColour,
     lineOpacity: 0.8,
     lineWidth: 1
   }, false)
@@ -150,7 +150,7 @@ PostcodeMap.prototype.setupHoverLayer = function (layerToHoverOn) {
   const map = this.mapModule.map
 
   this.mapModule.addFillLayer('postcodesHover', 'postcodeAreas', {
-    fillColor: '#955',
+    fillColor: this.options.hoverColour,
     fillOpacity: 0.4
   }, false)
   this._layers.push('postcodesHoverFill')
@@ -256,7 +256,9 @@ const PostcodeMapDefaults = {
   initialMapPosition: {
     center: [-3.7, 52.4],
     zoom: 6.39
-  }
+  },
+  selectedColour: '#29235c',
+  hoverColour: '#955'
 }
 
 export default PostcodeMap
