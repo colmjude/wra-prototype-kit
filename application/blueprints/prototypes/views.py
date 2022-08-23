@@ -155,40 +155,6 @@ def remove_selected_post_code(lang, postcode):
     )
 
 
-@prototypes.route("/<lang>/by-post-code-temp")
-def by_post_code_temp(lang):
-    if lang.lower() not in ["en", "cy"]:
-        abort(404)
-    g.lang_code = lang
-    refresh()
-
-    # check for previous selections
-    selected = ["CF11", "CF1"]
-
-    form = PostCodeForm()
-
-    # get all available postcodes
-    postcodes = get_available_postcodes()
-
-    form.new_postcode.choices = [
-        (postcode["postcode_area"], postcode["postcode_area"])
-        for postcode in postcodes["lr_transaction_postcode_coverage"]
-    ]
-
-    # get stats for selected post codes
-    postcode_data = {}
-    if len(selected):
-        postcode_data = map_post_codes_to_stats(selected)
-
-    return render_template(
-        "prototypes/by_post_code-temp.html",
-        form=form,
-        pageLang=lang.lower(),
-        postcodes=postcodes["lr_transaction_postcode_coverage"],
-        selected_postcodes=postcode_data,
-    )
-
-
 @prototypes.route("/<lang>/by-post-code-wip")
 def by_post_code_wip(lang):
     if lang.lower() not in ["en", "cy"]:
@@ -241,6 +207,20 @@ def by_post_code_wip(lang):
     )
 
 
+@prototypes.route("/<lang>/selecting-areas")
+def area_selection_options(lang):
+    if lang.lower() not in ["en", "cy"]:
+        abort(404)
+    g.lang_code = lang
+    refresh()
+
+    return render_template(
+        "prototypes/selecting-areas.html",
+        pageLang=lang.lower(),
+    )
+
+
+# an example of how to secure a page with basic auth
 @prototypes.route("secret-page")
 @requires_auth
 def secret_page():

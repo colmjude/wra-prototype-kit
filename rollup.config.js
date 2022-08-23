@@ -47,5 +47,12 @@ module.exports = [
       file: 'application/static/javascripts/ltt-explorer.js',
       format: 'iife'
     }
+  },
+  {
+    input: 'src/javascripts/selecting-areas-on-map.js',
+    output: {
+      file: 'application/static/javascripts/selecting-areas-on-map.js',
+      format: 'iife'
+    }
   }
 ]

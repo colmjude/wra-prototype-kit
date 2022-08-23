@@ -1,0 +1,68 @@
+{% extends "layouts/layout.html" %}
+{% from 'components/masthead.html' import appMasthead %}
+{% block page_title %}Index page for Welseh Revenue Authority Prototype Kit{% endblock %}
+
+{% block headEnd %}
+<script src="https://unpkg.com/maplibre-gl@1.14.0-rc.1/dist/maplibre-gl.js"></script>
+<link href="https://unpkg.com/maplibre-gl@1.14.0-rc.1/dist/maplibre-gl.css" rel="stylesheet" />
+<script src="{{ assetPath }}/javascripts/vendor/accessible-autocomplete.min.js"></script>
+{% endblock headEnd %}
+
+{% block headerTop -%}
+{% include 'partials/bilingualTopBar.html' %}
+{%- endblock headerTop %}
+
+{% block masthead %}
+  {% set langLinkSetting = "en" if pageLang == "cy" else "cy"  %}
+  {% set mastHeadHtml %}
+  <a class="btn btn--black btn--on-black" href="{{ url_for('prototypes.by_post_code', lang=langLinkSetting) }}">{{ "English" if pageLang == "cy" else "Cymraeg" }}</a>
+  {% endset %}
+  {{ appMasthead({
+    "options": { 
+      "html": mastHeadHtml
+    }
+  }) }}
+{% endblock masthead %}
+
+{% block content %}
+<main id="content" role="main">
+  <a class="app-back-link" href="{{ url_for('base.index') }}">{{ _("Back to list of prototypes") }}</a>
+
+  <span class="app-caption wra-!-margin-top-6">{{ _('Land and property platform') }}</span>
+  <h1 class="h1-sm-and-up">{{ _('Selecting areas') }}</h1>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <h3>Radius round a point</h3>
+    </div>
+    <div class="col-lg-6">
+      <div class="app-map__wrapper" style="min-height: 400px;">
+        <div class="app-loader"></div>
+        <div id="mapId" class="app-map"></div>
+      </div>
+    </div>
+  </div>
+  
+
+</main>
+{% endblock %}
+
+{% block footerStart %}
+<div class="prototype-panel">
+  <div class="container-fluid">
+    <h5>{{ _('This is a prototype') }}</h5>
+    <div class="row">
+      <div class="col-lg-8">
+        <p>{{ _('The data used in this prototype has been collected from') }} <a href="https://landregistry.data.gov.uk/app/qonsole">{{ _('HM Land Registry price paid dataset') }}</a>.</p>
+        <p>{{ _('We have not included data from before 2018, when the Welsh Revenue Authority was formed. This means the number of records is comparable with the number of LTT transactions there have been in that time') }}.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock footerStart %}
+
+{% block pageScripts %}
+<script src='https://unpkg.com/@turf/turf@6.3.0/turf.min.js'></script>
+<script src='{{ assetPath }}/javascripts/selecting-areas-on-map.js'></script>
+{% endblock pageScripts %}
