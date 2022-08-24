@@ -71,7 +71,7 @@
 
     <div class="app-aggregate-summary{{ ' js-hidden' if selected_postcodes.keys()|length == 0 }}">
       {% if selected_postcodes.keys()|length %}
-      <h3 class="app-selection-section__heading">{{ _('Potential impact') }}</h3>
+      <h3 class="app-selection-section__heading">{{ _('Impact assessment') }}</h3>
 
       <div class="app__data-stats">
         <div class="app-data-stat">
@@ -90,7 +90,7 @@
         </div>
       </div>
 
-      <p class="app-small-text">{{ _('These figures are estimates for a 12 month period') }}.</p>
+      <p class="app-small-text">{{ _('These figures are estimates for a 12 month period, based on data from Land Registry') }}.</p>
       <p class="app-small-text"><a href="#result-breakdown">{{ ('See breakdown by postcode area') }}</a></p>
       {% endif %}
     </div><!-- /.app-aggregate-summary -->
@@ -238,7 +238,7 @@
 </template>
 
 <template id="aggregate-template">
-  <h3 class="app-selection-section__heading">{{ _('Potential impact') }}</h3>
+  <h3 class="app-selection-section__heading">{{ _('Impact assessment') }}</h3>
   <div class="app__data-stats">
     <div class="app-data-stat">
       <span class="app-data-stat__value" data-aggregate="total-transactions"></span>
@@ -255,7 +255,7 @@
       <p class="app-data-stat__label">{{ _('Potential LTT revenue') }}</p>
     </div>
   </div>
-  <p class="app-small-text">{{ _('These figures are estimates for a 12 month period') }}.</p>
+  <p class="app-small-text">{{ _('These figures are estimates for a 12 month period, based on data from Land Registry') }}.</p>
   <p class="app-small-text"><a href="#result-breakdown">{{ _('See breakdown by postcode area') }}</a></p>
 </template>
 
