@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-24 10:05+0100\n"
+"POT-Creation-Date: 2022-08-24 10:58+0100\n"
 "PO-Revision-Date: 2022-07-18 14:24+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: cy\n"
@@ -204,11 +204,16 @@ msgid "Transactions by postcode"
 msgstr "Trafodion yn ôl cod post"
 
 #: application/templates/prototypes/by_post_code.html:36
-#: application/templates/prototypes/by_post_code_wip.html:34
-msgid ""
-"Use this tool to explore the land transaction data on a postcode by "
-"postcode basis"
-msgstr "Defnyddiwch yr offeryn hwn i archwilio data trafodion tir fesul cod post"
+msgid "Use this"
+msgstr "Defnyddiwch hwn"
+
+#: application/templates/prototypes/by_post_code.html:36
+msgid "prototype"
+msgstr "prototeip"
+
+#: application/templates/prototypes/by_post_code.html:36
+msgid "to explore the land transaction data on a postcode by postcode basis"
+msgstr "archwilio’r data trafodion tir ar sail cod post fesul cod post"
 
 #: application/templates/prototypes/by_post_code.html:52
 msgid "Add"
@@ -251,8 +256,8 @@ msgid ""
 "These figures are estimates for a 12 month period, based on data from "
 "Land Registry"
 msgstr ""
-"Mae'r ffigurau hyn yn amcangyfrifon ar gyfer cyfnod o 12 mis, yn"
-" seiliedig ar ddata gan y Gofrestrfa Tir"
+"Mae'r ffigurau hyn yn amcangyfrifon ar gyfer cyfnod o 12 mis, yn "
+"seiliedig ar ddata gan y Gofrestrfa Tir"
 
 #: application/templates/prototypes/by_post_code.html:123
 #: application/templates/prototypes/by_post_code_wip.html:60
@@ -375,6 +380,12 @@ msgstr ""
 #: application/templates/prototypes/by_post_code.html:259
 msgid "See breakdown by postcode area"
 msgstr "Gweler y dadansoddiad fesul ardal cod post"
+
+#: application/templates/prototypes/by_post_code_wip.html:34
+msgid ""
+"Use this tool to explore the land transaction data on a postcode by "
+"postcode basis"
+msgstr "Defnyddiwch yr offeryn hwn i archwilio data trafodion tir fesul cod post"
 
 #: application/templates/prototypes/by_post_code_wip.html:47
 msgid "Add postcode"
