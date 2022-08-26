@@ -234,7 +234,13 @@ PostcodeMap.prototype.showSelected = function () {
   this.mapModule.map.resize()
   this.removeFilter()
   if (currentlySelected.length > 0) {
+    // reenable postcode layer
+    this.mapModule.showLayer('postcodesFill')
     this.showPostcodeAreas(currentlySelected)
+  } else {
+    // if no postcodes selected then there is nothing to filter the
+    // postcode layer on so hide
+    this.mapModule.hideLayer('postcodesFill')
   }
 }
 
