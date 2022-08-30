@@ -7,6 +7,7 @@ COVERAGE_ENDPOINT = "https://landplatform-fastapi-dev.azurewebsites.net/lr_trans
 STATS_ENDPOINT = (
     "https://landplatform-fastapi-dev.azurewebsites.net/lr_transaction_stats"
 )
+CUSTOM_AREA_STATS_ENDPOINT = "https://landplatform-fastapi-dev.azurewebsites.net/lr_transaction_stats_custom_area?geometry_string="
 
 
 def generate_coverage_endpoint(date_format, valid_from=None):
@@ -21,6 +22,14 @@ def generate_coverage_endpoint(date_format, valid_from=None):
 def get_available_postcodes(date_format="%Y%m", valid_from=None):
     # why can't I use **kwargs
     r = requests.post(generate_coverage_endpoint(date_format, valid_from))
+    if r.ok:
+        return r.json()
+
+
+def get_area_stats(geometry):
+    # should we check if geometry is a Polygon?
+    endpoint = CUSTOM_AREA_STATS_ENDPOINT + geometry
+    r = requests.post(endpoint)
     if r.ok:
         return r.json()
 

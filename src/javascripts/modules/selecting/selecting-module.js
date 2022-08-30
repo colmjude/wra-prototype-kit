@@ -1,6 +1,8 @@
 import utils from '../../utils.js'
 import Map from '../map'
 
+/* global fetch */
+
 // set up the module
 function SelectMap ($mapContainer) {
   this.$mapContainer = $mapContainer
@@ -27,6 +29,14 @@ SelectMap.prototype.createMap = function () {
 
 SelectMap.prototype.getMap = function () {
   return this.mapModule.map
+}
+
+SelectMap.prototype.fetchStats = function (geometry) {
+  fetch(`/prototypes/area-stats?geometry=${JSON.stringify(geometry)}`)
+    .then(response => response.json())
+    .then(function (data) {
+      console.log(data)
+    })
 }
 
 // function called once the map has loaded

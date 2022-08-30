@@ -33,6 +33,7 @@ ExistingShapeSelect.prototype.shapeCreatedListener = function (e) {
   console.log('shape drawn', e)
   if (e.features[0].geometry.type === 'Polygon') {
     console.log('its a Polygon', e.features[0])
+    this.fetchStats(e.features[0].geometry)
   }
 }
 

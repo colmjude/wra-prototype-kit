@@ -20,6 +20,7 @@ from application.lr_data import (
     calculate_potential_impact,
     get_available_postcodes,
     map_post_codes_to_stats,
+    get_area_stats,
 )
 from application.utils import readCSV, remove_duplicates, one_year_ago
 
@@ -218,6 +219,16 @@ def area_selection_options(lang):
         "prototypes/selecting-areas.html",
         pageLang=lang.lower(),
     )
+
+
+@prototypes.route("/area-stats/")
+def area_stats():
+    geometry = None
+    if request.args and request.args.get("geometry"):
+        geometry = request.args.get("geometry")
+
+    if geometry is not None:
+        return jsonify(get_area_stats(geometry))
 
 
 # an example of how to secure a page with basic auth

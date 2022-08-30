@@ -1,20 +1,13 @@
-import utils from '../../utils.js'
-import Map from '../map'
-import mapHelpers from '../../map-helpers'
+import SelectMap from './selecting-module'
 
 /* global turf */
 
-function RadiusMap ($mapContainer) {
-  this.$mapContainer = $mapContainer
+function RadiusMap ($item) {
+  SelectMap.call(this, $item)
 }
 
-RadiusMap.prototype.init = function (opts) {
-  this.setOptions(opts)
-
-  this.mapModule = this.createMap()
-
-  return this
-}
+RadiusMap.prototype = Object.create(SelectMap.prototype)
+RadiusMap.prototype.constructor = SelectMap
 
 RadiusMap.prototype.addCircleLayer = function () {
   this.mapModule.addPolygonLayer('circles', 'radius', {
@@ -23,14 +16,6 @@ RadiusMap.prototype.addCircleLayer = function () {
     lineColor: '#ff0000',
     lineOpacity: 0.8,
     lineWidth: 1
-  })
-}
-
-RadiusMap.prototype.createMap = function () {
-  const boundOnBaseMapLoaded = this.onBaseMapLoaded.bind(this)
-  return new Map(this.$mapContainer).init({
-    initialMapPosition: this.options.initialMapPosition,
-    onLoadCallback: boundOnBaseMapLoaded
   })
 }
 
@@ -44,7 +29,8 @@ RadiusMap.prototype.drawCircle = function (coord) {
     circle
   ])
   this.mapModule.map.getSource('radius').setData(featureCollection)
-  console.log(circle)
+  console.log('circle', circle)
+  this.fetchStats(circle.geometry)
 }
 
 RadiusMap.prototype.onBaseMapLoaded = function (e) {
@@ -60,18 +46,6 @@ RadiusMap.prototype.onBaseMapLoaded = function (e) {
 RadiusMap.prototype.onClickHandler = function (e) {
   console.log(e)
   this.drawCircle(e.lngLat)
-}
-
-RadiusMap.prototype.setOptions = function (opts) {
-  const options = opts || {}
-  this.options = utils.extend(RadiusMapDefaults, options)
-}
-
-const RadiusMapDefaults = {
-  initialMapPosition: {
-    center: [-3.7, 52.4],
-    zoom: 6.39
-  }
 }
 
 export default RadiusMap
