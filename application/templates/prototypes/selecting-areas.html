@@ -31,7 +31,7 @@
   <span class="app-caption wra-!-margin-top-6">{{ _('Land and property platform') }}</span>
   <h1 class="h1-sm-and-up">{{ _('Selecting areas') }}</h1>
 
-  <div class="row">
+  <div class="row app-selecting-area">
     <div class="col-lg-6">
       <h3>Radius round a point</h3>
     </div>
@@ -42,7 +42,30 @@
       </div>
     </div>
   </div>
-  
+
+  <div class="row app-selecting-area wra-!-margin-top-9">
+    <div class="col-lg-6">
+      <h3>Bespoke shape</h3>
+    </div>
+    <div class="col-lg-6">
+      <div class="app-map__wrapper" style="min-height: 400px;" data-module="bespoke-selection">
+        <div class="app-loader"></div>
+        <div id="mapId2" class="app-map"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row app-selecting-area wra-!-margin-top-9">
+    <div class="col-lg-6">
+      <h3>Existing shapes</h3>
+    </div>
+    <div class="col-lg-6">
+      <div class="app-map__wrapper" style="min-height: 400px;" data-module="existing-selection">
+        <div class="app-loader"></div>
+        <div id="mapId3" class="app-map"></div>
+      </div>
+    </div>
+  </div>
 
 </main>
 {% endblock %}
