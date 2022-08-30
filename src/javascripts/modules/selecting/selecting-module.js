@@ -25,6 +25,10 @@ SelectMap.prototype.createMap = function () {
   })
 }
 
+SelectMap.prototype.getMap = function () {
+  return this.mapModule.map
+}
+
 // function called once the map has loaded
 SelectMap.prototype.onBaseMapLoaded = function (e) {
   console.log('default base map loaded event', e)
