@@ -26,12 +26,12 @@
 }
 
 .app-data-stat--small {
-  &__label {
+  .app-data-stat__label {
     font-size: 14px;
     font-weight: bold;
   }
 
-  &__value {
+  .app-data-stat__value {
     font-size: 36px;
     font-weight: lighter;
     line-height: 1;

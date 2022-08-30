@@ -77,4 +77,18 @@ utils.removeItemOnce = function (arr, value) {
   return arr
 }
 
+function numberWithCommas (x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+}
+
+utils.readableNumber = function (v) {
+  const n = parseFloat(v)
+  const d2 = n.toFixed(2)
+  // use modulus to strip trailing 0s if whole number
+  if (n % 1 === 0) {
+    return numberWithCommas(parseInt(d2))
+  }
+  return numberWithCommas(d2)
+}
+
 export default utils
