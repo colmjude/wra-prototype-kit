@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-31 13:57+0100\n"
+"POT-Creation-Date: 2022-08-31 14:58+0100\n"
 "PO-Revision-Date: 2022-07-18 14:24+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: cy\n"
@@ -77,32 +77,40 @@ msgstr "Prototeipiau ac arbrofion ar gyfer gweithio yn yr awyr agored."
 msgid "Welsh Revenue Authority Land and property proof-of-concept team site"
 msgstr "Safle tîm prawf o gysyniad tir ac eiddo Awdurdod Cyllid Cymru"
 
-#: application/templates/index.html:74
+#: application/templates/index.html:71
+msgid "The team site with links to weeknotes, blog posts and other outputs"
+msgstr "Gwefan y tîm gyda dolenni i nodiadau wythnos, postiadau blog ac allbynnau eraill"
+
+#: application/templates/index.html:75
 msgid "Team weeknotes"
 msgstr "Nodiadau wythnos tîm"
 
-#: application/templates/index.html:86
+#: application/templates/index.html:76
+msgid "A link straight to the team weeknotes."
+msgstr "Dolen yn syth i nodiadau wythnos y tîm"
+
+#: application/templates/index.html:88
 #: application/templates/layouts/layout.html:20
 msgid "Prototypes"
 msgstr "Prototeipiau"
 
-#: application/templates/index.html:89
+#: application/templates/index.html:91
 msgid "Small, throw away experiments to try out a thing"
 msgstr "Arbrofion bach taflu i ffwrdd, i drio rywbeth"
 
-#: application/templates/index.html:96
+#: application/templates/index.html:98
 msgid "Local authority region map"
 msgstr "Map rhanbarth awdurdod lleol"
 
-#: application/templates/index.html:97
+#: application/templates/index.html:99
 msgid "Testing out showing boundary data on a map"
 msgstr "Profi dangos data ffiniau ar fap"
 
-#: application/templates/index.html:100
+#: application/templates/index.html:102
 msgid "Provide a location journey"
 msgstr "Darparu taith lleoliad"
 
-#: application/templates/index.html:101
+#: application/templates/index.html:103
 msgid ""
 "Testing out a flow to help a user narrow down the area they will select a"
 " location in"
@@ -110,11 +118,11 @@ msgstr ""
 "Profi llif i helpu defnyddiwr i leihau'r ardal y bydd yn dewis lleoliad "
 "ynddi"
 
-#: application/templates/index.html:104
+#: application/templates/index.html:106
 msgid "Explore land and property data"
 msgstr "Archwilio data tir ac eiddo"
 
-#: application/templates/index.html:105
+#: application/templates/index.html:107
 msgid ""
 "This prototype tests displaying and interacting with multiple datasets on"
 " a map"
@@ -122,20 +130,20 @@ msgstr ""
 "Mae'r prototeip hwn yn profi arddangos a rhyngweithio â setiau data "
 "lluosog ar fap"
 
-#: application/templates/index.html:108
+#: application/templates/index.html:110
 msgid "Draw to search"
 msgstr "Arlunio i chwilio"
 
-#: application/templates/index.html:109
+#: application/templates/index.html:111
 msgid "A prototype to test using the bounding box API capability"
 msgstr "Prototeip i'w brofi gan ddefnyddio gallu API y blwch ffiniol"
 
-#: application/templates/index.html:112
+#: application/templates/index.html:114
 #: application/templates/prototypes/pinpoint.html:31
 msgid "Tell me about a location"
 msgstr "Dywedwch wrthyf am leoliad"
 
-#: application/templates/index.html:113
+#: application/templates/index.html:115
 msgid ""
 "A prototype of a map-less service that tells a user information about a "
 "location"
@@ -143,27 +151,31 @@ msgstr ""
 "Prototeip o wasanaeth heb fap sy'n rhoi gwybodaeth i ddefnyddiwr am "
 "leoliad"
 
-#: application/templates/index.html:116
+#: application/templates/index.html:118
 msgid "LTT stat explorer"
 msgstr "Archwiliwr ystadegau LTT"
 
-#: application/templates/index.html:117
-msgid "A example of a policy explorer type tool"
+#: application/templates/index.html:119
+msgid "An example of a policy explorer type tool"
 msgstr "Enghraifft o declyn archwiliwr polisi"
 
-#: application/templates/index.html:120
-msgid "WIP adding map to LTT explorer"
-msgstr "Gwaith ar y gweill gan ychwanegu map at fforiwr LTT"
+#: application/templates/index.html:122
+msgid "Preselected LTT stat explorer"
+msgstr "Archwiliwr ystadegau LTT wedi'i ragddewis"
 
-#: application/templates/index.html:121
-msgid "Testing map interactions"
-msgstr "Profi rhyngweithiadau mapiau"
-
-#: application/templates/index.html:124
-msgid "Ways to select or construct areas"
+#: application/templates/index.html:123
+msgid ""
+"An example of a policy explorer type tool with some postcode areas "
+"preselected"
 msgstr ""
+"Enghraifft o declyn archwiliwr polisi gyda rhai ardaloedd cod "
+"post wedi'u rhag-ddewis"
 
-#: application/templates/index.html:125
+#: application/templates/index.html:126
+msgid "Ways to select or construct areas"
+msgstr "Ffyrdd o ddewis neu adeiladu ardaloedd"
+
+#: application/templates/index.html:127
 msgid "Testing derived postcode areas"
 msgstr "Profi ardaloedd cod post deilliedig"
 
@@ -563,7 +575,6 @@ msgid "What 3 Words"
 msgstr "What 3 Words"
 
 #: application/templates/prototypes/selecting-areas.html:34
-#, fuzzy
 msgid "Selecting areas"
 msgstr "Dewis ardaloedd"
 
@@ -606,7 +617,6 @@ msgid "Local authority boundaries"
 msgstr "Ffiniau awdurdodau lleol"
 
 #: application/templates/prototypes/selecting-areas.html:89
-#, fuzzy
 msgid "Conservation areas"
 msgstr "Ardaloedd cadwraeth"
 
@@ -676,4 +686,9 @@ msgstr "Dewiswch faes arall i roi cynnig arall arni"
 #~ msgid "Potential impact"
 #~ msgstr "Effaith bosibl"
 
+#~ msgid "WIP adding map to LTT explorer"
+#~ msgstr "Gwaith ar y gweill gan ychwanegu map at fforiwr LTT"
+
+#~ msgid "Testing map interactions"
+#~ msgstr "Profi rhyngweithiadau mapiau"
 
