@@ -47,9 +47,7 @@ SelectMap.prototype.displayResults = function (data) {
   const $minPrice = $result.querySelector('[data-aggregate="min-price"]')
   $minPrice.textContent = utils.readableNumber(stats.min)
 
-  // empty container
-  this.$resultsContainer.textContent = ''
-  this.$resultsContainer.appendChild($result)
+  this.updateResultsContainer($result)
 }
 
 SelectMap.prototype.getMap = function () {
@@ -85,6 +83,13 @@ SelectMap.prototype.resizeMap = function () {
 SelectMap.prototype.setOptions = function (opts) {
   const options = opts || {}
   this.options = utils.extend(selectMapDefaults, options)
+}
+
+SelectMap.prototype.updateResultsContainer = function ($content) {
+  // empty container
+  this.$resultsContainer.textContent = ''
+  // add new content (HTML)
+  this.$resultsContainer.appendChild($content)
 }
 
 // default options

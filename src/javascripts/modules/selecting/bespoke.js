@@ -2,14 +2,14 @@ import SelectMap from './selecting-module'
 
 /* global MapboxDraw */
 
-function ExistingShapeSelect ($item) {
+function BespokeSelect ($item) {
   SelectMap.call(this, $item)
 }
 
-ExistingShapeSelect.prototype = Object.create(SelectMap.prototype)
-ExistingShapeSelect.prototype.constructor = SelectMap
+BespokeSelect.prototype = Object.create(SelectMap.prototype)
+BespokeSelect.prototype.constructor = SelectMap
 
-ExistingShapeSelect.prototype.addDrawControls = function () {
+BespokeSelect.prototype.addDrawControls = function () {
   const draw = new MapboxDraw({
     displayControlsDefault: false, // Don't add any tools other than those below
     controls: {
@@ -24,12 +24,12 @@ ExistingShapeSelect.prototype.addDrawControls = function () {
   map.on('draw.create', boundShapeCreatedListener)
 }
 
-ExistingShapeSelect.prototype.onBaseMapLoaded = function (e) {
-  console.log('default base map loaded event triggered from ExistingShapeSelect', e)
+BespokeSelect.prototype.onBaseMapLoaded = function (e) {
+  console.log('default base map loaded event triggered from BespokeSelect', e)
   this.addDrawControls()
 }
 
-ExistingShapeSelect.prototype.shapeCreatedListener = function (e) {
+BespokeSelect.prototype.shapeCreatedListener = function (e) {
   console.log('shape drawn', e)
   if (e.features[0].geometry.type === 'Polygon') {
     console.log('its a Polygon', e.features[0])
@@ -37,4 +37,4 @@ ExistingShapeSelect.prototype.shapeCreatedListener = function (e) {
   }
 }
 
-export default ExistingShapeSelect
+export default BespokeSelect

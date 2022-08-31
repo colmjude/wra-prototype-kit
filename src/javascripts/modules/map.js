@@ -161,6 +161,7 @@ Map.prototype.getFeaturesByPoint = function (pt) {
   let features = this.map.queryRenderedFeatures(pt)
   // assuming all layers added are interactive
   const interactiveLayers = Object.keys(this.polygonLayers)
+  console.log('interactive layers', interactiveLayers)
   // remove base vector layer features
   features = features.filter(feature => interactiveLayers.indexOf(feature.layer.source) !== -1)
   return this.removeDuplicates(features)
@@ -247,6 +248,7 @@ Map.prototype._setLayerVisibility = function (layerId, visibility) {
 Map.prototype.togglePolygonLayerVisibility = function (layerName, toEnable) {
   const visibility = (toEnable) ? 'visible' : 'none'
   const layers = this.polygonLayers[layerName]
+  console.log(layerName, layers)
   layers.forEach(layerId => this._setLayerVisibility(layerId, visibility))
 }
 

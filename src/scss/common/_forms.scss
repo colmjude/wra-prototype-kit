@@ -4,3 +4,20 @@
   font-size: 20px;
   line-height: 1.25;
 }
+
+.app-label {
+  font-weight: normal;
+}
+
+.app-radio__group {
+  margin-bottom: 10px;
+
+  input[type="radio"] {
+    margin-top: 0;
+  }
+
+  .app-label {
+    margin-bottom: 0;
+    padding-left: 15px;
+  }
+}

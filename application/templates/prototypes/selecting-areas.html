@@ -64,6 +64,37 @@
   <div class="row app-selecting-area wra-!-margin-top-9">
     <div class="col-lg-6">
       <h3>Existing shapes</h3>
+      <div class="app-selecting__options">
+        <p>Select a layer with existing shapes</p>
+        <ul class="wra-list app-checkboxes wra-!-margin-bottom-0" data-module="option-controls" role="group">
+
+          <li class="app-map__layer-item" data-layer-control="laBoundaries" data-layer-type="polygon" data-layer-endpoint="https://landplatform.azurefd.net/geoserver/test/ows?service=WFS&amp;version=1.0.0&amp;request=GetFeature&amp;typeName=test%3AHighWaterMark4326&amp;maxFeatures=50&amp;outputFormat=application%2Fjson" data-layer-colour="#008888" data-layer-control-active="true">
+            <div class="app-radio__group">
+              <input class="" id="option-controls-1" name="option-controls" type="radio" value="laBoundaries">
+              <label class="app-label" for="option-controls-1">
+                <span class="app-label__key">
+                  <span class="app-label__key__symbol" style="border-color: #008888; background: rgba(0,136,136,0.5);"></span>
+                  Local authority boundaries
+                </span>
+              </label>
+            </div>
+          </li>      
+                    
+          <li class="app-map__layer-item" data-layer-control="conservationareas" data-layer-type="polygon" data-layer-endpoint="https://landplatform.azurefd.net/geoserver/test/ows?service=WFS&amp;version=1.0.0&amp;request=GetFeature&amp;typeName=test%3Aconservation_areas&amp;maxFeatures=550&amp;outputFormat=application%2Fjson" data-layer-colour="#912b88" data-layer-control-active="true">
+            <div class="app-radio__group">
+              <input class="" id="option-controls-2" name="option-controls" type="radio" value="conservationareas">
+              <label class="app-label" for="option-controls-2">
+                <span class="app-label__key">
+                  <span class="app-label__key__symbol" style="border-color: #912b88; background: rgba(145,43,136,0.5);"></span>
+                  Conservation areas
+                </span>
+              </label>
+            </div>
+          </li>
+                    
+        </ul>
+        <p>Then pick a shape to see the statistics for that area.</p>
+      </div>
       <div class="app-results"></div>
     </div>
     <div class="col-lg-6">
@@ -116,6 +147,14 @@
     </div>
   </div>
   <p class="app-small-text">{{ _('These figures are estimates based on data from Land Registry dating back April 2018') }}.</p>
+</template>
+
+<template id="not-a-polygon">
+  <div class="app-inset-text">
+    <h4>Unable to get stats</h4>
+    <p>The API currently only supports geometries that are Polygons. The shape you clicked on is a <span data-dynamic="shape-type"></span>.</p>
+    <p>Choose another to try again.</p>
+  </div>
 </template>
 
 <script src='https://unpkg.com/@turf/turf@6.3.0/turf.min.js'></script>
