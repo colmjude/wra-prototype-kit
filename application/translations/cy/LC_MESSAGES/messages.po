@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-24 10:58+0100\n"
+"POT-Creation-Date: 2022-08-31 13:57+0100\n"
 "PO-Revision-Date: 2022-07-18 14:24+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: cy\n"
@@ -187,14 +187,14 @@ msgstr "lleihau"
 #: application/templates/prototypes/by_post_code_wip.html:29
 #: application/templates/prototypes/pinpoint.html:28
 #: application/templates/prototypes/secret.html:29
-#: application/templates/prototypes/selecting-areas.html:29
+#: application/templates/prototypes/selecting-areas.html:31
 msgid "Back to list of prototypes"
 msgstr "Yn ôl i'r rhestr o brototeipiau"
 
 #: application/templates/prototypes/by_post_code.html:33
 #: application/templates/prototypes/by_post_code_wip.html:31
 #: application/templates/prototypes/pinpoint.html:30
-#: application/templates/prototypes/selecting-areas.html:31
+#: application/templates/prototypes/selecting-areas.html:33
 msgid "Land and property platform"
 msgstr "Llwyfan tir ac eiddo"
 
@@ -237,11 +237,13 @@ msgstr "Asesiad effaith"
 
 #: application/templates/prototypes/by_post_code.html:79
 #: application/templates/prototypes/by_post_code.html:245
+#: application/templates/prototypes/selecting-areas.html:131
 msgid "Total transactions"
 msgstr "Cyfanswm y trafodion"
 
 #: application/templates/prototypes/by_post_code.html:84
 #: application/templates/prototypes/by_post_code.html:250
+#: application/templates/prototypes/selecting-areas.html:136
 msgid "Avg transaction price"
 msgstr "Pris trafodiad cyfartalog"
 
@@ -349,25 +351,25 @@ msgstr "lleiafswm"
 
 #: application/templates/prototypes/by_post_code.html:180
 #: application/templates/prototypes/by_post_code_wip.html:128
-#: application/templates/prototypes/selecting-areas.html:53
+#: application/templates/prototypes/selecting-areas.html:114
 msgid "This is a prototype"
 msgstr "Prototeip yw hwn"
 
 #: application/templates/prototypes/by_post_code.html:183
 #: application/templates/prototypes/by_post_code_wip.html:131
-#: application/templates/prototypes/selecting-areas.html:56
+#: application/templates/prototypes/selecting-areas.html:117
 msgid "The data used in this prototype has been collected from"
 msgstr "Mae'r data a ddefnyddir yn y prototeip hwn wedi'i gasglu o"
 
 #: application/templates/prototypes/by_post_code.html:183
 #: application/templates/prototypes/by_post_code_wip.html:131
-#: application/templates/prototypes/selecting-areas.html:56
+#: application/templates/prototypes/selecting-areas.html:117
 msgid "HM Land Registry price paid dataset"
 msgstr "Set ddata pris a dalwyd Cofrestrfa Tir EM"
 
 #: application/templates/prototypes/by_post_code.html:184
 #: application/templates/prototypes/by_post_code_wip.html:132
-#: application/templates/prototypes/selecting-areas.html:57
+#: application/templates/prototypes/selecting-areas.html:118
 msgid ""
 "We have not included data from before 2018, when the Welsh Revenue "
 "Authority was formed. This means the number of records is comparable with"
@@ -560,10 +562,89 @@ msgstr "OSM cyfeiriad"
 msgid "What 3 Words"
 msgstr "What 3 Words"
 
-#: application/templates/prototypes/selecting-areas.html:32
+#: application/templates/prototypes/selecting-areas.html:34
 #, fuzzy
 msgid "Selecting areas"
 msgstr "Dewis ardaloedd"
+
+#: application/templates/prototypes/selecting-areas.html:38
+msgid "Radius round a point"
+msgstr "Radiws rownd pwynt"
+
+#: application/templates/prototypes/selecting-areas.html:39
+msgid ""
+"Clicking on the map will produce a circle round the point. The diameter "
+"of the circle is 10 kms. This circle will be used to generate transaction"
+" statistics"
+msgstr ""
+"Bydd clicio ar y map yn cynhyrchu cylch o amgylch y pwynt. Mae diamedr y "
+"cylch yn 10 km. Bydd y cylch hwn yn cael ei ddefnyddio i gynhyrchu "
+"ystadegau trafodion"
+
+#: application/templates/prototypes/selecting-areas.html:52
+msgid "Bespoke area"
+msgstr "Ardal bwrpasol"
+
+#: application/templates/prototypes/selecting-areas.html:53
+msgid ""
+"Use the map to draw a bespoke area. This area will be used to generate "
+"transaction statistics"
+msgstr ""
+"Defnyddiwch y map i lunio ardal bwrpasol. Bydd y maes hwn yn cael ei "
+"ddefnyddio i gynhyrchu ystadegau trafodion"
+
+#: application/templates/prototypes/selecting-areas.html:66
+msgid "Existing areas"
+msgstr "Ardaloedd presennol"
+
+#: application/templates/prototypes/selecting-areas.html:68
+msgid "Select a layer with existing areas"
+msgstr "Dewiswch haen gyda'r ardaloedd presennol"
+
+#: application/templates/prototypes/selecting-areas.html:77
+msgid "Local authority boundaries"
+msgstr "Ffiniau awdurdodau lleol"
+
+#: application/templates/prototypes/selecting-areas.html:89
+#, fuzzy
+msgid "Conservation areas"
+msgstr "Ardaloedd cadwraeth"
+
+#: application/templates/prototypes/selecting-areas.html:96
+msgid "Then pick a shape to see the statistics for that area"
+msgstr "Yna dewiswch siâp i weld yr ystadegau ar gyfer yr ardal honno"
+
+#: application/templates/prototypes/selecting-areas.html:141
+msgid "Max transaction price"
+msgstr "Uchafswm pris trafodiad"
+
+#: application/templates/prototypes/selecting-areas.html:146
+msgid "Min transaction price"
+msgstr "Isafswm pris trafodiad"
+
+#: application/templates/prototypes/selecting-areas.html:149
+msgid ""
+"These figures are estimates based on data from Land Registry dating back "
+"April 2018"
+msgstr ""
+"Mae’r ffigurau hyn yn amcangyfrifon sy’n seiliedig ar ddata gan y "
+"Gofrestrfa Tir sy’n dyddio’n ôl ym mis Ebrill 2018"
+
+#: application/templates/prototypes/selecting-areas.html:154
+msgid "Unable to get stats"
+msgstr "Methu cael ystadegau"
+
+#: application/templates/prototypes/selecting-areas.html:155
+msgid "The API currently only supports geometries that are Polygons"
+msgstr "Ar hyn o bryd mae'r API yn cefnogi geometregau sy'n Bolygonau yn unig"
+
+#: application/templates/prototypes/selecting-areas.html:155
+msgid "The shape you clicked on is a"
+msgstr "Y siâp y gwnaethoch chi glicio arno yw a"
+
+#: application/templates/prototypes/selecting-areas.html:156
+msgid "Choose another area to try again"
+msgstr "Dewiswch faes arall i roi cynnig arall arni"
 
 #~ msgid "Higher rate LLT owed"
 #~ msgstr ""
@@ -594,4 +675,5 @@ msgstr "Dewis ardaloedd"
 
 #~ msgid "Potential impact"
 #~ msgstr "Effaith bosibl"
+
 
