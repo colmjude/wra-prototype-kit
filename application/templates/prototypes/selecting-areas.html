@@ -17,7 +17,7 @@
 {% block masthead %}
   {% set langLinkSetting = "en" if pageLang == "cy" else "cy"  %}
   {% set mastHeadHtml %}
-  <a class="btn btn--black btn--on-black" href="{{ url_for('prototypes.by_post_code', lang=langLinkSetting) }}">{{ "English" if pageLang == "cy" else "Cymraeg" }}</a>
+  <a class="btn btn--black btn--on-black" href="{{ url_for('prototypes.area_selection_options', lang=langLinkSetting) }}">{{ "English" if pageLang == "cy" else "Cymraeg" }}</a>
   {% endset %}
   {{ appMasthead({
     "options": { 
